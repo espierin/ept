@@ -7,7 +7,14 @@ const passwords=JSON.parse(process.env.EPT_TEST_PASSWORDS||'{}');
  const passed=[],errors=[];page.on('pageerror',e=>errors.push(e.message));
  const check=s=>{passed.push(s);console.log('PASS '+s);};
  try{
-  await page.goto(base);await page.locator('#login-user').fill('espierin');
+  let unlock;const ready=new Promise(resolve=>{unlock=resolve;});
+  await page.route('**/auth.mjs',async route=>{await ready;await route.continue();});
+  await page.goto(base,{waitUntil:'commit'});await page.locator('#login-user').waitFor();
+  assert.equal(await page.locator('#login-form button').isDisabled(),true);
+  unlock();await page.waitForFunction(()=>!document.querySelector('#login-form button').disabled);
+  await page.unroute('**/auth.mjs');
+  check('Login remains disabled until its delayed authentication module is ready');
+  await page.locator('#login-user').fill('espierin');
   await page.locator('#login-password').fill(passwords.espierin);
   await page.locator('#login-form button').click();await page.locator('#logout').waitFor();
   await page.locator('#dashboard').selectOption('lab');

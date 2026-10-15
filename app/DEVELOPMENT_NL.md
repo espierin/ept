@@ -89,3 +89,5 @@ De publieke demo bevat standaard klasse I (vier HLA-beads) en klasse II (vijf HL
 Alle MFI-grafieken gebruiken een vast zichtbaar bereik van 1 tot en met 10000, zowel logaritmisch als lineair. De log-as heeft hoofdticks op 1, 10, 100, 1000 en 10000 en korte logaritmische onderverdelingen uitsluitend op de as. Waarden buiten het zichtbare bereik krijgen een gestippelde randmarkering en worden in de toelichting geteld. Brongegevens, berekeningen en numerieke exports behouden hun oorspronkelijke waarde. De vaste as verandert geen meetresultaten.
 
 Vijf extra browsercontroles in `app/tests/classes.cjs` toetsen de standaard klasse-II-import, gepaarde DQ/DP-specificiteiten, terugwisselen naar klasse I, beide vaste assen, waarden onder 1 en boven 10000, exportprecisie en het wissen van beide klassen bij uitloggen.
+
+De inlogknop blijft uitgeschakeld tot alle inloghandlers gereed zijn. Een aanvullende browsercontrole vertraagt bewust de authenticatiemodule en controleert dat de knop pas daarna beschikbaar wordt.

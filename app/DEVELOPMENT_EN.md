@@ -89,3 +89,5 @@ The public demo includes class I (four HLA beads) and class II (five HLA beads),
 All MFI charts use a fixed visible range from 1 through 10000 in both logarithmic and linear modes. The log axis has major ticks at 1, 10, 100, 1000 and 10000, with short logarithmic subdivisions on the axis only. Values outside the visible range receive dashed boundary markers and are counted in the chart explanation. Source data, calculations and numeric exports retain their original values. Fixing the axis does not change measurements.
 
 Five additional browser checks in `app/tests/classes.cjs` cover default class II import, paired DQ/DP specificities, switching back to class I, both fixed axes, values below 1 and above 10000, export precision and clearing both classes on sign-out.
+
+The sign-in button remains disabled until all sign-in handlers are ready. An additional browser check deliberately delays the authentication module and verifies that the button becomes available only afterwards.
