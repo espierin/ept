@@ -1,4 +1,4 @@
-# EFI EPT — platform concept
+# EFI EPT - platform concept
 
 Version 1.0 · 15 October 2026 · Public design documentation
 
@@ -58,3 +58,9 @@ The images are synthetic orientation views; implementation uses original logos a
 - [PL String specification](https://plstring.org/)
 
 Public source links do not establish collaboration or enrolment. [EFI style guide](style_EN.html).
+
+## Separate dashboards by user role
+
+The participating laboratory dashboard contains its own import, measurements, report and exports. Group context becomes visible only after release by its EPT provider. The separate provider dashboard contains the overview by provider, scheme/edition, round, sample and technique, with consensus validation and release. Providers and techniques remain separate.
+
+In the current browser prototype, the dashboard selector switches between these routes. This is navigation within a simulation, not authentication or secure authorisation. A new laboratory import locks group context again.

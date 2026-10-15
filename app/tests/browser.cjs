@@ -20,7 +20,10 @@ const checks=[];const check=(name)=>{checks.push(name);console.log('PASS '+name)
  await page.locator('#import').scrollIntoViewIfNeeded();assert.equal(await page.locator('.topbar').evaluate(e=>Math.round(e.getBoundingClientRect().top)),0);
  check('Technique and Locus align; top menu remains visible while scrolling');
  const template=await page.evaluate(()=>window.eptDiagnostics.template());
+ await page.locator('#dashboard').selectOption('provider');
  await page.locator('#consensus-file').setInputFiles({name:'demo.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(template))});
+ await page.waitForFunction(()=>document.querySelector('#consensus-status').textContent.includes(document.documentElement.lang==='nl'?'gevalideerd':'validated'));
+ await page.locator('#dashboard').selectOption('lab');
  await page.waitForSelector('[data-kind="violin"]');assert.equal(await page.locator('[data-kind="violin"]').count(),4);assert.equal(await page.locator('[data-kind="peer"]').count(),72);
  const snap=await page.evaluate(()=>window.eptDiagnostics.snapshot());assert.equal(snap.rows[0].stats.nLabs,18);assert.ok(snap.rows.every(x=>x.peerPoints.every(p=>Object.keys(p).sort().join(',')==='value,vendor')));
  check('Valid scoped demo consensus unlocks 18 synthetic labs with no peer identifiers');
@@ -35,7 +38,9 @@ const checks=[];const check=(name)=>{checks.push(name);console.log('PASS '+name)
  const svgDownload=page.waitForEvent('download');await page.locator('#export-svg').click();const d=await svgDownload;const svgPath=path.join(out,'export.svg');await d.saveAs(svgPath);const svg=fs.readFileSync(svgPath,'utf8');assert.ok(svg.includes('<svg'));assert.ok(!svg.includes('<image'));assert.ok(!svg.includes('synthetic-1'));
  const jsonDownload=page.waitForEvent('download');await page.locator('#export-json').click();const jd=await jsonDownload;const jsonPath=path.join(out,'report-export.json');await jd.saveAs(jsonPath);const exp=JSON.parse(fs.readFileSync(jsonPath));assert.equal(exp.source.csv.sha256.length,64);assert.equal(exp.mfiScale,'log10');
  check('Functional SVG and JSON downloads retain source provenance and omit peer identity');
- await page.locator('#revoke').click();assert.equal(await page.locator('[data-kind="violin"]').count(),0);assert.equal(await page.locator('[data-kind="peer"]').count(),0);
+ await page.locator('#dashboard').selectOption('provider');
+ await page.locator('#revoke').click();
+ await page.locator('#dashboard').selectOption('lab');assert.equal(await page.locator('[data-kind="violin"]').count(),0);assert.equal(await page.locator('[data-kind="peer"]').count(),0);
  check('Withdrawing local demo release removes peer context');
  await page.locator('#files').setInputFiles([path.join(fixtures,'LSA2-test.csv'),path.join(fixtures,'3062145_3045216-SA2.eds')]);
  await page.waitForFunction(()=>!document.querySelector('#accept-import').disabled);

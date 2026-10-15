@@ -1,4 +1,4 @@
-# EFI EPT — initial local implementation
+# EFI EPT - initial local implementation
 
 Version 0.1 · 15 October 2026 · Language pair: DEVELOPMENT_NL.md
 
@@ -49,3 +49,9 @@ The online flow is checked separately with `node app/tests/online.cjs`: 15 check
 `core.mjs` contains import, mapping, validation and statistics. `app.mjs` manages the interface and local session. Charts use native SVG. Fixtures originate from [hlapro](https://github.com/lcreteig/hlapro), with the supplied MIT licence at `fixtures/LICENSE.md`; source URLs, commit and hashes are in `fixtures/provenance.json`. These are original public mock files, not independent participant datasets.
 
 GitHub documentation is built from `public_content` and explicitly public assets only. The general [EFI style guide](../docs/efi-style_EN.html) and [EPT style guide](../docs/style_EN.html) are separate and linked in both directions. Internal project documentation is not recursively copied into the public site.
+
+## Separate dashboards by user role
+
+The participating laboratory dashboard contains its own import, measurements, report and exports. Group context becomes visible only after release by its EPT provider. The separate provider dashboard contains the overview by provider, scheme/edition, round, sample and technique, with consensus validation and release. Providers and techniques remain separate.
+
+In the current browser prototype, the dashboard selector switches between these routes. This is navigation within a simulation, not authentication or secure authorisation. A new laboratory import locks group context again.

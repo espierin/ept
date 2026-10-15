@@ -72,6 +72,10 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  assert.equal(await page.locator('#accept-import').isDisabled(),true);
  assert.equal((await snapshot()).hlaClass,'II');
  check('Incorrect EDS lot is blocked and the existing report is retained');
+ await page.locator('#dashboard').selectOption('provider');
+ assert.equal(await page.locator('#lab-dashboard').isVisible(),false);
+ assert.equal(await page.locator('#provider-dashboard').isVisible(),true);
+ check('Provider dashboard is separate from laboratory report and import');
  const templatePath=await downloaded('#consensus-template','consensus.json');
  const template=JSON.parse(fs.readFileSync(templatePath,'utf8'));
  assert.equal(template.kind,'synthetic-provider-consensus');
@@ -80,6 +84,8 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  await page.waitForFunction(()=>document.querySelector('#consensus-status').textContent.includes('consensus_context'));
  assert.equal(await page.locator('[data-kind="violin"]').count(),0);
  await page.locator('#consensus-file').setInputFiles(templatePath);
+ await page.waitForFunction(()=>document.querySelector('#consensus-status').textContent.includes(document.documentElement.lang==='nl'?'gevalideerd':'validated'));
+ await page.locator('#dashboard').selectOption('lab');
  await page.waitForSelector('[data-kind="violin"]');
  assert.equal(await page.locator('[data-kind="violin"]').count(),5);
  assert.equal(await page.locator('[data-kind="peer"]').count(),90);
@@ -110,7 +116,9 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  check('Online CSV, JSON and vector SVG exports work, including embedded font and metadata');
  await page.evaluate(()=>window.scrollTo(0,0));
  await page.screenshot({path:path.join(out,'desktop.png'),fullPage:true});
+ await page.locator('#dashboard').selectOption('provider');
  await page.locator('#revoke').click();
+ await page.locator('#dashboard').selectOption('lab');
  assert.equal(await page.locator('[data-kind="violin"]').count(),0);
  assert.equal(await page.locator('[data-kind="peer"]').count(),0);
  check('Withdrawing demo consensus removes peer context online');
@@ -130,6 +138,22 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  await page.locator('.language-switch').click();
  assert.equal(await page.locator('html').getAttribute('lang'),'en');
  check('App links open the correct public style guides and their language switches');
+ await page.goto(appUrl+'?dashboard=provider');
+ await page.waitForFunction(()=>document.querySelector('#provider-context').textContent.includes('DEMO-PROVIDER'));
+ assert.equal(await page.locator('#provider-dashboard').isVisible(),true);
+ assert.equal(await page.locator('#report').isVisible(),false);
+ assert.equal(await page.locator('#import').isVisible(),false);
+ assert.equal(await page.locator('#consensus-template').isEnabled(),true);
+ assert.ok((await page.locator('#page-title').textContent()).includes('Jouw'));
+ await page.screenshot({path:path.join(out,'provider.png'),fullPage:true});
+ await page.locator('#language').click();
+ assert.equal(await page.locator('#dashboard').inputValue(),'provider');
+ assert.equal(await page.locator('#provider-dashboard').isVisible(),true);
+ for(const width of [390,320]){await page.setViewportSize({width,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}
+ await page.locator('#dashboard').selectOption('lab');
+ assert.equal(await page.locator('#provider-dashboard').isVisible(),false);
+ assert.equal(await page.locator('#report').isVisible(),true);
+ check('Direct provider link, language switching and mobile navigation preserve dashboard separation');
  assert.deepEqual(pageErrors,[]);assert.deepEqual(httpErrors,[]);assert.deepEqual(writes,[]);
  check('No JavaScript errors, failed HTTP resources or network write requests during the online workflow');
  }catch(error){failures.push(error.stack||String(error));throw error;}

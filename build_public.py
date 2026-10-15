@@ -88,8 +88,9 @@ errors=[]
 for p in OUT.rglob('*'):
     if not p.is_file(): continue
     if p.suffix.lower()=='.pdf': errors.append(f'Forbidden PDF: {p.name}')
-    if p.suffix in ('.html','.md','.css','.svg','.json'):
+    if p.suffix in ('.html','.md','.css','.svg','.json','.mjs','.js'):
         text=p.read_text(encoding='utf-8')
+        if chr(0x2014) in text: errors.append(f'Em dash in authored public file: {p.name}')
         for forbidden in ('Patient Name','19s05189','mailto:'):
             if forbidden in text: errors.append(f'Private/source content marker in {p.name}: {forbidden}')
         if p.suffix=='.html':

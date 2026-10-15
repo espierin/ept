@@ -1,4 +1,4 @@
-# EFI EPT — lokale eerste implementatie
+# EFI EPT - lokale eerste implementatie
 
 Versie 0.1 · 15 oktober 2026 · Taalpaar: DEVELOPMENT_EN.md
 
@@ -49,3 +49,9 @@ De online keten wordt afzonderlijk gecontroleerd met `node app/tests/online.cjs`
 `core.mjs` bevat import, mapping, validatie en statistiek. `app.mjs` beheert interface en lokale sessie. De grafiek gebruikt native SVG. De fixtures komen uit [hlapro](https://github.com/lcreteig/hlapro), met de aangetroffen MIT-licentie in `fixtures/LICENSE.md`; bron-URL, commit en hashes staan in `fixtures/provenance.json`. De bestanden zijn originele publieke mockbestanden en geen onafhankelijke deelnemersdatasets.
 
 De documentatie op GitHub wordt uitsluitend opgebouwd uit `public_content` en expliciete publieke assets. De algemene [EFI-stijlgids](../docs/efi-style_NL.html) en [EPT-stijlgids](../docs/style_NL.html) zijn gescheiden en wederzijds gelinkt. De interne projectdocumenten zijn niet recursief naar de publieke site gekopieerd.
+
+## Aparte dashboards per gebruiker
+
+Het dashboard voor deelnemende labs bevat de eigen import, meetwaarden, rapportage en exports. Groepscontext wordt pas zichtbaar na vrijgave door de eigen EPT-provider. Het aparte providerdashboard bevat het overzicht per provider, schema/ editie, ronde, sample en techniek, plus consensusvalidatie en vrijgave. Providers en technieken blijven gescheiden.
+
+In het huidige browserprototype wissel je met de dashboardkeuze tussen deze twee routes. Dit is navigatie binnen een simulatie, geen authenticatie of beveiligde autorisatie. Een nieuwe labimport vergrendelt de groepscontext opnieuw.

@@ -1,4 +1,4 @@
-# EFI EPT — stijlgids
+# EFI EPT - stijlgids
 
 Versie 1.1 · 15 oktober 2026 · Publieke implementatieafspraken
 
@@ -71,3 +71,7 @@ Iedere pagina heeft een zichtbare NL/EN-wissel. Documentatie bestaat als gesynch
 ## Blijvend toegankelijk menu
 
 Het menu boven de banner is sticky. Sectiekoppen krijgen een offset op basis van de werkelijke menuhoogte; dit werkt ook wanneer het menu op mobiel over meerdere rijen loopt. De moleculaire banner is PNG uit de image generator; het witte logo is een afzonderlijk origineel SVG.
+
+## Taal en dashboardnavigatie
+
+Spreek deelnemers in de Nederlandse interface aan met je, jij en jouw. Gebruik korte, directe teksten. Deelnemende labs en EPT-providers hebben elk een apart dashboard. Houd de dashboardkeuze en taalwissel beschikbaar in het vaste bovenmenu. Gebruik geen lange gedachtestreepjes (em dashes) in eigen documentatie of webteksten; gebruik een punt, komma of gewoon koppelteken.

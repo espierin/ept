@@ -1,4 +1,4 @@
-# EFI EPT — style guide
+# EFI EPT - style guide
 
 Version 1.1 · 15 October 2026 · Public implementation conventions
 
@@ -71,3 +71,7 @@ Every page has a visible NL/EN switch. Documentation consists of synchronised Ma
 ## Persistent navigation
 
 The menu above the banner is sticky. Section headings use an offset based on actual menu height, including wrapped mobile navigation. The molecular banner is a PNG from the image generator; its white logo is a separate original SVG.
+
+## Language and dashboard navigation
+
+Use a friendly, direct voice. Dutch interface copy uses je, jij and jouw. Participating laboratories and EPT providers each have a separate dashboard. Keep dashboard selection and language switching available in the sticky top navigation. Do not use em dashes in authored documentation or website copy; use a full stop, comma or ordinary hyphen.

@@ -1,4 +1,4 @@
-# EFI EPT — platformconcept
+# EFI EPT - platformconcept
 
 Versie 1.0 · 15 oktober 2026 · Publieke ontwerpdocumentatie
 
@@ -58,3 +58,9 @@ De beelden zijn synthetische oriëntaties; de implementatie gebruikt originele l
 - [PL String-specificatie](https://plstring.org/)
 
 Publieke bronverwijzingen zijn geen bevestiging van samenwerking of deelname. [EFI-stijlgids](style_NL.html).
+
+## Aparte dashboards per gebruiker
+
+Het dashboard voor deelnemende labs bevat de eigen import, meetwaarden, rapportage en exports. Groepscontext wordt pas zichtbaar na vrijgave door de eigen EPT-provider. Het aparte providerdashboard bevat het overzicht per provider, schema/ editie, ronde, sample en techniek, plus consensusvalidatie en vrijgave. Providers en technieken blijven gescheiden.
+
+In het huidige browserprototype wissel je met de dashboardkeuze tussen deze twee routes. Dit is navigatie binnen een simulatie, geen authenticatie of beveiligde autorisatie. Een nieuwe labimport vergrendelt de groepscontext opnieuw.

@@ -1,4 +1,4 @@
-# EFI — visuele basisstijlgids
+# EFI - visuele basisstijlgids
 
 Versie 1.0 · 15 oktober 2026 · Publieke projectreferentie
 
@@ -65,3 +65,7 @@ Grafieken en schema’s worden waar praktisch mogelijk SVG. Alle iconen en picto
 ## CSS-bestanden
 
 [Gedeelde kleurtokens](assets/tokens.css), [documentatiestijl](assets/efi.css) en [visuele componentvoorbeelden](assets/specimen.css) zijn rechtstreeks beschikbaar. De lokale EPT-app importeert dezelfde kleurtokens.
+
+## Taal en dashboardnavigatie
+
+Spreek deelnemers in de Nederlandse interface aan met je, jij en jouw. Gebruik korte, directe teksten. Deelnemende labs en EPT-providers hebben elk een apart dashboard. Houd de dashboardkeuze en taalwissel beschikbaar in het vaste bovenmenu. Gebruik geen lange gedachtestreepjes (em dashes) in eigen documentatie of webteksten; gebruik een punt, komma of gewoon koppelteken.

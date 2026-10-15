@@ -1,4 +1,4 @@
-# EFI — visual foundation style guide
+# EFI - visual foundation style guide
 
 Version 1.0 · 15 October 2026 · Public project reference
 
@@ -65,3 +65,7 @@ Charts and diagrams use SVG wherever practicable. All icons and pictograms are S
 ## CSS files
 
 [Shared colour tokens](assets/tokens.css), [documentation styles](assets/efi.css) and [visual component examples](assets/specimen.css) are directly available. The local EPT app imports the same colour tokens.
+
+## Language and dashboard navigation
+
+Use a friendly, direct voice. Dutch interface copy uses je, jij and jouw. Participating laboratories and EPT providers each have a separate dashboard. Keep dashboard selection and language switching available in the sticky top navigation. Do not use em dashes in authored documentation or website copy; use a full stop, comma or ordinary hyphen.
