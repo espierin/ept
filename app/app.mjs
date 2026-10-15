@@ -13,6 +13,7 @@ dict.nl.prototype='Onderzoeksprototype · browserdemo';dict.en.prototype='Resear
 Object.assign(dict.nl,{skip:'Ga naar inhoud',sourceSamples:'bronmetingen',observations:'meetwaarden',mappingIssues:'mappingmeldingen',status_zero:'nul',status_negative:'negatief',status_missing:'ontbrekend',status_invalid:'ongeldig'});
 Object.assign(dict.en,{skip:'Skip to content',sourceSamples:'source measurements',observations:'observations',mappingIssues:'mapping issues',status_zero:'zero',status_negative:'negative',status_missing:'missing',status_invalid:'invalid'});
 let state={dashboard:new URLSearchParams(location.search).get('dashboard')==='provider'?'provider':'lab',locale:'nl',data:null,parsed:null,eds:null,provenance:null,context:null,sourceSample:null,sourceWell:null,technique:'SAB_IGG',quantity:'Median',loci:new Set(['A','B','C']),mode:'merge',scale:'log10',showPeers:true,consensus:null,peerRows:[]};
+const classRuns=new Map();
 let pendingFiles={},preview=null,importSequence=0;
 const t=k=>dict[state.locale][k]||k;
 const format=n=>n===null||n===undefined?'-':new Intl.NumberFormat(state.locale,{maximumFractionDigits:0,useGrouping:false}).format(n);
@@ -47,7 +48,7 @@ function renderDashboard(){
 }
 $('#dashboard').addEventListener('change',e=>{state.dashboard=currentUser()?.role==='admin'?e.target.value:currentUser()?.role==='provider'?'provider':'lab';const url=new URL(location.href);url.searchParams.set('dashboard',state.dashboard);url.hash='';history.replaceState(null,'',url);render();window.scrollTo(0,0);});
 function render(){
- refreshText();renderDashboard();
+ refreshText();renderDashboard();$('#class-panel').hidden=!currentUser()||!state.data;for(const b of document.querySelectorAll('[data-class]')){b.disabled=!classRuns.has(b.dataset.class);b.setAttribute('aria-pressed',String(state.data?.hlaClass===b.dataset.class));}
  const data=state.data, rows=activeRows();
  $('#hero-context').textContent=state.context?`${state.context.provider} · ${state.context.schemeEdition} · ${state.context.round} · ${state.context.sample}`:t('needsImport');
  $('#summary').innerHTML=[
@@ -84,6 +85,7 @@ function emptyReason(){return !state.data?t('needsImport'):state.technique!==sta
 const ns='http://www.w3.org/2000/svg';
 function el(tag,attrs={},parent,text){const n=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(text!==undefined)n.textContent=text;if(parent)parent.append(n);return n;}
 function marker(parent,x,y,vendor,own=false,size=null){const radius=size??(own?7:3.3);return el(vendor==='oneLambda'?'rect':'circle',vendor==='oneLambda'?{x:x-radius,y:y-radius,width:radius*2,height:radius*2,fill:own?'#DE5757':'#064A89',stroke:own?'#FFFFFF':'none','stroke-width':1}:{cx:x,cy:y,r:radius,fill:own?'#DE5757':'#064A89',stroke:own?'#FFFFFF':'none','stroke-width':1},parent);}
+function rangeMark(marker,value){if(value<1||value>10000){marker.dataset.outOfRange=value<1?'below':'above';marker.setAttribute('stroke','#232424');marker.setAttribute('stroke-width','2');marker.setAttribute('stroke-dasharray','2 2');}}
 function drawChart(items){
  const host=$('#chart');host.replaceChildren();
  $('#legend').innerHTML=`<span><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="#DE5757"/></svg>Werfen · ${esc(t('own'))}</span>${state.consensus?`<span><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="#064A89"/></svg>Werfen · ${esc(t('peers'))}</span>`:''}`;
@@ -91,14 +93,14 @@ function drawChart(items){
  const labelWidth=Math.min(470,Math.max(190,...items.map(x=>x.row.plString.length*7.2+20)));
  const width=Math.max(1060,labelWidth+650),top=40,rowHeight=84,height=top+items.length*rowHeight+75,left=labelWidth,right=35,plotWidth=width-left-right;
  const allValues=items.flatMap(({row,refs})=>[row.value,...refs.map(x=>x.value)]);
- const domain=mfiDomain(allValues);const log=state.scale==='log10';const axisMin=log?domain[0]:0,axisMax=domain[1];
+ const domain=[1,10000];const log=state.scale==='log10';const axisMin=1,axisMax=10000;const outside=allValues.filter(v=>Number.isFinite(v)&&v>0&&(v<1||v>10000)).length;if(outside)$('#chart-description').textContent+=` ${outside} ${t('outsideRange')}`;
  const scale=v=>left+(log?(Math.log10(v)-Math.log10(axisMin))/(Math.log10(axisMax)-Math.log10(axisMin)):(v-axisMin)/(axisMax-axisMin))*plotWidth;
- const svg=el('svg',{xmlns:ns,viewBox:`0 0 ${width} ${height}`,role:'img','aria-labelledby':'svg-title svg-description','data-scale':state.scale},host);
+ const svg=el('svg',{xmlns:ns,viewBox:`0 0 ${width} ${height}`,role:'img','aria-labelledby':'svg-title svg-description','data-scale':state.scale,'data-min':axisMin,'data-max':axisMax},host);
  el('title',{id:'svg-title'},svg,t('distribution'));
  el('desc',{id:'svg-description'},svg,`${state.consensus?t('synthetic'):t('ownOnly')}. ${t(log?'log':'linear')}. ${state.mode}.`);
  el('rect',{width,height,fill:'#FFFFFF'},svg);
  const bottom=top+items.length*rowHeight;
- const ticks=log?Array.from({length:Math.round(Math.log10(axisMax)-Math.log10(axisMin))+1},(_,i)=>axisMin*10**i):[0,axisMax/4,axisMax/2,axisMax*3/4,axisMax];
+ const ticks=log?Array.from({length:Math.round(Math.log10(axisMax)-Math.log10(axisMin))+1},(_,i)=>axisMin*10**i):[1,2500,5000,7500,10000];
  for(const tick of ticks){const x=scale(tick);el('line',{x1:x,x2:x,y1:top-15,y2:bottom,stroke:'#DFE4E8'},svg);el('text',{x,y:bottom+25,'text-anchor':'middle','font-size':12},svg,format(tick));}
  if(log)for(let exponent=Math.floor(Math.log10(axisMin));exponent<=Math.ceil(Math.log10(axisMax));exponent++)for(let multiple=2;multiple<=9;multiple++){const tick=multiple*10**exponent;if(tick<=axisMin||tick>=axisMax)continue;const x=scale(tick);el('line',{x1:x,x2:x,y1:bottom,y2:bottom+6,stroke:'#064A89','data-kind':'minor-tick','data-value':tick},svg);}
  el('line',{x1:left,x2:width-right,y1:bottom,y2:bottom,stroke:'#064A89'},svg);
@@ -112,9 +114,9 @@ function drawChart(items){
      const offset=groups.length>1?(gi-(groups.length-1)/2)*24:0;
      const density=violin(group.map(x=>x.value),{domain,bandwidth:.18});
      if(density){const a=density.map((p,i)=>`${i?'L':'M'}${scale(p.value).toFixed(2)},${(y+offset-p.width*22).toFixed(2)}`),b=[...density].reverse().map(p=>`L${scale(p.value).toFixed(2)},${(y+offset+p.width*22).toFixed(2)}`);el('path',{d:[...a,...b,'Z'].join(''),fill:'#064A89','fill-opacity':.15,stroke:'none','data-kind':'violin'},svg);}
-     if(state.showPeers)chartPoints(group).forEach((point,i)=>{const jitter=Math.sin((i+1)*2.399+index*1.67)*13;const m=marker(svg,scale(point.value),y+offset+jitter,point.vendor);m.dataset.kind='peer';el('title',{},m,`${t('peers')} · ${VENDORS[point.vendor].name} · ${format(point.value)} MFI`);});
+     if(state.showPeers)chartPoints(group).forEach((point,i)=>{const jitter=Math.sin((i+1)*2.399+index*1.67)*13;const m=marker(svg,Math.max(left+4,Math.min(width-right-4,scale(point.value))),y+offset+jitter,point.vendor);m.dataset.kind='peer';rangeMark(m,point.value);el('title',{},m,`${t('peers')} · ${VENDORS[point.vendor].name} · ${format(point.value)} MFI`);});
    });
-   if(row.value>0&&Number.isFinite(row.value)){const m=marker(svg,scale(row.value),y,row.vendor,true);m.dataset.kind='own';el('title',{},m,`${t('own')} · ${format(row.value)} MFI`);}
+   if(row.value>0&&Number.isFinite(row.value)){const m=marker(svg,Math.max(left+8,Math.min(width-right-8,scale(row.value))),y,row.vendor,true);m.dataset.kind='own';rangeMark(m,row.value);el('title',{},m,`${t('own')} · ${format(row.value)} MFI`);}
    else el('text',{x:left+8,y:y+4,'font-size':11},svg,`${row.status}: ${format(row.value)}`);
    if(hasDuplicates)el('text',{x:left+10,y:y+30,'font-size':10},svg,t('ambiguous'));
  }
@@ -155,7 +157,7 @@ function acceptPreview(){
  const selected=data.samples.find(s=>sourceKey(s)===$('#preview-sample').value);if(!selected)throw new ImportError('missing_sample');
  const sourceSample=selected.sample,sourceWell=selected.well;
  state={...state,data,parsed:preview.parsed,eds:preview.eds,provenance:preview.provenance,context,sourceSample,sourceWell,quantity:'Median',technique:data.technique,loci:new Set(data.hlaClass==='I'?['A','B','C']:['DRB1','DRB3-4-5','DQ','DP']),consensus:null,peerRows:[]};
- restoreRelease();render();$('#import-status').textContent=t('accepted');$('#consensus-status').textContent='';
+ restoreRelease();classRuns.set(data.hlaClass,{...state,loci:new Set(state.loci)});render();if(preview.provenance.kind==='public-mock')preloadOtherClass(data.hlaClass);$('#import-status').textContent=t('accepted');$('#consensus-status').textContent='';
 }
 async function loadDemo(hlaClass,initial=false){
  try {
@@ -169,8 +171,28 @@ async function loadDemo(hlaClass,initial=false){
 }
 function restoreRelease(){if(!state.data||!state.context)return;const release=savedRelease(state.context,state.data.technique,state.data.hlaClass);releaseReset();if(release)try{state.consensus=validateConsensus(release,state.context,state.data.technique,state.data.hlaClass);state.peerRows=buildSyntheticPeers(ownRows(),state.context);}catch{releaseReset();}}
 window.addEventListener('storage',e=>{if(e.key==='ept-demo-releases-v1'&&currentUser()){restoreRelease();render();}});
+Object.assign(dict.nl,{classNote:'Klasse I en II blijven gescheiden. De publieke demo bevat beide klassen.',outsideRange:'waarden buiten het asbereik 1 tot 10000. Gestippelde randen markeren deze waarden aan de asgrens; tabel en exports behouden hun waarde.'});
+Object.assign(dict.en,{classNote:'Classes I and II remain separate. The public demo includes both classes.',outsideRange:'values outside the axis range 1 to 10000. Dashed outlines mark these values at the axis boundary; table and exports retain their values.'});
+async function preloadOtherClass(activeClass){
+ const other=activeClass==='I'?'II':'I';if(classRuns.has(other))return;
+ const sequence=importSequence,baseline={...state,loci:new Set(state.loci)};
+ try{
+  const names=other==='I'?['LSA1-test.csv','3012456_3065421-SA1.eds']:['LSA2-test.csv','3062145_3045216-SA2.eds'];
+  const texts=await Promise.all(names.map(async name=>{const r=await fetch('fixtures/'+name);if(!r.ok)throw Error('Fixture unavailable');return r.text();}));
+  const parsed=parseXponent(texts[0]),eds=parseEds(texts[1]),data=combineImport(parsed,eds,{technique:baseline.data.technique,quantity:'Median'}),sample=data.samples[0];
+  const hashes=await Promise.all(texts.map(x=>sha256(x)));if(sequence!==importSequence||!currentUser())return;
+  classRuns.set(other,{...baseline,data,parsed,eds,sourceSample:sample.sample,sourceWell:sample.well,quantity:'Median',technique:data.technique,loci:new Set(other==='I'?['A','B','C']:['DRB1','DRB3-4-5','DQ','DP']),consensus:null,peerRows:[],provenance:{kind:'public-mock',csv:{name:names[0],sha256:hashes[0]},eds:{name:names[1],sha256:hashes[1]},sourceUrl:'https://github.com/lcreteig/hlapro'}});render();
+ }catch(e){$('#import-status').textContent=errorText(e);}
+}
+$('#class-buttons').addEventListener('click',e=>{
+ const b=e.target.closest('[data-class]');if(!b||b.disabled||!currentUser())return;
+ classRuns.set(state.data.hlaClass,{...state,loci:new Set(state.loci)});const next=classRuns.get(b.dataset.class);
+ state={...next,locale:state.locale,dashboard:state.dashboard,loci:new Set(next.loci)};pendingFiles={};preview=null;importSequence++;fillPreview();
+ for(const [key,value]of Object.entries(state.context))$('#ctx-'+key).value=value;
+ restoreRelease();$('#import-status').textContent='';render();
+});
 function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-function snapshot(){const rows=activeRows();return {schemaVersion:1,appVersion:VERSION,generatedAt:new Date().toISOString(),locale:state.locale,context:state.context,source:state.provenance,sourceSample:state.sourceSample,sourceWell:state.sourceWell,technique:state.technique,hlaClass:state.data?.hlaClass,quantity:state.quantity,lot:state.data?.lot,mode:state.mode,mfiScale:state.scale,loci:[...state.loci],referenceKind:state.consensus?'generated-synthetic':'none',consensus:state.consensus,method:{density:'Gaussian KDE on log10 positive MFI',bandwidth:.18,steps:100,minCount:5,ownExcluded:true},rows:rows.map(row=>({plString:row.plString,sourceBead:row.sourceBead,value:row.value,status:row.status,count:row.count,vendor:row.vendor,stats:state.consensus?referenceStats(reference(row)):null,peerPoints:state.consensus&&state.showPeers?chartPoints(reference(row)):[]}))};}
+function snapshot(){const rows=activeRows();return {schemaVersion:1,appVersion:VERSION,generatedAt:new Date().toISOString(),locale:state.locale,context:state.context,source:state.provenance,sourceSample:state.sourceSample,sourceWell:state.sourceWell,technique:state.technique,hlaClass:state.data?.hlaClass,quantity:state.quantity,lot:state.data?.lot,mode:state.mode,mfiScale:state.scale,axisRange:[1,10000],availableClasses:[...classRuns.keys()],loci:[...state.loci],referenceKind:state.consensus?'generated-synthetic':'none',consensus:state.consensus,method:{density:'Gaussian KDE on log10 positive MFI',bandwidth:.18,steps:100,minCount:5,ownExcluded:true},rows:rows.map(row=>({plString:row.plString,sourceBead:row.sourceBead,value:row.value,status:row.status,count:row.count,vendor:row.vendor,stats:state.consensus?referenceStats(reference(row)):null,peerPoints:state.consensus&&state.showPeers?chartPoints(reference(row)):[]}))};}
 function template(){return {schemaVersion:1,kind:'synthetic-provider-consensus',officiallyReleased:true,context:{...state.context},technique:state.data.technique,hlaClass:state.data.hlaClass,releaseDate:new Date().toISOString().slice(0,10),version:'demo-v1',assignments:[...new Set(ownRows().filter(x=>x.plString).map(x=>x.plString))].map(plString=>({plString,call:'not_assessed'}))};}
 document.addEventListener('click',e=>{
  const b=e.target.closest('button[data-value]');if(!b||b.disabled)return;
@@ -197,7 +219,7 @@ $('#revoke').addEventListener('click',()=>{if(!canProvide())return;withdrawRelea
 $('#export-csv').addEventListener('click',()=>{const rows=snapshot().rows.map(r=>({...r,provider:state.context.provider,schemeEdition:state.context.schemeEdition,round:state.context.round,sample:state.context.sample,technique:state.technique,quantity:state.quantity,mfiScale:state.scale,displayMode:state.mode,sourceHash:state.provenance.csv.sha256,referenceKind:state.consensus?'synthetic':'none'}));download('ept-own-results.csv',toCsv(rows,['provider','schemeEdition','round','sample','technique','quantity','plString','value','status','vendor','mfiScale','displayMode','referenceKind','sourceHash']),'text/csv;charset=utf-8');});
 $('#export-json').addEventListener('click',()=>download('ept-report.json',JSON.stringify(snapshot(),null,2),'application/json'));
 $('#export-svg').addEventListener('click',async()=>{try{const svg=$('#chart svg');if(!svg)throw new Error(t('saveFailed'));const clone=svg.cloneNode(true);const response=await fetch('../docs/assets/montserrat-variable.ttf');if(!response.ok)throw new Error('Font unavailable');const bytes=new Uint8Array(await response.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));const style=el('style',{},null,`@font-face{font-family:Montserrat;src:url(data:font/ttf;base64,${btoa(binary)})}text{font-family:Montserrat,system-ui,sans-serif;fill:#232424;stroke:none}`);clone.insertBefore(style,clone.firstChild);const {rows,...metadata}=snapshot();el('metadata',{},clone,JSON.stringify(metadata));download('ept-report.svg',new XMLSerializer().serializeToString(clone),'image/svg+xml');}catch(e){$('#import-status').textContent=errorText(e);}});
-$('#clear-session').addEventListener('click',()=>{state={...state,data:null,parsed:null,eds:null,provenance:null,context:null,sourceSample:null,consensus:null,peerRows:[]};preview=null;pendingFiles={};importSequence++;$('#files').value='';$('#consensus-file').value='';fillPreview();$('#import-status').textContent='';$('#consensus-status').textContent='';render();});
+$('#clear-session').addEventListener('click',()=>{classRuns.clear();state={...state,data:null,parsed:null,eds:null,provenance:null,context:null,sourceSample:null,consensus:null,peerRows:[]};preview=null;pendingFiles={};importSequence++;$('#files').value='';$('#consensus-file').value='';fillPreview();$('#import-status').textContent='';$('#consensus-status').textContent='';render();});
 // Local-only diagnostic hook; no identity/remote credentials. The production app must not expose privileged state.
 if(['localhost','127.0.0.1'].includes(location.hostname))Object.defineProperty(window,'eptDiagnostics',{value:{snapshot,template},writable:false});
 const headerObserver=new ResizeObserver(entries=>{document.documentElement.style.setProperty('--topbar-height',`${Math.ceil(entries[0].target.getBoundingClientRect().height)}px`);});headerObserver.observe($('.topbar'));

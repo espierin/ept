@@ -83,3 +83,11 @@ De MFI-as start op log10. Hoofdticks markeren de machten van tien. Binnen elke d
 ## MFI-weergave
 
 Toon MFI-waarden als afgeronde gehele getallen, zonder punt, komma of spatie als duizendtalscheiding. Dit geldt voor tabellen, aslabels en tooltips, in beide talen. Voorbeeld: 8001,5 wordt weergegeven als 8002. Berekeningen, puntposities en CSV/JSON-data-exports behouden de oorspronkelijke precisie; SVG-export volgt de visuele integerweergave.
+
+## Beide demoklassen en vaste MFI-as
+
+De publieke demo bevat standaard klasse I (vier HLA-beads) en klasse II (vijf HLA-beads), elk met een eigen CSV en EDS-lotbestand. Admin en provider krijgen beide demoklassen na inloggen. Een deelnemer bevestigt eerst een publieke demo-import; daarna wordt de andere demoklasse automatisch toegevoegd. Dit geldt uitsluitend voor de publieke demo. Bij eigen bestanden vindt geen automatische bijmenging van demodata plaats. Gebruik de knoppen I en II om te wisselen. Data, lot, loci, meetsectie en consensus blijven per klasse gescheiden; uitloggen wist beide imports.
+
+Alle MFI-grafieken gebruiken een vast zichtbaar bereik van 1 tot en met 10000, zowel logaritmisch als lineair. De log-as heeft hoofdticks op 1, 10, 100, 1000 en 10000 en korte logaritmische onderverdelingen uitsluitend op de as. Waarden buiten het zichtbare bereik krijgen een gestippelde randmarkering en worden in de toelichting geteld. Brongegevens, berekeningen en numerieke exports behouden hun oorspronkelijke waarde. De vaste as verandert geen meetresultaten.
+
+Vijf extra browsercontroles in `app/tests/classes.cjs` toetsen de standaard klasse-II-import, gepaarde DQ/DP-specificiteiten, terugwisselen naar klasse I, beide vaste assen, waarden onder 1 en boven 10000, exportprecisie en het wissen van beide klassen bij uitloggen.

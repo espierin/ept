@@ -82,3 +82,11 @@ The MFI axis defaults to log10. Major ticks mark powers of ten. Each decade cont
 Display MFI values as rounded integers with no dot, comma or space as a thousands separator. Apply this to tables, axis labels and tooltips in both languages. Example: 8001.5 is displayed as 8002. Calculations, point positions and CSV/JSON data exports retain original precision; SVG export follows the visual integer display.
 
 Demo releases are retained in this browser by provider, scheme, round, sample, class and technique. A matching participant import applies the release; withdrawal removes that local release. Other browsers do not yet share this status. No raw laboratory results are stored centrally.
+
+## Both demo classes and a fixed MFI axis
+
+The public demo includes class I (four HLA beads) and class II (five HLA beads), each with its own CSV and EDS lot file. Admin and provider receive both demo classes after sign-in. A participant first confirms a public demo import; the other demo class is then added automatically. This applies only to the public demo. User-selected files do not automatically mix with demo data. Use buttons I and II to switch. Data, lot, loci, measurement section and consensus remain separate by class; signing out clears both imports.
+
+All MFI charts use a fixed visible range from 1 through 10000 in both logarithmic and linear modes. The log axis has major ticks at 1, 10, 100, 1000 and 10000, with short logarithmic subdivisions on the axis only. Values outside the visible range receive dashed boundary markers and are counted in the chart explanation. Source data, calculations and numeric exports retain their original values. Fixing the axis does not change measurements.
+
+Five additional browser checks in `app/tests/classes.cjs` cover default class II import, paired DQ/DP specificities, switching back to class I, both fixed axes, values below 1 and above 10000, export precision and clearing both classes on sign-out.
