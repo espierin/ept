@@ -1,4 +1,4 @@
-"""Build only explicitly public documents. Never recurse through project sources."""
+"""Build allowlisted public documents and the browser prototype, never private sources."""
 from pathlib import Path
 import hashlib, html, json, re, shutil
 from urllib.parse import urlsplit, unquote
@@ -47,6 +47,7 @@ def render(stem, lang, content):
     page = f'''<!doctype html><html lang="{lang.lower()}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>{html.escape(title)}</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_{lang}.html">EPT Insights</a><div class="header-actions"><a href="concept_{lang}.html">{'Concept' if nl else 'Concept'}</a><a href="style_{lang}.html">{'Stijlgids' if nl else 'Style guide'}</a><a class="language-switch" href="{stem}_{other}.html" lang="{other.lower()}" hreflang="{other.lower()}">{other}</a><button class="print" onclick="window.print()">{'Afdrukken' if nl else 'Print'}</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · {'Onderzoeksprototype' if nl else 'Research prototype'}</div><h1>{html.escape(title)}</h1><p>{'Publieke ontwerpdocumentatie · in ontwikkeling' if nl else 'Public design documentation · work in progress'}</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>{'INHOUD' if nl else 'CONTENTS'}</strong>{toc}<a href="{stem}_{lang}.md">Markdown</a></aside><main>{body}</main></div><footer>{'Projectdocumentatie · geen officiële EFI-dienst' if nl else 'Project documentation · not an official EFI service'}</footer></body></html>'''
     page=page.replace('</head>','<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head>')
     page=page.replace(f'<a href="style_{lang}.html">',f'<a href="efi-style_{lang}.html">EFI</a><a href="style_{lang}.html">')
+    page=page.replace('<div class="header-actions">','<div class="header-actions"><a href="app/">Prototype</a>')
     (OUT / f'{stem}_{lang}.html').write_text(page,encoding='utf-8')
     (OUT / f'{stem}_{lang}.md').write_text(content,encoding='utf-8')
     return page
@@ -55,8 +56,32 @@ for lang in ('NL','EN'):
     for stem in ('concept','style','efi-style'):
         render(stem,lang,(ROOT / f'public_content/{stem}_{lang}.md').read_text(encoding='utf-8'))
     text = ('# EFI EPT Insights\n\n## Concept en ontwikkeling\n\nEen onderzoeksprototype voor HLA single antigen bead-analyse binnen EPT. De documentatie beschrijft de structuur, beoogde invoer en uitvoer en EFI-opmaak. De applicatie wordt eerst lokaal gebouwd en getest; deze site bevat nu de publieke documentatie.\n\n- [Lees het platformconcept](concept_NL.html)\n- [Algemene EFI-basisstijl met kleur- en fontvoorbeelden](efi-style_NL.html)\n- [EPT-stijlgids met interactieve filters](style_NL.html)\n- [Repository](https://github.com/espierin/ept)\n\n## Status\n\nDocumentatie gepubliceerd op 15 oktober 2026. De ontwerpbeelden bevatten uitsluitend synthetische resultaten. Er worden via deze website geen deelnemersbestanden ontvangen. Interne communicatie en oorspronkelijke inzendingen staan niet in deze publicatie.\n' if lang=='NL' else '# EFI EPT Insights\n\n## Concept and development\n\nA research prototype for HLA single antigen bead analysis within EPT. The documentation describes structure, intended inputs and outputs, and EFI styling. The application is being built and tested locally first; this site currently contains public documentation.\n\n- [Read the platform concept](concept_EN.html)\n- [General EFI foundation with colour and font examples](efi-style_EN.html)\n- [EPT style guide with interactive filters](style_EN.html)\n- [Repository](https://github.com/espierin/ept)\n\n## Status\n\nDocumentation published on 15 October 2026. Design images contain synthetic results only. This website does not receive participant files. Internal communication and original submissions are not part of this publication.\n')
+    if lang=='NL':
+        text=text.replace('De applicatie wordt eerst lokaal gebouwd en getest; deze site bevat nu de publieke documentatie.','Het browserprototype is online beschikbaar. Gekozen bestanden worden uitsluitend in de eigen browser verwerkt; er is geen centrale ontvangst of opslag.').replace('- [Lees het platformconcept]','- [Open het browserprototype](app/)\n- [Lees het platformconcept]')
+    else:
+        text=text.replace('The application is being built and tested locally first; this site currently contains public documentation.','The browser prototype is available online. Selected files are processed in your browser only; there is no central reception or storage.').replace('- [Read the platform concept]','- [Open the browser prototype](app/)\n- [Read the platform concept]')
     page=render('index',lang,text)
-    if lang=='NL': (OUT / 'index.html').write_text(page,encoding='utf-8')
+
+# An explicit application allowlist keeps development tests, local reports and all
+# correspondence out of the Pages package. Original public mock files only.
+app_files=[
+    'index.html','app.mjs','core.mjs','assets/app.css','assets/icons.svg',
+    'assets/antibody-hla-banner.png','fixtures/LSA1-test.csv','fixtures/LSA2-test.csv',
+    'fixtures/3012456_3065421-SA1.eds','fixtures/3062145_3045216-SA2.eds',
+    'fixtures/LICENSE.md','fixtures/provenance.json',
+]
+for relative in app_files:
+    source=ROOT/'app'/relative
+    target=OUT/'app'/relative
+    target.parent.mkdir(parents=True,exist_ok=True)
+    if source.suffix in ('.html','.mjs','.css'):
+        content=source.read_text(encoding='utf-8')
+        content=content.replace('../../docs/assets/','../../assets/').replace('../docs/','../')
+        if relative=='app.mjs':
+            content=re.sub(r"if\(\['localhost','127\.0\.0\.1'\].*?\);\n",'',content)
+        target.write_text(content,encoding='utf-8')
+    else:shutil.copy2(source,target)
+(OUT/'index.html').write_text('''<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=app/"><title>EFI EPT Insights</title></head><body><p><a href="app/">Open EFI EPT Insights</a></p><p><a href="index_NL.html">Documentatie · Nederlands</a> · <a href="index_EN.html">Documentation · English</a></p></body></html>''',encoding='utf-8')
 (OUT / '.nojekyll').touch()
 
 errors=[]
@@ -72,6 +97,8 @@ for p in OUT.rglob('*'):
                 u=urlsplit(html.unescape(ref))
                 if not u.scheme and u.path and not (p.parent/unquote(u.path)).exists(): errors.append(f'Missing asset {ref}')
 assert not errors, errors
+actual={str(p.relative_to(OUT/'app')).replace('\\','/') for p in (OUT/'app').rglob('*') if p.is_file()}
+assert actual==set(app_files),f'Unexpected app assets: {actual-set(app_files)}'
 manifest={str(p.relative_to(OUT)).replace('\\','/'): hashlib.sha256(p.read_bytes()).hexdigest() for p in OUT.rglob('*') if p.is_file() and p.name!='publication-manifest.json'}
-(OUT/'publication-manifest.json').write_text(json.dumps({'scope':'Explicit public documentation only','files':manifest},indent=2),encoding='utf-8')
+(OUT/'publication-manifest.json').write_text(json.dumps({'scope':'Curated public documentation and browser prototype; public mock fixtures only','files':manifest},indent=2),encoding='utf-8')
 print(f'Public build: {len(manifest)} allowlisted files; no private PDF or correspondence markers; links valid.')

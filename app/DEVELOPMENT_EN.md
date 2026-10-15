@@ -4,7 +4,7 @@ Version 0.1 · 15 October 2026 · Language pair: DEVELOPMENT_NL.md
 
 ## Status and scope
 
-A working local bilingual browser app for **Werfen/Immucor xPONENT CSV + EDS**, tested with public hlapro class I and II mock runs. The app is not yet published on GitHub Pages. That site contains public concept documentation and style guides only. Internal EFI correspondence and the email PDF remain outside the repository.
+A working bilingual browser app for **Werfen/Immucor xPONENT CSV + EDS**, tested with public hlapro class I and II mock runs. The [browser prototype](https://espierin.github.io/ept/) is offered on GitHub Pages alongside the public concept and style guides. Processing remains local to the browser. Internal EFI correspondence and the email PDF remain outside the repository.
 
 ## Starting
 
@@ -41,6 +41,8 @@ Unit/analysis tests: `node --test app/tests/core.test.mjs`.
 Browser chain with the local server running: `node app/tests/browser.cjs`. This needs Playwright with Chrome. The script defaults to `playwright`; `EPT_PLAYWRIGHT_PATH` can point to a module in an existing runtime. Starting the app needs no framework build or npm installation.
 
 Initial verification covers 13 unit/analysis tests and 13 browser checks: class I/II, CSV/EDS mapping, source hash, wrong consensus context, own-only state, synthetic release/withdrawal, peer visibility, exports, language state, 390px layout and sticky navigation. Reports/screenshots are retained locally under `.local/`, which is not committed. These checks do not prove production permissions.
+
+The online flow is checked separately with `node app/tests/online.cjs`: 14 checks through the actual interface and downloads, without local diagnostics. `EPT_BASE_URL` may point to the local publication package for a pre-publication check. The default is `https://espierin.github.io/ept/`. Checks also record HTTP errors and network writes; choosing a file must not cause an upload request.
 
 ## Files and provenance
 

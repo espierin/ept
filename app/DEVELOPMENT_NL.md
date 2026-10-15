@@ -4,7 +4,7 @@ Versie 0.1 · 15 oktober 2026 · Taalpaar: DEVELOPMENT_EN.md
 
 ## Status en afbakening
 
-Een werkende lokale, tweetalige browserapp voor **Werfen/Immucor xPONENT CSV + EDS**, getest met de publieke hlapro-mockruns voor klasse I en II. De applicatie is nog niet op GitHub Pages gepubliceerd. Daar staan alleen de publieke conceptdocumentatie en stijlgidsen. Interne EFI-correspondentie en de mail-PDF zijn buiten de repository gehouden.
+Een werkende tweetalige browserapp voor **Werfen/Immucor xPONENT CSV + EDS**, getest met de publieke hlapro-mockruns voor klasse I en II. Het [browserprototype](https://espierin.github.io/ept/) wordt samen met de publieke conceptdocumentatie en stijlgidsen op GitHub Pages aangeboden. De verwerking blijft lokaal in de browser. Interne EFI-correspondentie en de mail-PDF blijven buiten de repository.
 
 ## Starten
 
@@ -41,6 +41,8 @@ Unit- en analysetests: `node --test app/tests/core.test.mjs`.
 Browserketen met draaiende lokale server: `node app/tests/browser.cjs`. Hiervoor is Playwright met Chrome nodig. Het script gebruikt standaard `playwright`; de variabele `EPT_PLAYWRIGHT_PATH` kan naar de module van een bestaande runtime wijzen. Er is geen frameworkbuild of npm-installatie nodig om de app te starten.
 
 De eerste verificatie omvat 13 unit/analysetests en 13 browsercontroles: klasse I/II, CSV/EDS-koppeling, bronhash, verkeerde consensuscontext, privé-eigen toestand, synthetische vrijgave/intrekking, peerpunten aan/uit, exports, taalstatus, 390px-opmaak en sticky menu. Rapporten en screenshots staan lokaal in `.local/`; die map wordt niet gecommit. Productierechten zijn hiermee niet bewezen.
+
+De online keten wordt afzonderlijk gecontroleerd met `node app/tests/online.cjs`: 14 controles via de echte interface en downloads, zonder lokale diagnosefunctie. `EPT_BASE_URL` kan voor een controle vóór publicatie naar het lokale publicatiepakket wijzen. De standaard is `https://espierin.github.io/ept/`. De controles leggen ook HTTP-fouten en netwerkschrijfacties vast; het kiezen van een bestand hoort geen uploadrequest te veroorzaken.
 
 ## Bestanden en herkomst
 
