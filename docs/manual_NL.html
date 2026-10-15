@@ -1,0 +1,316 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT Insights - handleiding</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="app/">Prototype</a><a href="manual_NL.html">Handleiding</a><a href="concept_NL.html">Concept</a><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="manual_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI EPT Insights - handleiding</h1><p>Quick start en uitgebreide gebruikershandleiding</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#quick-start-je-eerste-demorapport">Quick start: je eerste demorapport</a><a href="#quick-start-groepscontext-vrijgeven">Quick start: groepscontext vrijgeven</a><a href="#rollen-en-paginaopbouw">Rollen en paginaopbouw</a><a href="#profiel-wachtwoord-en-e-mail">Profiel, wachtwoord en e-mail</a><a href="#deelnames-schemas-en-vendors">Deelnames, schema’s en vendors</a><a href="#demodata-en-bestanden">Demodata en bestanden</a><a href="#import-stap-voor-stap">Import stap voor stap</a><a href="#technieken-loci-en-meetsecties">Technieken, loci en meetsecties</a><a href="#grafieken-en-consensus-lezen">Grafieken en consensus lezen</a><a href="#provider-vrijgave-en-intrekken">Provider: vrijgave en intrekken</a><a href="#export-kwaliteitsinformatie-en-opslag">Export, kwaliteitsinformatie en opslag</a><a href="#problemen-oplossen">Problemen oplossen</a><a href="#huidige-grenzen-en-verdere-documentatie">Huidige grenzen en verdere documentatie</a><a href="manual_NL.md">Markdown</a></aside><main><p>Versie 1.0 · 15 oktober 2026 · Nederlandse gebruikershandleiding</p>
+<p><a href="app/">Open de demo</a> · <a href="manual_EN.html">English</a> · <a href="manual_NL.md">Download als Markdown</a></p>
+<h2 id="quick-start-je-eerste-demorapport">Quick start: je eerste demorapport</h2>
+<p>Volg deze stappen in één normale browser. Je hebt geen eigen bestanden of e-mailadres nodig. De demo gebruikt publieke Werfen / Immucor xPONENT-bestanden van het hlapro-project. De groepswaarden worden synthetisch gegenereerd.</p>
+<h3 id="1-log-in-als-deelnemer">1. Log in als deelnemer</h3>
+<p>Open <a href="app/">EPT Insights</a>. Gebruik gebruikersnaam <strong>participant_1</strong> en startwachtwoord <strong>5678</strong>. Klik op <strong>Inloggen</strong>. Is de interface Engels, klik dan bovenaan op <strong>NL</strong>.</p>
+<p>Heb je dit wachtwoord in deze browser al gewijzigd? Gebruik dan je gewijzigde wachtwoord. Profielen gelden voorlopig alleen in dezelfde browser en voor hetzelfde websiteadres.</p>
+<h3 id="2-controleer-je-profiel">2. Controleer je profiel</h3>
+<p>Klik bovenaan op <strong>Mijn profiel</strong>. Je profiel opent onderaan de pagina. Je mag een e-mailadres invullen, bijvoorbeeld <code>participant@example.org</code> als testadres, maar je kunt het ook leeg laten. Klik op <strong>Profiel opslaan</strong>. Laat de drie wachtwoordvelden leeg als je alleen het e-mailadres wilt bewaren.</p>
+<p>Controle: je ziet <strong>Opgeslagen in deze browser.</strong> Er wordt geen e-mail verstuurd. Voor deze quick start hoef je je wachtwoord niet te wijzigen.</p>
+<h3 id="3-registreer-schema-en-vendor">3. Registreer schema en vendor</h3>
+<p>Ga naar <strong>1. Kies je EPT-schema’s en vendors</strong> en vul het volgende in:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Instelling</th>
+<th>Kies of vul in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider</td>
+<td><code>provider_1</code></td>
+</tr>
+<tr>
+<td>Schema / editie</td>
+<td><code>SAB-2026-DEMO</code></td>
+</tr>
+<tr>
+<td>Vendor(s)</td>
+<td>Vink <strong>Werfen / Immucor</strong> aan</td>
+</tr>
+</tbody>
+</table></div>
+<p>Klik op <strong>Schema toevoegen</strong>. Controleer dat boven het formulier een regel verschijnt met <code>provider_1</code>, <code>SAB-2026-DEMO</code> en <code>Werfen / Immucor</code>.</p>
+<p><strong>Deze stap is nodig.</strong> Alleen One Lambda aanvinken werkt niet voor de Werfen-demobestanden. Je mag beide vendors registreren, maar de huidige importer verwerkt alleen Werfen / Immucor xPONENT + EDS.</p>
+<h3 id="4-laad-klasse-i-en-bevestig-de-import">4. Laad klasse I en bevestig de import</h3>
+<p>Ga via <strong>2. Importeren</strong> naar <strong>Importeer een xPONENT-run</strong>. Klik bij <strong>Publieke mockvoorbeelden</strong> op <strong>Class I</strong>. Wacht op de melding dat de preview gereed is. Je hoeft hiervoor zelf geen CSV of EDS te downloaden.</p>
+<p>Controleer de velden:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Veld</th>
+<th>Waarde voor de quick start</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider</td>
+<td><code>provider_1</code></td>
+</tr>
+<tr>
+<td>Schema / editie</td>
+<td><code>SAB-2026-DEMO</code></td>
+</tr>
+<tr>
+<td>Ronde</td>
+<td><code>ROUND-02</code></td>
+</tr>
+<tr>
+<td>EPT sample</td>
+<td><code>DEMO-01</code></td>
+</tr>
+<tr>
+<td>Techniek volgens het uitgevoerde protocol</td>
+<td><code>IgG SAB</code></td>
+</tr>
+<tr>
+<td>Te koppelen bronmeting</td>
+<td><code>S001 · 33(1,A5)</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Vink <strong>Ik bevestig techniek, lot en de koppeling van deze bronmeting aan dit EPT-sample</strong> aan. Klik op <strong>Import bevestigen</strong>. Het rapport verschijnt en de tweede publieke demoklasse wordt automatisch klaargezet.</p>
+<h3 id="5-bekijk-klasse-i-en-ii">5. Bekijk klasse I en II</h3>
+<p>Gebruik de knoppen <strong>I</strong> en <strong>II</strong> boven de dashboards. Ze kiezen de actieve klasse; ze voegen de klassen niet samen.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Actieve klasse</th>
+<th>Wat je ziet bij de eerste bronmeting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>Vier HLA-specificiteiten; de eerste eigen MFI is <code>8002</code></td>
+</tr>
+<tr>
+<td>II</td>
+<td>Vijf HLA-specificiteiten, inclusief gekoppelde DQ/DP-ketens</td>
+</tr>
+</tbody>
+</table></div>
+<p>NC en PC zijn controlebeads. Ze staan in <strong>Kwaliteit, controlebeads en herkomst</strong>, buiten de specificiteitsgrafiek. De MFI-as loopt altijd van <strong>1 tot 10000</strong> en staat standaard op <strong>Log</strong>. Eigen waarden zijn grote koraalrode cirkels.</p>
+<p><strong>Nog geen violin plots of blauwe peerpunten? Dat klopt.</strong> Zolang de provider geen passende democonsensus heeft vrijgegeven, zie je alleen eigen resultaten. Ga verder met de volgende quick start om de groepscontext te testen.</p>
+<h2 id="quick-start-groepscontext-vrijgeven">Quick start: groepscontext vrijgeven</h2>
+<p>Gebruik twee tabs in <strong>dezelfde browser, hetzelfde browserprofiel en op hetzelfde websiteadres</strong>. Een privévenster of andere browser deelt deze demovrijgave niet.</p>
+<ol>
+<li>Laat je deelnemersrapport uit de vorige quick start open in tab 1. Kies daar klasse <strong>I</strong>.</li>
+<li>Open <a href="app/">de demo</a> in tab 2. Log in als <strong>provider_1</strong>, startwachtwoord <strong>1234</strong>. Deze tab toont het providerdashboard. Klasse I en II worden automatisch geladen.</li>
+<li>Kies ook in tab 2 klasse <strong>I</strong>. Controleer provider <code>provider_1</code>, schema <code>SAB-2026-DEMO</code>, ronde <code>ROUND-02</code> en sample <code>DEMO-01</code>.</li>
+<li>Klik op <strong>Download consensusvoorbeeld</strong>. Bewaar het JSON-bestand en laat de inhoud ongewijzigd.</li>
+<li>Klik op <strong>Laad consensus-JSON</strong> en kies dit gedownloade bestand. Wacht op de bevestiging dat de democonsensus is gevalideerd.</li>
+<li>Ga terug naar tab 1. De passende groepscontext verschijnt zonder opnieuw te importeren: violin plots en kleinere blauwe peerpunten. Bij deze demo zijn dat 18 synthetische labs per specificiteit.</li>
+<li>Voor klasse <strong>II</strong> herhaal je stap 3 tot en met 5 met <strong>II</strong> geselecteerd in de providertab. Kies daarna <strong>II</strong> in je deelnemerstab. Klasse I-vrijgave geldt niet automatisch voor klasse II.</li>
+<li>Test eventueel <strong>Trek demovrijgave in</strong> in de providertab. In de deelnemerstab verdwijnen de betreffende peerwaarden; de eigen resultaten blijven staan.</li>
+</ol>
+<p>De calls in het ongewijzigde voorbeeld zijn <strong>Niet beoordeeld</strong> (<code>not_assessed</code>). Het bestand opent de synthetische context; het bevat geen officiële positieve of negatieve EPT-beoordeling. Je hoeft voor deze oefening geen JSON te bewerken.</p>
+<h2 id="rollen-en-paginaopbouw">Rollen en paginaopbouw</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Scherm en mogelijkheden</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participant</td>
+<td>Eigen profiel, schema’s en vendors; eerst import bevestigen, daarna analyseren en exporteren</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Eigen demo-overzicht per klasse en context; consensusvoorbeeld downloaden, laden en intrekken</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Accountoverzicht en dashboardkeuze om de lab- en providerweergave te inspecteren</td>
+</tr>
+</tbody>
+</table></div>
+<p>Het adminaccount heet <code>espierin</code>. Gebruik het eerder ingestelde adminwachtwoord; dat staat niet in deze openbare handleiding. Admin kan via <strong>Dashboard</strong> kiezen voor <strong>Admin</strong>, <strong>Deelnemend lab</strong> of <strong>EPT-provider</strong>. De labweergave van admin toont diens eigen demosessie, niet de ruwe imports uit andere tabs of accounts.</p>
+<p>Het bovenmenu blijft bij scrollen beschikbaar. <strong>Handleiding</strong> opent deze uitleg in een nieuw tabblad, zodat je rapport open blijft. <strong>Concept</strong> beschrijft het platformontwerp. <strong>Mijn profiel</strong> opent het profielgedeelte. <strong>EN / NL</strong> wisselt de interfacetaal en behoudt de actieve sessie. De taalwissel in deze handleiding opent de overeenkomstige vertaling.</p>
+<h2 id="profiel-wachtwoord-en-e-mail">Profiel, wachtwoord en e-mail</h2>
+<p>Bij <strong>Mijn profiel</strong> kun je een optioneel e-mailadres opslaan. Het adres wordt lokaal bewaard; er is nog geen verificatiemail, notificatie of wachtwoordherstel per e-mail.</p>
+<p>Om je wachtwoord te wijzigen vul je <strong>Huidig wachtwoord</strong>, <strong>Nieuw wachtwoord</strong> en <strong>Herhaal nieuw wachtwoord</strong> in en klik je op <strong>Profiel opslaan</strong>. De twee nieuwe waarden moeten gelijk zijn. De demo accepteert minimaal vier tekens. Na een geslaagde wijziging gebruik je het nieuwe wachtwoord in deze browser; de oorspronkelijke startcode werkt daar dan niet meer.</p>
+<p>De accountnaam en rol staan in het bovenmenu. <strong>Uitloggen</strong> wist de actieve imports en peercontext uit die tab. Opgeslagen profielgegevens en schema-inschrijvingen blijven bewaard. Logins worden niet na vernieuwen hersteld.</p>
+<h2 id="deelnames-schemas-en-vendors">Deelnames, schema’s en vendors</h2>
+<p>Registreer per schema de provider, schema-editie en één of beide vendors. In deze demo is alleen <code>provider_1</code> als provider beschikbaar. Je kunt een eigen schema-editienaam invullen om de structuur te testen; de standaard providerdemovrijgave past alleen bij de overeenkomstige context.</p>
+<p><strong>Schema toevoegen</strong> bewaart een nieuwe deelname. Dezelfde provider en schema-editie opnieuw toevoegen werkt de vendorselectie van die deelname bij. Met <strong>Verwijderen</strong> verwijder je de betreffende inschrijving. Dit verwijdert niet automatisch een al geopend rapport.</p>
+<p>De huidige Werfen-import vereist een inschrijving met dezelfde provider en schema-editie en met <strong>Werfen / Immucor</strong> als vendor. One Lambda kan al in je deelname staan, maar er is nog geen werkende One Lambda-importer of One Lambda-peerreeks. Registratie van een vendor betekent dus niet dat diens bestanden al kunnen worden ingelezen.</p>
+<h2 id="demodata-en-bestanden">Demodata en bestanden</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Klasse</th>
+<th>CSV</th>
+<th>Bijbehorend EDS-lotbestand</th>
+<th>HLA-beads + controles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td><a href="app/fixtures/LSA1-test.csv">LSA1-test.csv</a></td>
+<td><a href="app/fixtures/3012456_3065421-SA1.eds">3012456_3065421-SA1.eds</a></td>
+<td>4 + NC/PC</td>
+</tr>
+<tr>
+<td>II</td>
+<td><a href="app/fixtures/LSA2-test.csv">LSA2-test.csv</a></td>
+<td><a href="app/fixtures/3062145_3045216-SA2.eds">3062145_3045216-SA2.eds</a></td>
+<td>5 + NC/PC</td>
+</tr>
+</tbody>
+</table></div>
+<p>De bestanden komen uit <a href="https://github.com/lcreteig/hlapro">hlapro van L. Creteig</a>, onder MIT-licentie. <a href="app/fixtures/provenance.json">Herkomst en bronhashes</a> en <a href="app/fixtures/LICENSE.md">licentie</a> zijn beschikbaar. Dit zijn verkleinde mockbestanden, geen volledige commerciële beadsets of inzendingen van deelnemende labs.</p>
+<p>Elke CSV bevat twee bronmetingen. Alleen de gekozen bronmeting wordt aan het EPT-sample gekoppeld. De tweede well wordt niet als een ander lab behandeld. Bij een bevestigde publieke demo-import wordt de andere demoklasse automatisch voorbereid met de eerste bronmeting en dezelfde EPT-context. Eigen lokaal gekozen bestanden starten deze automatische demoaanvulling niet.</p>
+<h2 id="import-stap-voor-stap">Import stap voor stap</h2>
+<p>Voor een eigen import kies je één xPONENT-CSV en één bijbehorend EDS-bestand via het bestandsvak of sleep je ze erop. Je kunt de twee bestanden samen of na elkaar kiezen. De limieten zijn 20 MB voor CSV en 5 MB voor EDS. Bestanden worden in de browser verwerkt, niet naar een centrale server verzonden.</p>
+<p>Gebruik UTF-8-bestanden en behoud de oorspronkelijke xPONENT-secties, inclusief Median. Een willekeurige tabel met alleen MFI-kolommen is geen ondersteunde export.</p>
+<p>De preview controleert onder andere CSV-structuur, leesbaarheid van EDS, lotkoppeling en beaddefinities. Je ziet lot, klasse, bronmetingen, meetwaarden, mappingmeldingen en SHA-256-bronhashes. Een geldige preview is nog geen bevestigde import.</p>
+<p>Controleer provider, schema-editie, ronde en sample. Selecteer de werkelijk uitgevoerde techniek en de bedoelde bronmeting. De techniek wordt niet uit de beadset afgeleid. Bevestig daarna het vinkvak en <strong>Import bevestigen</strong>. Een mislukte nieuwe import vervangt het bestaande rapport niet.</p>
+<p>Om de andere bronmeting uit hetzelfde bestand te analyseren, laad je het voorbeeld of bestanden opnieuw, kies je de andere bronmeting in de preview en bevestig je opnieuw. Het veld <strong>Bronmeting</strong> in het rapport toont de bevestigde koppeling; het is geen vrije wissel tussen wells.</p>
+<p>De knoppen <strong>I / II</strong> herstellen de afzonderlijke imports, loci en meetsecties. <strong>Wis sessie</strong> verwijdert beide imports en previews uit de actieve sessie. Het verwijdert je profiel, inschrijvingen of lokaal bewaarde providervrijgave niet.</p>
+<h2 id="technieken-loci-en-meetsecties">Technieken, loci en meetsecties</h2>
+<p><strong>Techniek</strong> kiest <strong>SAB</strong>, <strong>C1q</strong> of <strong>C3d</strong>. De demo is bedoeld voor IgG SAB. C1q en C3d gebruiken een parallelle gegevensstructuur en blijven strikt gescheiden, maar hun import is nog niet met echte assaybestanden gevalideerd. Het kiezen van C1q/C3d maakt van een IgG-meting geen complementbindingsassay. Een niet-gemeten techniek toont een lege toestand.</p>
+<p>De locusknoppen zijn <strong>A</strong>, <strong>B</strong>, <strong>C</strong>, <strong>DRB1</strong>, <strong>DRB3-4-5</strong>, <strong>DQ</strong> en <strong>DP</strong>. Je kunt meerdere loci selecteren. Niet-passende loci zijn uitgeschakeld. Actieve techniekknoppen zijn blauw; actieve locusknoppen koraal. Geen locus geselecteerd geeft een lege grafiek en tabel.</p>
+<p>Met <strong>Meetsectie</strong> kies je <strong>Median</strong> of <strong>Net MFI</strong>, als de bron die sectie bevat. De originele waarden blijven bewaard. Een passende, geldige consensus blijft bij deze wissel actief; synthetische referenties worden opnieuw voor de gekozen sectie berekend. De kleine demobestanden kunnen in beide secties dezelfde waarden bevatten.</p>
+<h2 id="grafieken-en-consensus-lezen">Grafieken en consensus lezen</h2>
+<p>De grafiek en tabel gebruiken <strong>PL Strings</strong> in plaats van beadnummers. Bij DQ en DP blijven de gekoppelde alfa- en bètaketens samen zichtbaar, bijvoorbeeld <code>HLA-DQA1*02:01~HLA-DQB1*02:01</code>. Technieken, klassen en EPT-contexten worden niet samengevoegd.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Visueel element</th>
+<th>Betekenis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grote koraalrode marker</td>
+<td>Eigen labresultaat</td>
+</tr>
+<tr>
+<td>Kleine blauwe marker</td>
+<td>Synthetische peerwaarde, zonder labidentificatie bij het punt</td>
+</tr>
+<tr>
+<td>Cirkel</td>
+<td>Werfen / Immucor</td>
+</tr>
+<tr>
+<td>Vierkant</td>
+<td>Gereserveerd voor One Lambda in de uitbreidbare grafiekopzet</td>
+</tr>
+<tr>
+<td>Violin plot</td>
+<td>Verdeling van de geselecteerde peerwaarden, exclusief eigen lab</td>
+</tr>
+<tr>
+<td>Gestippelde randmarker</td>
+<td>Positieve waarde onder 1 of boven 10000, aan de asgrens getoond</td>
+</tr>
+</tbody>
+</table></div>
+<p>De MFI-as loopt in iedere weergave van <strong>1 tot 10000</strong>. <strong>Log</strong> is de standaard; <strong>Lineair</strong> is een expliciete alternatieve weergave. Logaritmische tussenstreepjes staan alleen op de as. Alle weergegeven MFI-getallen zijn afgeronde integers zonder duizendtalscheiding, bijvoorbeeld <code>8002</code>. Berekeningen en numerieke exports behouden <code>8001.5</code> als dat de bronwaarde was.</p>
+<p><strong>Individuele peerwaarden</strong> zet de blauwe punten aan of uit, zonder de violin te veranderen. <strong>Merge</strong> berekent één verdeling uit de samengevoegde vendorwaarnemingen per geldige specificiteit. <strong>Separate</strong> berekent de verdeling per vendor afzonderlijk. In deze demo is alleen Werfen aanwezig; beide standen gebruiken daarom dezelfde peerreeks. Zonder vrijgave zijn deze standen niet beschikbaar.</p>
+<p>De demoreferentie gebruikt 18 gegenereerde labs per geldige positieve meetwaarde. Dat zijn geen echte peerinzendingen. De tabel geeft onder andere de eigen MFI, providercall en aantallen labs, metingen en niet-positieve/ongeldige referentiewaarden. Positieve waarden buiten het zichtbare asbereik blijven in de data en statistiek. Nul, negatief, ontbrekend of ongeldig worden niet in een logaritmische density verwerkt. Bij te weinig of constante referentiewaarden kan een violin ontbreken.</p>
+<p>De violin wordt berekend als een Gaussische kernschatting op log10-MFI, met bandbreedte 0.18 en 100 evaluatiepunten. Er zijn minimaal vijf geldige positieve referentiewaarden nodig; een constante reeks krijgt geen violin. De getoonde violins hebben gelijke maximale breedte, zodat breedte geen zelfstandig aantal labs aanduidt. Het eigen lab wordt uit de referentie gehouden. Unieke labs en meetwaarnemingen zijn afzonderlijke aantallen; herhaalde exports mogen die aantallen niet opblazen.</p>
+<h2 id="provider-vrijgave-en-intrekken">Provider: vrijgave en intrekken</h2>
+<p>Een demovrijgave is gebonden aan <strong>provider + schema-editie + ronde + sample + techniek + klasse</strong>. De versie, expliciete vrijgave en geldige datum worden gecontroleerd. Een bestand met een verkeerde context, klasse, techniek of ongeldige structuur wordt geweigerd. Een ongeldige poging vervangt een al geldige vrijgave niet.</p>
+<p>Het providerdashboard gebruikt de publieke klasse-I- en klasse-II-demo en biedt geen algemene editor voor alle mogelijke rondes. Download voor de geselecteerde klasse het actuele voorbeeld, laad het terug en controleer de status. Bewerk de JSON alleen als je bewust een afwijkend scenario wilt testen. Een vrijgavedatum in de toekomst is ongeldig.</p>
+<p>De opgeslagen demovrijgave wordt toegepast bij een passende import in dezelfde browser. Een al geopende passende deelnemerstab krijgt wijzigingen automatisch door. Andere browsers, browserprofielen en computers delen de status niet. Intrekken verwijdert de vrijgave voor de actieve klasse en context; het verwijdert geen eigen meetwaarden.</p>
+<h2 id="export-kwaliteitsinformatie-en-opslag">Export, kwaliteitsinformatie en opslag</h2>
+<p><strong>CSV</strong> exporteert de actieve selectie en context. <strong>JSON + metadata</strong> bewaart ook bronherkomst, ruwe numerieke precisie, asbereik, meetsectie, consensusstatus en analysemethode. <strong>SVG</strong> exporteert de huidige vectorfiguur met ingebed font en metadata. Maak per klasse en gewenste selectie een eigen export. Een SVG is een visuele momentopname, geen volledige database-export.</p>
+<p>Onder <strong>Kwaliteit, controlebeads en herkomst</strong> staan NC/PC, brongegevens en controles. Deze informatie ondersteunt inspectie van het bestand; de app geeft hiermee geen officiële kwaliteitsgoedkeuring of EPT-score.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Gegeven</th>
+<th>Bewaring in deze demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login en ingelezen meetwaarden</td>
+<td>Alleen actieve tab; weg na uitloggen of vernieuwen</td>
+</tr>
+<tr>
+<td>Profiel, gewijzigd wachtwoord en schema-inschrijvingen</td>
+<td>Lokale browseropslag voor dit websiteadres</td>
+</tr>
+<tr>
+<td>Providerdemovrijgave</td>
+<td>Lokale browseropslag, gedeeld tussen tabs met dezelfde origin</td>
+</tr>
+<tr>
+<td>Gedownloade exports</td>
+<td>De downloadlocatie die je browser gebruikt</td>
+</tr>
+</tbody>
+</table></div>
+<p>Gebruik voor een schone oefening een apart browserprofiel. Het wissen van websitegegevens verwijdert ook gewijzigde wachtwoorden, e-mail, inschrijvingen en demovrijgaven; de oorspronkelijke demoaccounts komen dan terug. Wis deze gegevens niet als je die lokale instellingen wilt behouden.</p>
+<h2 id="problemen-oplossen">Problemen oplossen</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Wat je ziet</th>
+<th>Wat je controleert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inloggen lukt niet</td>
+<td>Exacte accountnaam en het eventueel lokaal gewijzigde wachtwoord; wacht tot de knop actief is</td>
+</tr>
+<tr>
+<td>Bericht over inschrijving of Werfen</td>
+<td>Voeg het juiste schema toe en vink Werfen / Immucor aan; controleer dezelfde provider en schema-editie bij import</td>
+</tr>
+<tr>
+<td>Import bevestigen niet beschikbaar</td>
+<td>Laad een geldige CSV/EDS-combinatie of klik Class I/II; wacht op de preview en vink de bevestiging aan</td>
+</tr>
+<tr>
+<td><code>lot_mismatch</code></td>
+<td>Gebruik CSV en EDS uit dezelfde rij van de bestandentabel</td>
+</tr>
+<tr>
+<td>Alleen eigen punten, geen violin</td>
+<td>Laat de provider de juiste klasse en context vrijgeven in dezelfde browser</td>
+</tr>
+<tr>
+<td>Consensus geweigerd</td>
+<td>Controleer provider, schema, ronde, sample, klasse, techniek, versie en datum; gebruik een vers gedownload voorbeeld</td>
+</tr>
+<tr>
+<td>Klasse II-knop kort uitgeschakeld</td>
+<td>Wacht op het voorbereiden van de tweede demoklasse; controleer eventuele importmelding</td>
+</tr>
+<tr>
+<td>Lege grafiek</td>
+<td>Selecteer een gemeten techniek en minstens één passend locus</td>
+</tr>
+<tr>
+<td>Merge en Separate zien er hetzelfde uit</td>
+<td>Er is in deze demo maar één vendor met meetwaarden</td>
+</tr>
+<tr>
+<td>Tussenstreepjes ontbreken</td>
+<td>Kies Log; Lineair heeft geen logaritmische onderverdeling</td>
+</tr>
+<tr>
+<td>Na vernieuwen opnieuw inloggen/importeren</td>
+<td>Dat is het huidige sessiegedrag; lokale instellingen en vrijgave kunnen nog bewaard zijn</td>
+</tr>
+<tr>
+<td>Andere computer ziet geen vrijgave</td>
+<td>De demo heeft nog geen centrale opslag; herhaal de oefening in dezelfde browser</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="huidige-grenzen-en-verdere-documentatie">Huidige grenzen en verdere documentatie</h2>
+<p>Dit is een browserdemo met lokale accounts, geen beveiligde centrale authenticatie of afgeschermde opslag. Publiek gepubliceerde bestanden blijven publiek. Er is nog geen centrale inzending, e-mailherstel, One Lambda-import, validatie met echte C1q/C3d-bestanden of officiële EPT-beoordeling. Gebruik de quick start met de publieke demobestanden.</p>
+<p><a href="concept_NL.html">Platformconcept</a> · <a href="efi-style_NL.html">EFI</a><a href="style_NL.html">EPT-stijlgids</a> · <a href="efi-style_NL.html">Algemene EFI-stijl</a> · <a href="https://github.com/espierin/ept">Repository</a></p></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>

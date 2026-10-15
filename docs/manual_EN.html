@@ -1,0 +1,316 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT Insights - user manual</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="app/">Prototype</a><a href="manual_EN.html">Manual</a><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="manual_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI EPT Insights - user manual</h1><p>Quick start and detailed user manual</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#quick-start-your-first-demo-report">Quick start: your first demo report</a><a href="#quick-start-release-group-context">Quick start: release group context</a><a href="#roles-and-page-layout">Roles and page layout</a><a href="#profile-password-and-email">Profile, password and email</a><a href="#participation-schemes-and-vendors">Participation, schemes and vendors</a><a href="#demo-data-and-files">Demo data and files</a><a href="#import-step-by-step">Import step by step</a><a href="#techniques-loci-and-measurement-sections">Techniques, loci and measurement sections</a><a href="#reading-charts-and-consensus">Reading charts and consensus</a><a href="#provider-release-and-withdrawal">Provider: release and withdrawal</a><a href="#export-quality-information-and-storage">Export, quality information and storage</a><a href="#troubleshooting">Troubleshooting</a><a href="#current-limits-and-further-documentation">Current limits and further documentation</a><a href="manual_EN.md">Markdown</a></aside><main><p>Version 1.0 · 15 October 2026 · English user manual</p>
+<p><a href="app/">Open the demo</a> · <a href="manual_NL.html">Nederlands</a> · <a href="manual_EN.md">Download Markdown</a></p>
+<h2 id="quick-start-your-first-demo-report">Quick start: your first demo report</h2>
+<p>Follow these steps in one regular browser. You do not need your own files or an email address. The demo uses public Werfen / Immucor xPONENT files from the hlapro project. Group values are generated synthetically.</p>
+<h3 id="1-sign-in-as-a-participant">1. Sign in as a participant</h3>
+<p>Open <a href="app/">EPT Insights</a>. If the interface is Dutch, click <strong>EN</strong> at the top. Use username <strong>participant_1</strong> and initial password <strong>5678</strong>. Click <strong>Sign in</strong>.</p>
+<p>Have you already changed this password in this browser? Use your changed password. Profiles currently apply only within the same browser and website address.</p>
+<h3 id="2-check-your-profile">2. Check your profile</h3>
+<p>Click <strong>My profile</strong> in the top menu. Your profile opens near the bottom of the page. You can enter an email address, for example <code>participant@example.org</code> as a test address, or leave it empty. Click <strong>Save profile</strong>. Leave all three password fields empty if you only want to save your email address.</p>
+<p>Check: you see <strong>Saved in this browser.</strong> No email is sent. You do not need to change your password for this quick start.</p>
+<h3 id="3-register-your-scheme-and-vendor">3. Register your scheme and vendor</h3>
+<p>Go to <strong>1. Choose your EPT schemes and vendors</strong> and enter these settings:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Choose or enter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider</td>
+<td><code>provider_1</code></td>
+</tr>
+<tr>
+<td>Scheme / edition</td>
+<td><code>SAB-2026-DEMO</code></td>
+</tr>
+<tr>
+<td>Vendor(s)</td>
+<td>Tick <strong>Werfen / Immucor</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Click <strong>Add scheme</strong>. Check that a row appears above the form showing <code>provider_1</code>, <code>SAB-2026-DEMO</code> and <code>Werfen / Immucor</code>.</p>
+<p><strong>This step is required.</strong> Selecting only One Lambda will not work for the Werfen demo files. You may register both vendors, but the current importer handles Werfen / Immucor xPONENT + EDS only.</p>
+<h3 id="4-load-class-i-and-confirm-the-import">4. Load class I and confirm the import</h3>
+<p>Use <strong>2. Import</strong> to reach <strong>Import an xPONENT run</strong>. Under <strong>Public mock examples</strong>, click <strong>Class I</strong>. Wait for the preview-ready message. You do not need to download CSV or EDS yourself for this route.</p>
+<p>Check the fields:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Quick-start value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provider</td>
+<td><code>provider_1</code></td>
+</tr>
+<tr>
+<td>Scheme / edition</td>
+<td><code>SAB-2026-DEMO</code></td>
+</tr>
+<tr>
+<td>Round</td>
+<td><code>ROUND-02</code></td>
+</tr>
+<tr>
+<td>EPT sample</td>
+<td><code>DEMO-01</code></td>
+</tr>
+<tr>
+<td>Technique according to the performed protocol</td>
+<td><code>IgG SAB</code></td>
+</tr>
+<tr>
+<td>Source measurement to map</td>
+<td><code>S001 · 33(1,A5)</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Tick <strong>I confirm technique, lot and mapping of this source measurement to this EPT sample</strong>. Click <strong>Confirm import</strong>. The report appears and the second public demo class is prepared automatically.</p>
+<h3 id="5-view-classes-i-and-ii">5. View classes I and II</h3>
+<p>Use buttons <strong>I</strong> and <strong>II</strong> above the dashboards. They select the active class; they do not merge the classes.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Active class</th>
+<th>What you see for the first source measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>Four HLA specificities; the first own MFI is <code>8002</code></td>
+</tr>
+<tr>
+<td>II</td>
+<td>Five HLA specificities, including paired DQ/DP chains</td>
+</tr>
+</tbody>
+</table></div>
+<p>NC and PC are control beads. They appear under <strong>Quality, control beads and provenance</strong>, outside the specificity chart. The MFI axis always runs from <strong>1 to 10000</strong> and defaults to <strong>Log</strong>. Your values are large coral circles.</p>
+<p><strong>No violin plots or blue peer points yet? That is expected.</strong> Until the provider releases matching demo consensus, only your own results are visible. Continue with the next quick start to test group context.</p>
+<h2 id="quick-start-release-group-context">Quick start: release group context</h2>
+<p>Use two tabs in <strong>the same browser, browser profile and website address</strong>. A private window or another browser will not share this demo release.</p>
+<ol>
+<li>Leave the participant report from the previous quick start open in tab 1. Select class <strong>I</strong> there.</li>
+<li>Open <a href="app/">the demo</a> in tab 2. Click <strong>EN</strong> if necessary. Sign in as <strong>provider_1</strong>, initial password <strong>1234</strong>. This tab opens the provider dashboard. Classes I and II load automatically.</li>
+<li>Select class <strong>I</strong> in tab 2 as well. Check provider <code>provider_1</code>, scheme <code>SAB-2026-DEMO</code>, round <code>ROUND-02</code> and sample <code>DEMO-01</code>.</li>
+<li>Click <strong>Download consensus example</strong>. Save the JSON file and leave its contents unchanged.</li>
+<li>Click <strong>Load consensus JSON</strong> and choose this downloaded file. Wait for confirmation that demo consensus has been validated.</li>
+<li>Return to tab 1. Matching group context appears without re-importing: violin plots and smaller blue peer points. This demo uses 18 synthetic laboratories per specificity.</li>
+<li>For class <strong>II</strong>, repeat steps 3 through 5 with <strong>II</strong> selected in the provider tab. Then select <strong>II</strong> in the participant tab. Class I release does not automatically release class II.</li>
+<li>Optionally test <strong>Withdraw demo release</strong> in the provider tab. Corresponding peer values disappear from the participant tab; your own results remain.</li>
+</ol>
+<p>Calls in the unchanged example are <strong>Not assessed</strong> (<code>not_assessed</code>). The file opens synthetic context; it contains no official positive or negative EPT assessment. You do not need to edit JSON for this exercise.</p>
+<h2 id="roles-and-page-layout">Roles and page layout</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Screen and capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participant</td>
+<td>Own profile, schemes and vendors; confirm an import first, then analyse and export</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Own demo overview by class and context; download, load and withdraw example consensus</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Account overview and dashboard selector to inspect laboratory and provider views</td>
+</tr>
+</tbody>
+</table></div>
+<p>The admin account is <code>espierin</code>. Use the previously configured admin password; it is not included in this public manual. Admin can use <strong>Dashboard</strong> to choose <strong>Admin</strong>, <strong>Participating lab</strong> or <strong>EPT provider</strong>. The admin laboratory view displays its own demo session, not raw imports from other tabs or accounts.</p>
+<p>The top menu remains available while scrolling. <strong>Manual</strong> opens these instructions in a new tab so your report stays open. <strong>Concept</strong> explains the platform design. <strong>My profile</strong> opens the profile section. <strong>EN / NL</strong> switches interface language while retaining the active session. The language switch in this manual opens the matching translation.</p>
+<h2 id="profile-password-and-email">Profile, password and email</h2>
+<p>Under <strong>My profile</strong>, you can save an optional email address. It is retained locally; email verification, notifications and email password recovery are not yet available.</p>
+<p>To change your password, enter <strong>Current password</strong>, <strong>New password</strong> and <strong>Repeat new password</strong>, then click <strong>Save profile</strong>. The new values must match. The demo accepts a minimum of four characters. After a successful change, use the new password in this browser; the initial password will no longer work there.</p>
+<p>Your account name and role appear in the top menu. <strong>Sign out</strong> clears active imports and peer context from that tab. Saved profile information and scheme enrolments remain. Login is not restored after refresh.</p>
+<h2 id="participation-schemes-and-vendors">Participation, schemes and vendors</h2>
+<p>Register the provider, scheme edition and one or both vendors for each scheme. This demo currently offers only <code>provider_1</code> as a provider. You can enter your own scheme edition name to test the structure; the default provider demo release matches only its corresponding context.</p>
+<p><strong>Add scheme</strong> saves a new participation. Adding the same provider and scheme edition again updates that participation's vendor selection. <strong>Remove</strong> deletes the corresponding enrolment. This does not automatically delete an already open report.</p>
+<p>The current Werfen import requires enrolment with the same provider and scheme edition and <strong>Werfen / Immucor</strong> as a vendor. One Lambda can already be registered, but there is no working One Lambda importer or One Lambda peer series yet. Registering a vendor does not mean its files can already be imported.</p>
+<h2 id="demo-data-and-files">Demo data and files</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>CSV</th>
+<th>Matching EDS lot file</th>
+<th>HLA beads + controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td><a href="app/fixtures/LSA1-test.csv">LSA1-test.csv</a></td>
+<td><a href="app/fixtures/3012456_3065421-SA1.eds">3012456_3065421-SA1.eds</a></td>
+<td>4 + NC/PC</td>
+</tr>
+<tr>
+<td>II</td>
+<td><a href="app/fixtures/LSA2-test.csv">LSA2-test.csv</a></td>
+<td><a href="app/fixtures/3062145_3045216-SA2.eds">3062145_3045216-SA2.eds</a></td>
+<td>5 + NC/PC</td>
+</tr>
+</tbody>
+</table></div>
+<p>Files come from <a href="https://github.com/lcreteig/hlapro">L. Creteig's hlapro</a>, under the MIT licence. <a href="app/fixtures/provenance.json">Provenance and source hashes</a> and the <a href="app/fixtures/LICENSE.md">licence</a> are available. These are reduced mock files, not complete commercial bead sets or participating laboratory submissions.</p>
+<p>Each CSV contains two source measurements. Only the chosen source measurement is mapped to the EPT sample. The second well is not treated as another laboratory. Confirming a public demo import automatically prepares the other demo class with its first source measurement and the same EPT context. User-selected local files do not trigger this automatic demo addition.</p>
+<h2 id="import-step-by-step">Import step by step</h2>
+<p>For your own import, choose one xPONENT CSV and one matching EDS file through the file area, or drag them onto it. You can choose both files together or separately. Limits are 20 MB for CSV and 5 MB for EDS. Files are processed in your browser, not submitted to a central server.</p>
+<p>Use UTF-8 files and retain the original xPONENT sections, including Median. An arbitrary table containing only MFI columns is not a supported export.</p>
+<p>The preview checks CSV structure, EDS readability, lot matching and bead definitions, among other things. It shows lot, class, source measurements, observations, mapping issues and SHA-256 source hashes. A valid preview is not yet a confirmed import.</p>
+<p>Check provider, scheme edition, round and sample. Select the technique actually performed and the intended source measurement. Technique is not inferred from the bead set. Then tick the confirmation box and select <strong>Confirm import</strong>. A failed new import does not replace the existing report.</p>
+<p>To analyse the other source measurement in the same file, reload the example or files, select the other source measurement in the preview and confirm again. The report's <strong>Source measurement</strong> field shows the confirmed mapping; it does not freely switch between wells.</p>
+<p>Buttons <strong>I / II</strong> restore separate imports, loci and measurement sections. <strong>Clear session</strong> removes both imports and previews from the active session. It does not delete your profile, enrolments or locally retained provider release.</p>
+<h2 id="techniques-loci-and-measurement-sections">Techniques, loci and measurement sections</h2>
+<p><strong>Technique</strong> selects <strong>SAB</strong>, <strong>C1q</strong> or <strong>C3d</strong>. The demo is intended for IgG SAB. C1q and C3d have parallel data structures and remain strictly separate, but their import has not yet been validated with genuine assay files. Selecting C1q/C3d does not turn an IgG measurement into a complement-binding assay. An unmeasured technique displays an empty state.</p>
+<p>Locus buttons are <strong>A</strong>, <strong>B</strong>, <strong>C</strong>, <strong>DRB1</strong>, <strong>DRB3-4-5</strong>, <strong>DQ</strong> and <strong>DP</strong>. You can select several loci. Inapplicable loci are disabled. Active technique buttons are blue; active locus buttons are coral. Selecting no loci produces an empty chart and table.</p>
+<p>Use <strong>Measurement section</strong> to select <strong>Median</strong> or <strong>Net MFI</strong>, if the source contains that section. Original values are preserved. Matching valid consensus stays active when switching; synthetic references are recalculated for the chosen section. These small demo files may contain identical values in both sections.</p>
+<h2 id="reading-charts-and-consensus">Reading charts and consensus</h2>
+<p>The chart and table use <strong>PL Strings</strong> instead of bead numbers. DQ and DP retain paired alpha and beta chains, for example <code>HLA-DQA1*02:01~HLA-DQB1*02:01</code>. Techniques, classes and EPT contexts are not merged.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Visual element</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large coral marker</td>
+<td>Your laboratory result</td>
+</tr>
+<tr>
+<td>Small blue marker</td>
+<td>Synthetic peer value, without laboratory identification attached to the point</td>
+</tr>
+<tr>
+<td>Circle</td>
+<td>Werfen / Immucor</td>
+</tr>
+<tr>
+<td>Square</td>
+<td>Reserved for One Lambda in the extensible chart design</td>
+</tr>
+<tr>
+<td>Violin plot</td>
+<td>Distribution of selected peer values, excluding your own laboratory</td>
+</tr>
+<tr>
+<td>Dashed boundary marker</td>
+<td>Positive value below 1 or above 10000, displayed at the axis boundary</td>
+</tr>
+</tbody>
+</table></div>
+<p>The MFI axis runs from <strong>1 to 10000</strong> in every view. <strong>Log</strong> is the default; <strong>Linear</strong> is an explicit alternative. Logarithmic minor ticks appear on the axis only. All displayed MFI numbers are rounded integers without a thousands separator, for example <code>8002</code>. Calculations and numeric exports preserve <code>8001.5</code> if that was the source value.</p>
+<p><strong>Individual peer values</strong> shows or hides blue points without changing the violin. <strong>Merge</strong> calculates one distribution from pooled vendor observations per valid specificity. <strong>Separate</strong> calculates a distribution for each vendor separately. Only Werfen is present in this demo, so both modes use the same peer series. These modes are unavailable before release.</p>
+<p>The demo reference uses 18 generated laboratories per valid positive measurement. These are not actual peer submissions. The table shows own MFI, provider call and counts of laboratories, measurements and non-positive/invalid reference values, among other fields. Positive values outside the visible axis remain in data and statistics. Zero, negative, missing or invalid values are not included in logarithmic density. Too few or constant reference values may produce no violin.</p>
+<p>The violin uses Gaussian kernel density estimation on log10 MFI, with bandwidth 0.18 and 100 evaluation points. At least five valid positive reference values are required; a constant series receives no violin. Violins have equal maximum width, so width does not independently indicate laboratory count. The own laboratory is excluded from references. Unique laboratories and measurement observations are separate counts; repeated exports must not inflate them.</p>
+<h2 id="provider-release-and-withdrawal">Provider: release and withdrawal</h2>
+<p>A demo release is scoped to <strong>provider + scheme edition + round + sample + technique + class</strong>. Version, explicit release and a valid date are checked. A file with the wrong context, class, technique or invalid structure is rejected. An invalid attempt does not replace an existing valid release.</p>
+<p>The provider dashboard uses the public class I and II demo and does not offer a general editor for every possible round. Download the current example for the selected class, load it back and check its status. Edit JSON only if you deliberately want to test a different scenario. A future release date is invalid.</p>
+<p>The saved demo release is applied to matching imports in the same browser. An already open matching participant tab receives changes automatically. Other browsers, browser profiles and computers do not share the status. Withdrawal removes the release for the active class and context; it does not delete own measurements.</p>
+<h2 id="export-quality-information-and-storage">Export, quality information and storage</h2>
+<p><strong>CSV</strong> exports the active selection and context. <strong>JSON + metadata</strong> also retains provenance, raw numerical precision, axis range, measurement section, consensus status and analysis method. <strong>SVG</strong> exports the current vector figure with an embedded font and metadata. Make a separate export for each class and desired selection. An SVG is a visual snapshot, not a complete database export.</p>
+<p><strong>Quality, control beads and provenance</strong> contains NC/PC, source information and checks. This supports file inspection; the app does not provide official quality approval or an EPT score through this information.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Information</th>
+<th>Retention in this demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login and imported measurements</td>
+<td>Active tab only; cleared on sign-out or refresh</td>
+</tr>
+<tr>
+<td>Profile, changed password and scheme enrolments</td>
+<td>Local browser storage for this website address</td>
+</tr>
+<tr>
+<td>Provider demo release</td>
+<td>Local browser storage, shared between tabs with the same origin</td>
+</tr>
+<tr>
+<td>Downloaded exports</td>
+<td>The download location used by your browser</td>
+</tr>
+</tbody>
+</table></div>
+<p>For a clean exercise, use a separate browser profile. Clearing website data also deletes changed passwords, email, enrolments and demo releases; the initial demo accounts then return. Do not clear these data if you want to retain those local settings.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sign-in fails</td>
+<td>Exact account name and any locally changed password; wait until the button is enabled</td>
+</tr>
+<tr>
+<td>Enrolment or Werfen message</td>
+<td>Add the correct scheme and tick Werfen / Immucor; check the same provider and scheme edition during import</td>
+</tr>
+<tr>
+<td>Confirm import unavailable</td>
+<td>Load a valid CSV/EDS pair or click Class I/II; wait for preview and tick confirmation</td>
+</tr>
+<tr>
+<td><code>lot_mismatch</code></td>
+<td>Use CSV and EDS from the same row of the file table</td>
+</tr>
+<tr>
+<td>Own points only, no violin</td>
+<td>Have the provider release the correct class and context in the same browser</td>
+</tr>
+<tr>
+<td>Consensus rejected</td>
+<td>Check provider, scheme, round, sample, class, technique, version and date; use a freshly downloaded example</td>
+</tr>
+<tr>
+<td>Class II button briefly disabled</td>
+<td>Wait for preparation of the second demo class; check any import message</td>
+</tr>
+<tr>
+<td>Empty chart</td>
+<td>Select a measured technique and at least one applicable locus</td>
+</tr>
+<tr>
+<td>Merge and Separate look identical</td>
+<td>Only one vendor has measurement data in this demo</td>
+</tr>
+<tr>
+<td>Missing minor ticks</td>
+<td>Select Log; Linear has no logarithmic subdivisions</td>
+</tr>
+<tr>
+<td>Sign-in/import required after refresh</td>
+<td>This is current session behaviour; local settings and release may still be retained</td>
+</tr>
+<tr>
+<td>Another computer cannot see release</td>
+<td>The demo has no central storage yet; repeat the exercise in the same browser</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="current-limits-and-further-documentation">Current limits and further documentation</h2>
+<p>This is a browser demo with local accounts, not secure central authentication or protected storage. Publicly published files remain public. Central submissions, email recovery, One Lambda import, validation with genuine C1q/C3d files and official EPT assessment are not yet available. Use the quick start with the public demo files.</p>
+<p><a href="concept_EN.html">Platform concept</a> · <a href="efi-style_EN.html">EFI</a><a href="style_EN.html">EPT style guide</a> · <a href="efi-style_EN.html">General EFI style</a> · <a href="https://github.com/espierin/ept">Repository</a></p></main></div><footer>Project documentation · not an official EFI service</footer></body></html>
