@@ -1,0 +1,33 @@
+{
+  "fixtures": [
+    {
+      "file": "3012456_3065421-SA1.eds",
+      "source": "https://raw.githubusercontent.com/lcreteig/hlapro/73cb6ee9f8b08d889e733d7162a4b531adf5a9ca/tests/testthat/luminex/3012456_3065421-SA1.eds",
+      "commit": "73cb6ee9f8b08d889e733d7162a4b531adf5a9ca",
+      "sha256": "6e5161b98feeb0df5e76419454dfcf100e0555aadb6f342cfd5628d7c6057951",
+      "kind": "public-mock-fixture"
+    },
+    {
+      "file": "3062145_3045216-SA2.eds",
+      "source": "https://raw.githubusercontent.com/lcreteig/hlapro/73cb6ee9f8b08d889e733d7162a4b531adf5a9ca/tests/testthat/luminex/3062145_3045216-SA2.eds",
+      "commit": "73cb6ee9f8b08d889e733d7162a4b531adf5a9ca",
+      "sha256": "07195e6cd7eac96001038889e5189a2f8d2bcd47d1546219ea0070d372acd12d",
+      "kind": "public-mock-fixture"
+    },
+    {
+      "file": "LSA1-test.csv",
+      "source": "https://raw.githubusercontent.com/lcreteig/hlapro/73cb6ee9f8b08d889e733d7162a4b531adf5a9ca/tests/testthat/luminex/LSA1-test.csv",
+      "commit": "73cb6ee9f8b08d889e733d7162a4b531adf5a9ca",
+      "sha256": "3b8e7e5147f154c8d3a5b85e3df3e3c600236f2d8dcafea19b49a810f4c30867",
+      "kind": "public-mock-fixture"
+    },
+    {
+      "file": "LSA2-test.csv",
+      "source": "https://raw.githubusercontent.com/lcreteig/hlapro/73cb6ee9f8b08d889e733d7162a4b531adf5a9ca/tests/testthat/luminex/LSA2-test.csv",
+      "commit": "73cb6ee9f8b08d889e733d7162a4b531adf5a9ca",
+      "sha256": "b234b10056c1dc4e7237bf0e3024034ca661202a1a5e022d4d6b39b3ade99876",
+      "kind": "public-mock-fixture"
+    }
+  ],
+  "license": "LICENSE.md"
+}

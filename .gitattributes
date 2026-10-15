@@ -1,0 +1,4 @@
+app/fixtures/*.csv -text
+app/fixtures/*.eds -text
+*.png binary
+*.ttf binary
