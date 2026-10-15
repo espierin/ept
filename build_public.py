@@ -65,7 +65,7 @@ for lang in ('NL','EN'):
 # An explicit application allowlist keeps development tests, local reports and all
 # correspondence out of the Pages package. Original public mock files only.
 app_files=[
-    'index.html','app.mjs','core.mjs','assets/app.css','assets/icons.svg',
+    'index.html','app.mjs','auth.mjs','accounts.mjs','core.mjs','assets/app.css','assets/icons.svg',
     'assets/antibody-hla-banner.png','fixtures/LSA1-test.csv','fixtures/LSA2-test.csv',
     'fixtures/3012456_3065421-SA1.eds','fixtures/3062145_3045216-SA2.eds',
     'fixtures/LICENSE.md','fixtures/provenance.json',

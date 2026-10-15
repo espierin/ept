@@ -8,7 +8,7 @@ const checks=[];const check=(name)=>{checks.push(name);console.log('PASS '+name)
  try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[],posts=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.method()!=='GET')posts.push(r.url());});
- await page.goto('http://127.0.0.1:4173/app/');await page.waitForSelector('#chart svg [data-kind="own"]');
+ await page.goto('http://127.0.0.1:4173/app/');await page.locator('#login-user').fill('espierin');await page.locator('#login-password').fill(JSON.parse(process.env.EPT_TEST_PASSWORDS||'{}').espierin);await page.locator('#login-form button').click();await page.locator('#logout').waitFor();await page.locator('#dashboard').selectOption('lab');await page.waitForSelector('#chart svg [data-kind="own"]');
  assert.equal(await page.locator('#chart svg').getAttribute('data-scale'),'log10');
  assert.equal(await page.locator('#measurement-body tr').count(),4);
  assert.equal(await page.locator('[data-kind="violin"]').count(),0);

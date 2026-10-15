@@ -23,7 +23,7 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  page.on('request',r=>{if(!['GET','HEAD'].includes(r.method()))writes.push({method:r.method(),url:r.url()});});
  async function downloaded(selector,name){const event=page.waitForEvent('download');await page.locator(selector).click();const d=await event;const target=path.join(out,name);await d.saveAs(target);return target;}
  async function snapshot(){return JSON.parse(fs.readFileSync(await downloaded('#export-json','report.json'),'utf8'));}
- await page.goto(base.href);await page.waitForSelector('#chart [data-kind="own"]');
+ await page.goto(base.href);await page.locator('#login-user').fill('espierin');await page.locator('#login-password').fill(JSON.parse(process.env.EPT_TEST_PASSWORDS||'{}').espierin);await page.locator('#login-form button').click();await page.locator('#logout').waitFor();await page.locator('#dashboard').selectOption('lab');await page.waitForSelector('#chart [data-kind="own"]');
  assert.equal(new URL(page.url()).pathname,new URL(appUrl).pathname);
  assert.equal(await page.evaluate(()=>typeof window.eptDiagnostics),'undefined');
  check('Public entry opens the browser prototype; local diagnostic hook is absent');
@@ -138,8 +138,8 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  await page.locator('.language-switch').click();
  assert.equal(await page.locator('html').getAttribute('lang'),'en');
  check('App links open the correct public style guides and their language switches');
- await page.goto(appUrl+'?dashboard=provider');
- await page.waitForFunction(()=>document.querySelector('#provider-context').textContent.includes('DEMO-PROVIDER'));
+ await page.goto(appUrl+'?dashboard=provider');await page.locator('#login-user').fill('espierin');await page.locator('#login-password').fill(JSON.parse(process.env.EPT_TEST_PASSWORDS||'{}').espierin);await page.locator('#login-form button').click();await page.locator('#logout').waitFor();await page.locator('#dashboard').selectOption('provider');
+ await page.waitForFunction(()=>document.querySelector('#provider-context').textContent.includes('provider_1'));
  assert.equal(await page.locator('#provider-dashboard').isVisible(),true);
  assert.equal(await page.locator('#report').isVisible(),false);
  assert.equal(await page.locator('#import').isVisible(),false);

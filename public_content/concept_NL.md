@@ -64,3 +64,21 @@ Publieke bronverwijzingen zijn geen bevestiging van samenwerking of deelname. [E
 Het dashboard voor deelnemende labs bevat de eigen import, meetwaarden, rapportage en exports. Groepscontext wordt pas zichtbaar na vrijgave door de eigen EPT-provider. Het aparte providerdashboard bevat het overzicht per provider, schema/ editie, ronde, sample en techniek, plus consensusvalidatie en vrijgave. Providers en technieken blijven gescheiden.
 
 In het huidige browserprototype wissel je met de dashboardkeuze tussen deze twee routes. Dit is navigatie binnen een simulatie, geen authenticatie of beveiligde autorisatie. Een nieuwe labimport vergrendelt de groepscontext opnieuw.
+
+## Rollen, inloggen en deelnemersworkflow
+
+Er zijn drie demorollen: admin, provider en participant. Admin espierin ziet het accountoverzicht en kan de dashboards voor beide andere rollen bekijken. Provider provider_1 ziet de consensusroute. Participant participant_1 kiest eerst de eigen EPT-schema’s en vendors, importeert daarna CSV en EDS en ziet pas na bevestiging de analyses. De rapportage blijft met de ingeschreven provider en schema-editie gekoppeld. Een One Lambda-deelname kan al worden geregistreerd; de One Lambda-importer is nog niet beschikbaar.
+
+Via Mijn profiel kun je optioneel een e-mailadres toevoegen en je wachtwoord wijzigen. Wachtwoord wijzigen vereist het huidige wachtwoord en een herhaling van het nieuwe wachtwoord. Er worden geen e-mails verstuurd en er is nog geen herstel via e-mail. Bij uitloggen verdwijnen de geïmporteerde resultaten en referentiedata uit de sessie.
+
+Dit is een lokale accountsimulatie op GitHub Pages. De site bevat gezouten PBKDF2-SHA256-verifiers met 210.000 iteraties, geen leesbare startwachtwoorden. Gewijzigde wachtwoorden, e-mail en schema-inschrijvingen staan in localStorage onder ept-demo-accounts-v1 en gelden alleen in deze browser en voor deze site-origin. De login wordt niet bewaard na vernieuwen. Lokale opslag wissen herstelt de oorspronkelijke demoaccounts. Ook met hashes kan browsercode geen echte autorisatie afdwingen; alle publiek gepubliceerde bestanden blijven publiek. Voor productie zijn een authenticatiedienst, beveiligde opslag en controles per rol, provider en inschrijving aan de serverzijde nodig. E-mailverificatie en accountherstel volgen in die fase.
+
+## Onderverdeling van de log-as
+
+De MFI-as start op log10. Hoofdticks markeren de machten van tien. Binnen elke decade komen korte asstreepjes voor de veelvouden 2 tot en met 9, op hun logaritmische positie. Deze onderverdelingen lopen niet als lijnen door de grafiek. De lineaire stand krijgt geen logaritmische tussenstreepjes. SVG-export behoudt de onderverdeling.
+
+## MFI-weergave
+
+Toon MFI-waarden als afgeronde gehele getallen, zonder punt, komma of spatie als duizendtalscheiding. Dit geldt voor tabellen, aslabels en tooltips, in beide talen. Voorbeeld: 8001,5 wordt weergegeven als 8002. Berekeningen, puntposities en CSV/JSON-data-exports behouden de oorspronkelijke precisie; SVG-export volgt de visuele integerweergave.
+
+De demovrijgave wordt per provider, schema, ronde, sample, klasse en techniek in deze browser bewaard. Na een overeenkomende deelnemersimport wordt die vrijgave toegepast; intrekken verwijdert deze lokale vrijgave. Andere browsers delen deze status nog niet. Er worden geen ruwe labresultaten centraal opgeslagen.

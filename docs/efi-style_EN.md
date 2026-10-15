@@ -69,3 +69,11 @@ Charts and diagrams use SVG wherever practicable. All icons and pictograms are S
 ## Language and dashboard navigation
 
 Use a friendly, direct voice. Dutch interface copy uses je, jij and jouw. Participating laboratories and EPT providers each have a separate dashboard. Keep dashboard selection and language switching available in the sticky top navigation. Do not use em dashes in authored documentation or website copy; use a full stop, comma or ordinary hyphen.
+
+## Logarithmic axis subdivisions
+
+The MFI axis defaults to log10. Major ticks mark powers of ten. Each decade contains short axis ticks for multiples 2 through 9, positioned logarithmically. These subdivisions do not extend as gridlines into the chart. Linear mode has no logarithmic minor ticks. SVG export preserves the subdivisions.
+
+## MFI display
+
+Display MFI values as rounded integers with no dot, comma or space as a thousands separator. Apply this to tables, axis labels and tooltips in both languages. Example: 8001.5 is displayed as 8002. Calculations, point positions and CSV/JSON data exports retain original precision; SVG export follows the visual integer display.

@@ -75,3 +75,11 @@ Het menu boven de banner is sticky. Sectiekoppen krijgen een offset op basis van
 ## Taal en dashboardnavigatie
 
 Spreek deelnemers in de Nederlandse interface aan met je, jij en jouw. Gebruik korte, directe teksten. Deelnemende labs en EPT-providers hebben elk een apart dashboard. Houd de dashboardkeuze en taalwissel beschikbaar in het vaste bovenmenu. Gebruik geen lange gedachtestreepjes (em dashes) in eigen documentatie of webteksten; gebruik een punt, komma of gewoon koppelteken.
+
+## Onderverdeling van de log-as
+
+De MFI-as start op log10. Hoofdticks markeren de machten van tien. Binnen elke decade komen korte asstreepjes voor de veelvouden 2 tot en met 9, op hun logaritmische positie. Deze onderverdelingen lopen niet als lijnen door de grafiek. De lineaire stand krijgt geen logaritmische tussenstreepjes. SVG-export behoudt de onderverdeling.
+
+## MFI-weergave
+
+Toon MFI-waarden als afgeronde gehele getallen, zonder punt, komma of spatie als duizendtalscheiding. Dit geldt voor tabellen, aslabels en tooltips, in beide talen. Voorbeeld: 8001,5 wordt weergegeven als 8002. Berekeningen, puntposities en CSV/JSON-data-exports behouden de oorspronkelijke precisie; SVG-export volgt de visuele integerweergave.

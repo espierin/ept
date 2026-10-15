@@ -1,3 +1,4 @@
+import {currentUser,canProvide,validateEnrollment,applyAccountUI,startAccounts,savedRelease,storeRelease,withdrawRelease} from './auth.mjs';
 import {VERSION,LOCI,TECHNIQUES,VENDORS,ImportError,parseXponent,parseEds,combineImport,validateContext,validateConsensus,selectReference,referenceStats,chartPoints,violin,mfiDomain,buildSyntheticPeers,toCsv,sha256} from './core.mjs';
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
@@ -14,7 +15,7 @@ Object.assign(dict.en,{skip:'Skip to content',sourceSamples:'source measurements
 let state={dashboard:new URLSearchParams(location.search).get('dashboard')==='provider'?'provider':'lab',locale:'nl',data:null,parsed:null,eds:null,provenance:null,context:null,sourceSample:null,sourceWell:null,technique:'SAB_IGG',quantity:'Median',loci:new Set(['A','B','C']),mode:'merge',scale:'log10',showPeers:true,consensus:null,peerRows:[]};
 let pendingFiles={},preview=null,importSequence=0;
 const t=k=>dict[state.locale][k]||k;
-const format=n=>n===null||n===undefined?'-':new Intl.NumberFormat(state.locale,{maximumFractionDigits:2}).format(n);
+const format=n=>n===null||n===undefined?'-':new Intl.NumberFormat(state.locale,{maximumFractionDigits:0,useGrouping:false}).format(n);
 function errorText(e){const message=errors[e.code]?.[state.locale==='nl'?0:1]||e.message||String(e);return `${message}${e.code?' ['+e.code+']':''}`;}
 function sourceKey(s){return encodeURIComponent(JSON.stringify([s.sample,s.well]));}
 function activeRows(){return ownRows().filter(r=>!r.control&&r.plString&&r.technique===state.technique&&state.loci.has(r.locus));}
@@ -35,6 +36,7 @@ function reference(row){
 Object.assign(dict.nl,{labDashboard:'Deelnemend lab',providerDashboard:'EPT-provider',providerOverview:'Rondzending en vrijgave',providerScope:'Je beheert de consensus binnen je eigen provider, schema, ronde, sample en techniek. Het labrapport staat in het aparte labdashboard.',providerPending:'Consensus nog niet vrijgegeven',providerPage:'Jouw rondzending, in overzicht',locked:'Je ziet alleen je eigen data. Je EPT-provider geeft de groepscontext vrij.'});
 Object.assign(dict.en,{labDashboard:'Participating lab',providerDashboard:'EPT provider',providerOverview:'Distribution and release',providerScope:'Manage consensus within your own provider, scheme, round, sample and technique. The laboratory report has its own dashboard.',providerPending:'Consensus not yet released',providerPage:'Your distribution, at a glance',locked:'You can see your own data. Your EPT provider releases the group context.'});
 function renderDashboard(){
+ const user=currentUser();if(user?.role==='participant')state.dashboard='lab';if(user?.role==='provider')state.dashboard='provider';
  const provider=state.dashboard==='provider';
  $('#lab-dashboard').hidden=provider;$('#provider-dashboard').hidden=!provider;$('#dashboard').value=state.dashboard;
  $('#page-title').textContent=t(provider?'providerPage':'title');
@@ -43,7 +45,7 @@ function renderDashboard(){
  $('#provider-context').innerHTML=fields.map(([key,value])=>`<div><dt>${esc(({provider:'Provider',schemeEdition:t('scheme'),round:t('round'),sample:'EPT sample'})[key]||key)}</dt><dd>${esc(value)}</dd></div>`).join('')+`<div><dt>${t('techniqueLabel')}</dt><dd>${esc(state.data?.technique||state.technique)}</dd></div>`;
  $('#provider-release').textContent=state.consensus?t('released'):t('providerPending');
 }
-$('#dashboard').addEventListener('change',e=>{state.dashboard=e.target.value;const url=new URL(location.href);url.searchParams.set('dashboard',state.dashboard);url.hash='';history.replaceState(null,'',url);render();window.scrollTo(0,0);});
+$('#dashboard').addEventListener('change',e=>{state.dashboard=currentUser()?.role==='admin'?e.target.value:currentUser()?.role==='provider'?'provider':'lab';const url=new URL(location.href);url.searchParams.set('dashboard',state.dashboard);url.hash='';history.replaceState(null,'',url);render();window.scrollTo(0,0);});
 function render(){
  refreshText();renderDashboard();
  const data=state.data, rows=activeRows();
@@ -73,10 +75,10 @@ function render(){
    return `<tr><td class="target">${esc(row.plString)}</td><td>${format(row.value)}${row.status!=='positive'?` <span class="meta">(${esc(t('status_'+row.status))})</span>`:''}</td><td>${state.consensus?t(assignment?.call||'not_assessed'):'-'}</td><td>${state.consensus?stats.nLabs:'-'}</td><td>${state.consensus?stats.nMeasurements:'-'}</td><td>${state.consensus?stats.nExcluded:'-'}</td></tr>`;
  }).join(''):`<tr><td colspan="6">${esc(emptyReason())}</td></tr>`;
  $('#row-count').textContent=`${rows.length} ${t('rows')}`;
- const q={schemaVersion:1,adapter:data?.adapter,source:state.provenance,context:state.context,technique:state.technique,quantity:state.quantity,lot:data?.lot,sourceSample:state.sourceSample,sourceWell:state.sourceWell,controls:ownRows().filter(r=>r.control).map(({sourceBead,value,status,count})=>({sourceBead,value,status,count})),excludedCompositionRows:ownRows().filter(r=>!r.control&&!r.plString).length,issues:data?.issues||[],sourceValuesUnmodified:true,logNonPositivePolicy:'exclude-from-density-and-count',densityMethod:'log10 Gaussian KDE; fixed bandwidth 0.18; 100 steps; min 5; equal peak width',referenceKind:state.consensus?'generated-synthetic':'none',release:state.consensus?{version:state.consensus.version,date:state.consensus.releaseDate}:null};
+ const q={schemaVersion:1,adapter:data?.adapter,source:state.provenance,context:state.context,technique:state.technique,quantity:state.quantity,lot:data?.lot,sourceSample:state.sourceSample,sourceWell:state.sourceWell,controls:ownRows().filter(r=>r.control).map(({sourceBead,value,status,count})=>({sourceBead,value:format(value),status,count})),excludedCompositionRows:ownRows().filter(r=>!r.control&&!r.plString).length,issues:data?.issues||[],sourceValuesUnmodified:true,logNonPositivePolicy:'exclude-from-density-and-count',densityMethod:'log10 Gaussian KDE; fixed bandwidth 0.18; 100 steps; min 5; equal peak width',referenceKind:state.consensus?'generated-synthetic':'none',release:state.consensus?{version:state.consensus.version,date:state.consensus.releaseDate}:null};
  $('#quality-content').innerHTML=`<p>${esc(t('selectedOnly'))}</p><pre>${esc(JSON.stringify(q,null,2))}</pre>`;
  ['#export-csv','#export-json','#export-svg','#consensus-template'].forEach(id=>$(id).disabled=!data);
- $('#revoke').disabled=!state.consensus;
+ $('#revoke').disabled=!state.consensus;applyAccountUI(state);
 }
 function emptyReason(){return !state.data?t('needsImport'):state.technique!==state.data.technique?t('noTechnique'):!state.loci.size?t('noLoci'):t('noData');}
 const ns='http://www.w3.org/2000/svg';
@@ -98,6 +100,7 @@ function drawChart(items){
  const bottom=top+items.length*rowHeight;
  const ticks=log?Array.from({length:Math.round(Math.log10(axisMax)-Math.log10(axisMin))+1},(_,i)=>axisMin*10**i):[0,axisMax/4,axisMax/2,axisMax*3/4,axisMax];
  for(const tick of ticks){const x=scale(tick);el('line',{x1:x,x2:x,y1:top-15,y2:bottom,stroke:'#DFE4E8'},svg);el('text',{x,y:bottom+25,'text-anchor':'middle','font-size':12},svg,format(tick));}
+ if(log)for(let exponent=Math.floor(Math.log10(axisMin));exponent<=Math.ceil(Math.log10(axisMax));exponent++)for(let multiple=2;multiple<=9;multiple++){const tick=multiple*10**exponent;if(tick<=axisMin||tick>=axisMax)continue;const x=scale(tick);el('line',{x1:x,x2:x,y1:bottom,y2:bottom+6,stroke:'#064A89','data-kind':'minor-tick','data-value':tick},svg);}
  el('line',{x1:left,x2:width-right,y1:bottom,y2:bottom,stroke:'#064A89'},svg);
  for(const [index,{row,refs}]of items.entries()){
    const y=top+index*rowHeight+rowHeight/2;
@@ -147,12 +150,12 @@ async function receiveFiles(list){
 }
 function acceptPreview(){
  if(!preview)throw new ImportError('no_preview');
- const context=contextFromForm();if(!validateContext(context))throw new ImportError('missing_context');
+ const context=contextFromForm();validateEnrollment(context);if(!validateContext(context))throw new ImportError('missing_context');
  const data=combineImport(preview.parsed,preview.eds,{technique:$('#import-technique').value,quantity:'Median'});
  const selected=data.samples.find(s=>sourceKey(s)===$('#preview-sample').value);if(!selected)throw new ImportError('missing_sample');
  const sourceSample=selected.sample,sourceWell=selected.well;
  state={...state,data,parsed:preview.parsed,eds:preview.eds,provenance:preview.provenance,context,sourceSample,sourceWell,quantity:'Median',technique:data.technique,loci:new Set(data.hlaClass==='I'?['A','B','C']:['DRB1','DRB3-4-5','DQ','DP']),consensus:null,peerRows:[]};
- render();$('#import-status').textContent=t('accepted');$('#consensus-status').textContent='';
+ restoreRelease();render();$('#import-status').textContent=t('accepted');$('#consensus-status').textContent='';
 }
 async function loadDemo(hlaClass,initial=false){
  try {
@@ -164,6 +167,8 @@ async function loadDemo(hlaClass,initial=false){
   if(initial){$('#confirm-mapping').checked=true;acceptPreview();$('#import-status').textContent=t('localSource');}
  }catch(e){$('#import-status').textContent=errorText(e);}
 }
+function restoreRelease(){if(!state.data||!state.context)return;const release=savedRelease(state.context,state.data.technique,state.data.hlaClass);releaseReset();if(release)try{state.consensus=validateConsensus(release,state.context,state.data.technique,state.data.hlaClass);state.peerRows=buildSyntheticPeers(ownRows(),state.context);}catch{releaseReset();}}
+window.addEventListener('storage',e=>{if(e.key==='ept-demo-releases-v1'&&currentUser()){restoreRelease();render();}});
 function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function snapshot(){const rows=activeRows();return {schemaVersion:1,appVersion:VERSION,generatedAt:new Date().toISOString(),locale:state.locale,context:state.context,source:state.provenance,sourceSample:state.sourceSample,sourceWell:state.sourceWell,technique:state.technique,hlaClass:state.data?.hlaClass,quantity:state.quantity,lot:state.data?.lot,mode:state.mode,mfiScale:state.scale,loci:[...state.loci],referenceKind:state.consensus?'generated-synthetic':'none',consensus:state.consensus,method:{density:'Gaussian KDE on log10 positive MFI',bandwidth:.18,steps:100,minCount:5,ownExcluded:true},rows:rows.map(row=>({plString:row.plString,sourceBead:row.sourceBead,value:row.value,status:row.status,count:row.count,vendor:row.vendor,stats:state.consensus?referenceStats(reference(row)):null,peerPoints:state.consensus&&state.showPeers?chartPoints(reference(row)):[]}))};}
 function template(){return {schemaVersion:1,kind:'synthetic-provider-consensus',officiallyReleased:true,context:{...state.context},technique:state.data.technique,hlaClass:state.data.hlaClass,releaseDate:new Date().toISOString().slice(0,10),version:'demo-v1',assignments:[...new Set(ownRows().filter(x=>x.plString).map(x=>x.plString))].map(plString=>({plString,call:'not_assessed'}))};}
@@ -187,12 +192,14 @@ $('#import-technique').addEventListener('change',()=>{$('#confirm-mapping').chec
 $('#preview-sample').addEventListener('change',()=>{$('#confirm-mapping').checked=false;});
 $('#mapping-form').addEventListener('submit',e=>{e.preventDefault();try{acceptPreview();$('#report').scrollIntoView({behavior:'smooth'});}catch(err){$('#import-status').textContent=errorText(err);}});
 $('#consensus-template').addEventListener('click',()=>download('synthetic-consensus.json',JSON.stringify(template(),null,2),'application/json'));
-$('#consensus-file').addEventListener('change',async e=>{try{const f=e.target.files[0];if(!f)return;if(!state.data)throw new Error(t('needsImport'));if(f.size>1_000_000)throw new ImportError('too_large');const parsed=JSON.parse(await f.text());state.consensus=validateConsensus(parsed,state.context,state.data.technique,state.data.hlaClass);state.peerRows=buildSyntheticPeers(ownRows(),state.context);render();$('#consensus-status').textContent=t('consensusOk');}catch(err){$('#consensus-status').textContent=`${t('error')}: ${errorText(err)}`;}finally{e.target.value='';}});
-$('#revoke').addEventListener('click',()=>{releaseReset();render();$('#consensus-status').textContent=t('revoked');});
+$('#consensus-file').addEventListener('change',async e=>{try{const f=e.target.files[0];if(!f)return;if(!canProvide())throw new Error('Provider role required');if(!state.data)throw new Error(t('needsImport'));if(f.size>1_000_000)throw new ImportError('too_large');const parsed=JSON.parse(await f.text());state.consensus=validateConsensus(parsed,state.context,state.data.technique,state.data.hlaClass);storeRelease(state.consensus);state.peerRows=buildSyntheticPeers(ownRows(),state.context);render();$('#consensus-status').textContent=t('consensusOk');}catch(err){$('#consensus-status').textContent=`${t('error')}: ${errorText(err)}`;}finally{e.target.value='';}});
+$('#revoke').addEventListener('click',()=>{if(!canProvide())return;withdrawRelease(state.context,state.data.technique,state.data.hlaClass);releaseReset();render();$('#consensus-status').textContent=t('revoked');});
 $('#export-csv').addEventListener('click',()=>{const rows=snapshot().rows.map(r=>({...r,provider:state.context.provider,schemeEdition:state.context.schemeEdition,round:state.context.round,sample:state.context.sample,technique:state.technique,quantity:state.quantity,mfiScale:state.scale,displayMode:state.mode,sourceHash:state.provenance.csv.sha256,referenceKind:state.consensus?'synthetic':'none'}));download('ept-own-results.csv',toCsv(rows,['provider','schemeEdition','round','sample','technique','quantity','plString','value','status','vendor','mfiScale','displayMode','referenceKind','sourceHash']),'text/csv;charset=utf-8');});
 $('#export-json').addEventListener('click',()=>download('ept-report.json',JSON.stringify(snapshot(),null,2),'application/json'));
 $('#export-svg').addEventListener('click',async()=>{try{const svg=$('#chart svg');if(!svg)throw new Error(t('saveFailed'));const clone=svg.cloneNode(true);const response=await fetch('../assets/montserrat-variable.ttf');if(!response.ok)throw new Error('Font unavailable');const bytes=new Uint8Array(await response.arrayBuffer());let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));const style=el('style',{},null,`@font-face{font-family:Montserrat;src:url(data:font/ttf;base64,${btoa(binary)})}text{font-family:Montserrat,system-ui,sans-serif;fill:#232424;stroke:none}`);clone.insertBefore(style,clone.firstChild);const {rows,...metadata}=snapshot();el('metadata',{},clone,JSON.stringify(metadata));download('ept-report.svg',new XMLSerializer().serializeToString(clone),'image/svg+xml');}catch(e){$('#import-status').textContent=errorText(e);}});
 $('#clear-session').addEventListener('click',()=>{state={...state,data:null,parsed:null,eds:null,provenance:null,context:null,sourceSample:null,consensus:null,peerRows:[]};preview=null;pendingFiles={};importSequence++;$('#files').value='';$('#consensus-file').value='';fillPreview();$('#import-status').textContent='';$('#consensus-status').textContent='';render();});
 // Local-only diagnostic hook; no identity/remote credentials. The production app must not expose privileged state.
 const headerObserver=new ResizeObserver(entries=>{document.documentElement.style.setProperty('--topbar-height',`${Math.ceil(entries[0].target.getBoundingClientRect().height)}px`);});headerObserver.observe($('.topbar'));
-render();loadDemo('I',true);
+$('#lab-dashboard').insertBefore($('#import'),$('#summary'));
+startAccounts((identityChanged=false)=>{if(identityChanged){$('#clear-session').click();state.dashboard=currentUser()?.role==='admin'?'admin':currentUser()?.role==='provider'?'provider':'lab';if(canProvide())loadDemo('I',true);}render();});
+render();

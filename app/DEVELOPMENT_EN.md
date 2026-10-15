@@ -55,3 +55,21 @@ GitHub documentation is built from `public_content` and explicitly public assets
 The participating laboratory dashboard contains its own import, measurements, report and exports. Group context becomes visible only after release by its EPT provider. The separate provider dashboard contains the overview by provider, scheme/edition, round, sample and technique, with consensus validation and release. Providers and techniques remain separate.
 
 In the current browser prototype, the dashboard selector switches between these routes. This is navigation within a simulation, not authentication or secure authorisation. A new laboratory import locks group context again.
+
+## Roles, sign-in and participant workflow
+
+There are three demo roles: admin, provider and participant. Admin espierin sees the account overview and can inspect the other two dashboards. Provider provider_1 sees the consensus route. Participant participant_1 first chooses EPT schemes and vendors, then imports CSV and EDS, and sees analyses only after confirmation. Reporting remains linked to the enrolled provider and scheme edition. One Lambda participation can already be registered; its importer is not yet available.
+
+My profile lets you add an optional email address and change your password. A password change requires the current password and repetition of the new password. No emails are sent and email recovery is not yet available. Signing out clears imported results and reference data from the session.
+
+This is a local account simulation on GitHub Pages. The site contains salted PBKDF2-SHA256 verifiers with 210,000 iterations, with no readable initial passwords. Changed passwords, email and scheme enrolments are stored in localStorage under ept-demo-accounts-v1 and apply only to this browser and site origin. Login is not retained after refresh. Clearing local storage restores the original demo accounts. Even with hashes, browser code cannot enforce real authorisation; every publicly published file remains public. Production requires an authentication service, protected storage and server-side checks by role, provider and enrolment. Email verification and account recovery follow in that phase.
+
+## Logarithmic axis subdivisions
+
+The MFI axis defaults to log10. Major ticks mark powers of ten. Each decade contains short axis ticks for multiples 2 through 9, positioned logarithmically. These subdivisions do not extend as gridlines into the chart. Linear mode has no logarithmic minor ticks. SVG export preserves the subdivisions.
+
+## MFI display
+
+Display MFI values as rounded integers with no dot, comma or space as a thousands separator. Apply this to tables, axis labels and tooltips in both languages. Example: 8001.5 is displayed as 8002. Calculations, point positions and CSV/JSON data exports retain original precision; SVG export follows the visual integer display.
+
+Demo releases are retained in this browser by provider, scheme, round, sample, class and technique. A matching participant import applies the release; withdrawal removes that local release. Other browsers do not yet share this status. No raw laboratory results are stored centrally.
