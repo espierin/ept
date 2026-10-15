@@ -1,4 +1,6 @@
 app/fixtures/*.csv -text
 app/fixtures/*.eds -text
+# Preserve publication bytes so hashes are identical on Windows and GitHub Pages.
+docs/** -text
 *.png binary
 *.ttf binary

@@ -34,6 +34,18 @@ function check(name){passed.push(name);console.log('PASS '+name);}
  assert.equal(await page.locator('[data-kind="peer"]').count(),0);
  assert.equal(await page.locator('#peer-points').isChecked(),false);
  check('Initial xPONENT class I values and PL Strings render on log10; peer context stays closed');
+ const provenance=await (await page.request.get(new URL('app/fixtures/provenance.json',base).href)).json();
+ for(const fixtureInfo of provenance.fixtures){
+  const response=await page.request.get(new URL('app/fixtures/'+fixtureInfo.file,base).href);
+  assert.equal(response.status(),200);
+  assert.equal(crypto.createHash('sha256').update(await response.body()).digest('hex'),fixtureInfo.sha256);
+ }
+ const publication=await (await page.request.get(new URL('publication-manifest.json',base).href)).json();
+ for(const name of ['app/app.mjs','app/core.mjs','app/assets/app.css']){
+  const response=await page.request.get(new URL(name,base).href);
+  assert.equal(crypto.createHash('sha256').update(await response.body()).digest('hex'),publication.files[name]);
+ }
+ check('Published mock files and application assets exactly match their SHA-256 manifests');
  assert.equal(await page.locator('#tech-label').textContent(),'Techniek');
  await page.locator('#scale-buttons button[data-value="linear"]').click();
  await page.locator('#language').click();

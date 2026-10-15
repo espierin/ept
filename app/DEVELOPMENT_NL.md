@@ -42,7 +42,7 @@ Browserketen met draaiende lokale server: `node app/tests/browser.cjs`. Hiervoor
 
 De eerste verificatie omvat 13 unit/analysetests en 13 browsercontroles: klasse I/II, CSV/EDS-koppeling, bronhash, verkeerde consensuscontext, privé-eigen toestand, synthetische vrijgave/intrekking, peerpunten aan/uit, exports, taalstatus, 390px-opmaak en sticky menu. Rapporten en screenshots staan lokaal in `.local/`; die map wordt niet gecommit. Productierechten zijn hiermee niet bewezen.
 
-De online keten wordt afzonderlijk gecontroleerd met `node app/tests/online.cjs`: 14 controles via de echte interface en downloads, zonder lokale diagnosefunctie. `EPT_BASE_URL` kan voor een controle vóór publicatie naar het lokale publicatiepakket wijzen. De standaard is `https://espierin.github.io/ept/`. De controles leggen ook HTTP-fouten en netwerkschrijfacties vast; het kiezen van een bestand hoort geen uploadrequest te veroorzaken.
+De online keten wordt afzonderlijk gecontroleerd met `node app/tests/online.cjs`: 15 controles via de echte interface en downloads, zonder lokale diagnosefunctie. Ook de hashes van online mockbestanden en appbestanden worden gecontroleerd. `EPT_BASE_URL` kan voor een controle vóór publicatie naar het lokale publicatiepakket wijzen. De standaard is `https://espierin.github.io/ept/`. De controles leggen ook HTTP-fouten en netwerkschrijfacties vast; het kiezen van een bestand hoort geen uploadrequest te veroorzaken.
 
 ## Bestanden en herkomst
 

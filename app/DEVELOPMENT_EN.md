@@ -42,7 +42,7 @@ Browser chain with the local server running: `node app/tests/browser.cjs`. This 
 
 Initial verification covers 13 unit/analysis tests and 13 browser checks: class I/II, CSV/EDS mapping, source hash, wrong consensus context, own-only state, synthetic release/withdrawal, peer visibility, exports, language state, 390px layout and sticky navigation. Reports/screenshots are retained locally under `.local/`, which is not committed. These checks do not prove production permissions.
 
-The online flow is checked separately with `node app/tests/online.cjs`: 14 checks through the actual interface and downloads, without local diagnostics. `EPT_BASE_URL` may point to the local publication package for a pre-publication check. The default is `https://espierin.github.io/ept/`. Checks also record HTTP errors and network writes; choosing a file must not cause an upload request.
+The online flow is checked separately with `node app/tests/online.cjs`: 15 checks through the actual interface and downloads, without local diagnostics. Online mock-file and application-asset hashes are checked as well. `EPT_BASE_URL` may point to the local publication package for a pre-publication check. The default is `https://espierin.github.io/ept/`. Checks also record HTTP errors and network writes; choosing a file must not cause an upload request.
 
 ## Files and provenance
 
