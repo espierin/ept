@@ -26,15 +26,20 @@ const passwords=JSON.parse(process.env.EPT_TEST_PASSWORDS||'{}');
   for(const scale of ['linear','log10']){
    await page.locator(`#scale-buttons button[data-value=${scale}]`).click();
    assert.equal(await page.locator('#chart svg').getAttribute('data-min'),'1');
-   assert.equal(await page.locator('#chart svg').getAttribute('data-max'),'10000');
+   assert.equal(await page.locator('#chart svg').getAttribute('data-max'),'30000');
   }
-  assert.equal(await page.locator('[data-kind=minor-tick]').count(),32);
-  check('Class II axis is fixed to 1 through 10000 in both scale modes');
+  assert.equal(await page.locator('[data-kind=minor-tick]').count(),33);
+  for(const value of [10,100,1000,10000]){
+   const tick=page.locator(`[data-kind=major-tick][data-value="${value}"]`);
+   assert.equal(await tick.evaluate(e=>Number(e.getAttribute('y2'))-Number(e.getAttribute('y1'))),10);
+  }
+  assert.equal(await page.locator('[data-kind=minor-tick]').first().evaluate(e=>Number(e.getAttribute('y2'))-Number(e.getAttribute('y1'))),6);
+  check('Class II axis is fixed to 1 through 30000 in both scale modes');
   await page.locator('[data-class="I"]').click();
   assert.equal(await page.locator('[data-kind=own]').count(),4);
   assert.equal(await page.locator('#measurement-body tr').first().locator('td').nth(1).textContent(),'8002');
   check('Switching classes restores original class I values');
-  const csv=fs.readFileSync('app/fixtures/LSA1-test.csv','utf8').replaceAll('8001.5','20000').replaceAll('"63"','"0.5"');
+  const csv=fs.readFileSync('app/fixtures/LSA1-test.csv','utf8').replaceAll('8001.5','40000').replaceAll('"63"','"0.5"');
   await page.locator('#files').setInputFiles([
    {name:'range-test.csv',mimeType:'text/csv',buffer:Buffer.from(csv)},
    {name:'3012456_3065421-SA1.eds',mimeType:'application/xml',buffer:fs.readFileSync('app/fixtures/3012456_3065421-SA1.eds')}
@@ -43,15 +48,20 @@ const passwords=JSON.parse(process.env.EPT_TEST_PASSWORDS||'{}');
   await page.locator('#confirm-mapping').check();await page.locator('#accept-import').click();
   assert.equal(await page.locator('[data-kind=own][data-out-of-range=above]').count(),1);
   assert.equal(await page.locator('[data-kind=own][data-out-of-range=below]').count(),1);
-  assert.equal(await page.locator('#chart svg').getAttribute('data-max'),'10000');
+  assert.equal(await page.locator('#chart svg').getAttribute('data-max'),'30000');
+  for(const scale of ['linear','log10']){
+   await page.locator(`#scale-buttons button[data-value=${scale}]`).click();
+   const boundary=await page.locator('[data-kind=major-tick][data-value="30000"]').getAttribute('x1');
+   assert.equal(await page.locator('[data-kind=own][data-out-of-range=above]').getAttribute('cx'),boundary);
+  }
   const event=page.waitForEvent('download');await page.locator('#export-json').click();
   const download=await event,report=JSON.parse(fs.readFileSync(await download.path(),'utf8'));
-  assert.deepEqual(report.axisRange,[1,10000]);
-  assert.equal(report.rows[0].value,20000);assert.equal(report.rows[1].value,.5);
+  assert.deepEqual(report.axisRange,[1,30000]);
+  assert.equal(report.rows[0].value,40000);assert.equal(report.rows[1].value,.5);
   check('Out-of-range values retain raw precision and get boundary markers on the fixed axis');
   await page.locator('[data-class="II"]').click();assert.equal(await page.locator('[data-kind=own]').count(),5);
   await page.locator('[data-class="I"]').click();
-  assert.equal(await page.locator('#measurement-body tr').first().locator('td').nth(1).textContent(),'20000');
+  assert.equal(await page.locator('#measurement-body tr').first().locator('td').nth(1).textContent(),'40000');
   await page.locator('#logout').click();assert.equal(await page.locator('#class-panel').isVisible(),false);
   assert.equal(await page.locator('#report').isVisible(),false);assert.deepEqual(errors,[]);
   check('Class caches preserve imports on switching and clear on logout without JavaScript errors');

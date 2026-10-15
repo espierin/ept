@@ -92,7 +92,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>NC en PC zijn controlebeads. Ze staan in <strong>Kwaliteit, controlebeads en herkomst</strong>, buiten de specificiteitsgrafiek. De MFI-as loopt altijd van <strong>1 tot 10000</strong> en staat standaard op <strong>Log</strong>. Eigen waarden zijn grote koraalrode cirkels.</p>
+<p>NC en PC zijn controlebeads. Ze staan in <strong>Kwaliteit, controlebeads en herkomst</strong>, buiten de specificiteitsgrafiek. De MFI-as loopt altijd van <strong>1 tot 30000</strong> en staat standaard op <strong>Log</strong>. Eigen waarden zijn grote koraalrode cirkels.</p>
 <p><strong>Nog geen violin plots of blauwe peerpunten? Dat klopt.</strong> Zolang de provider geen passende democonsensus heeft vrijgegeven, zie je alleen eigen resultaten. Ga verder met de volgende quick start om de groepscontext te testen.</p>
 <h2 id="quick-start-groepscontext-vrijgeven">Quick start: groepscontext vrijgeven</h2>
 <p>Gebruik twee tabs in <strong>dezelfde browser, hetzelfde browserprofiel en op hetzelfde websiteadres</strong>. Een privévenster of andere browser deelt deze demovrijgave niet.</p>
@@ -210,11 +210,11 @@
 </tr>
 <tr>
 <td>Gestippelde randmarker</td>
-<td>Positieve waarde onder 1 of boven 10000, aan de asgrens getoond</td>
+<td>Positieve waarde onder 1 of boven 30000, aan de asgrens getoond</td>
 </tr>
 </tbody>
 </table></div>
-<p>De MFI-as loopt in iedere weergave van <strong>1 tot 10000</strong>. <strong>Log</strong> is de standaard; <strong>Lineair</strong> is een expliciete alternatieve weergave. Logaritmische tussenstreepjes staan alleen op de as. Alle weergegeven MFI-getallen zijn afgeronde integers zonder duizendtalscheiding, bijvoorbeeld <code>8002</code>. Berekeningen en numerieke exports behouden <code>8001.5</code> als dat de bronwaarde was.</p>
+<p>De MFI-as loopt in iedere weergave van <strong>1 tot 30000</strong>. <strong>Log</strong> is de standaard; <strong>Lineair</strong> is een expliciete alternatieve weergave. Tickmarks bij 10, 100, 1000 en 10000 zijn langer dan de tussenstreepjes. Deze streepjes staan alleen op de as. Waarden boven 30000 worden op precies 30000 getekend; de oorspronkelijke waarde blijft behouden in tabel en numerieke exports. Alle weergegeven MFI-getallen zijn afgeronde integers zonder duizendtalscheiding, bijvoorbeeld <code>8002</code>. Berekeningen en numerieke exports behouden <code>8001.5</code> als dat de bronwaarde was.</p>
 <p><strong>Individuele peerwaarden</strong> zet de blauwe punten aan of uit, zonder de violin te veranderen. <strong>Merge</strong> berekent één verdeling uit de samengevoegde vendorwaarnemingen per geldige specificiteit. <strong>Separate</strong> berekent de verdeling per vendor afzonderlijk. In deze demo is alleen Werfen aanwezig; beide standen gebruiken daarom dezelfde peerreeks. Zonder vrijgave zijn deze standen niet beschikbaar.</p>
 <p>De demoreferentie gebruikt 18 gegenereerde labs per geldige positieve meetwaarde. Dat zijn geen echte peerinzendingen. De tabel geeft onder andere de eigen MFI, providercall en aantallen labs, metingen en niet-positieve/ongeldige referentiewaarden. Positieve waarden buiten het zichtbare asbereik blijven in de data en statistiek. Nul, negatief, ontbrekend of ongeldig worden niet in een logaritmische density verwerkt. Bij te weinig of constante referentiewaarden kan een violin ontbreken.</p>
 <p>De violin wordt berekend als een Gaussische kernschatting op log10-MFI, met bandbreedte 0.18 en 100 evaluatiepunten. Er zijn minimaal vijf geldige positieve referentiewaarden nodig; een constante reeks krijgt geen violin. De getoonde violins hebben gelijke maximale breedte, zodat breedte geen zelfstandig aantal labs aanduidt. Het eigen lab wordt uit de referentie gehouden. Unieke labs en meetwaarnemingen zijn afzonderlijke aantallen; herhaalde exports mogen die aantallen niet opblazen.</p>

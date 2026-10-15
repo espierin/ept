@@ -92,7 +92,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>NC and PC are control beads. They appear under <strong>Quality, control beads and provenance</strong>, outside the specificity chart. The MFI axis always runs from <strong>1 to 10000</strong> and defaults to <strong>Log</strong>. Your values are large coral circles.</p>
+<p>NC and PC are control beads. They appear under <strong>Quality, control beads and provenance</strong>, outside the specificity chart. The MFI axis always runs from <strong>1 to 30000</strong> and defaults to <strong>Log</strong>. Your values are large coral circles.</p>
 <p><strong>No violin plots or blue peer points yet? That is expected.</strong> Until the provider releases matching demo consensus, only your own results are visible. Continue with the next quick start to test group context.</p>
 <h2 id="quick-start-release-group-context">Quick start: release group context</h2>
 <p>Use two tabs in <strong>the same browser, browser profile and website address</strong>. A private window or another browser will not share this demo release.</p>
@@ -210,11 +210,11 @@
 </tr>
 <tr>
 <td>Dashed boundary marker</td>
-<td>Positive value below 1 or above 10000, displayed at the axis boundary</td>
+<td>Positive value below 1 or above 30000, displayed at the axis boundary</td>
 </tr>
 </tbody>
 </table></div>
-<p>The MFI axis runs from <strong>1 to 10000</strong> in every view. <strong>Log</strong> is the default; <strong>Linear</strong> is an explicit alternative. Logarithmic minor ticks appear on the axis only. All displayed MFI numbers are rounded integers without a thousands separator, for example <code>8002</code>. Calculations and numeric exports preserve <code>8001.5</code> if that was the source value.</p>
+<p>The MFI axis runs from <strong>1 to 30000</strong> in every view. <strong>Log</strong> is the default; <strong>Linear</strong> is an explicit alternative. Ticks at 10, 100, 1000 and 10000 are longer than minor ticks. These ticks appear on the axis only. Values above 30000 are plotted at exactly 30000; table and numeric exports retain the original value. All displayed MFI numbers are rounded integers without a thousands separator, for example <code>8002</code>. Calculations and numeric exports preserve <code>8001.5</code> if that was the source value.</p>
 <p><strong>Individual peer values</strong> shows or hides blue points without changing the violin. <strong>Merge</strong> calculates one distribution from pooled vendor observations per valid specificity. <strong>Separate</strong> calculates a distribution for each vendor separately. Only Werfen is present in this demo, so both modes use the same peer series. These modes are unavailable before release.</p>
 <p>The demo reference uses 18 generated laboratories per valid positive measurement. These are not actual peer submissions. The table shows own MFI, provider call and counts of laboratories, measurements and non-positive/invalid reference values, among other fields. Positive values outside the visible axis remain in data and statistics. Zero, negative, missing or invalid values are not included in logarithmic density. Too few or constant reference values may produce no violin.</p>
 <p>The violin uses Gaussian kernel density estimation on log10 MFI, with bandwidth 0.18 and 100 evaluation points. At least five valid positive reference values are required; a constant series receives no violin. Violins have equal maximum width, so width does not independently indicate laboratory count. The own laboratory is excluded from references. Unique laboratories and measurement observations are separate counts; repeated exports must not inflate them.</p>

@@ -60,7 +60,7 @@ Gebruik de knoppen **I** en **II** boven de dashboards. Ze kiezen de actieve kla
 | I | Vier HLA-specificiteiten; de eerste eigen MFI is `8002` |
 | II | Vijf HLA-specificiteiten, inclusief gekoppelde DQ/DP-ketens |
 
-NC en PC zijn controlebeads. Ze staan in **Kwaliteit, controlebeads en herkomst**, buiten de specificiteitsgrafiek. De MFI-as loopt altijd van **1 tot 10000** en staat standaard op **Log**. Eigen waarden zijn grote koraalrode cirkels.
+NC en PC zijn controlebeads. Ze staan in **Kwaliteit, controlebeads en herkomst**, buiten de specificiteitsgrafiek. De MFI-as loopt altijd van **1 tot 30000** en staat standaard op **Log**. Eigen waarden zijn grote koraalrode cirkels.
 
 **Nog geen violin plots of blauwe peerpunten? Dat klopt.** Zolang de provider geen passende democonsensus heeft vrijgegeven, zie je alleen eigen resultaten. Ga verder met de volgende quick start om de groepscontext te testen.
 
@@ -151,9 +151,9 @@ De grafiek en tabel gebruiken **PL Strings** in plaats van beadnummers. Bij DQ e
 | Cirkel | Werfen / Immucor |
 | Vierkant | Gereserveerd voor One Lambda in de uitbreidbare grafiekopzet |
 | Violin plot | Verdeling van de geselecteerde peerwaarden, exclusief eigen lab |
-| Gestippelde randmarker | Positieve waarde onder 1 of boven 10000, aan de asgrens getoond |
+| Gestippelde randmarker | Positieve waarde onder 1 of boven 30000, aan de asgrens getoond |
 
-De MFI-as loopt in iedere weergave van **1 tot 10000**. **Log** is de standaard; **Lineair** is een expliciete alternatieve weergave. Logaritmische tussenstreepjes staan alleen op de as. Alle weergegeven MFI-getallen zijn afgeronde integers zonder duizendtalscheiding, bijvoorbeeld `8002`. Berekeningen en numerieke exports behouden `8001.5` als dat de bronwaarde was.
+De MFI-as loopt in iedere weergave van **1 tot 30000**. **Log** is de standaard; **Lineair** is een expliciete alternatieve weergave. Tickmarks bij 10, 100, 1000 en 10000 zijn langer dan de tussenstreepjes. Deze streepjes staan alleen op de as. Waarden boven 30000 worden op precies 30000 getekend; de oorspronkelijke waarde blijft behouden in tabel en numerieke exports. Alle weergegeven MFI-getallen zijn afgeronde integers zonder duizendtalscheiding, bijvoorbeeld `8002`. Berekeningen en numerieke exports behouden `8001.5` als dat de bronwaarde was.
 
 **Individuele peerwaarden** zet de blauwe punten aan of uit, zonder de violin te veranderen. **Merge** berekent één verdeling uit de samengevoegde vendorwaarnemingen per geldige specificiteit. **Separate** berekent de verdeling per vendor afzonderlijk. In deze demo is alleen Werfen aanwezig; beide standen gebruiken daarom dezelfde peerreeks. Zonder vrijgave zijn deze standen niet beschikbaar.
 

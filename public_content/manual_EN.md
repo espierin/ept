@@ -60,7 +60,7 @@ Use buttons **I** and **II** above the dashboards. They select the active class;
 | I | Four HLA specificities; the first own MFI is `8002` |
 | II | Five HLA specificities, including paired DQ/DP chains |
 
-NC and PC are control beads. They appear under **Quality, control beads and provenance**, outside the specificity chart. The MFI axis always runs from **1 to 10000** and defaults to **Log**. Your values are large coral circles.
+NC and PC are control beads. They appear under **Quality, control beads and provenance**, outside the specificity chart. The MFI axis always runs from **1 to 30000** and defaults to **Log**. Your values are large coral circles.
 
 **No violin plots or blue peer points yet? That is expected.** Until the provider releases matching demo consensus, only your own results are visible. Continue with the next quick start to test group context.
 
@@ -151,9 +151,9 @@ The chart and table use **PL Strings** instead of bead numbers. DQ and DP retain
 | Circle | Werfen / Immucor |
 | Square | Reserved for One Lambda in the extensible chart design |
 | Violin plot | Distribution of selected peer values, excluding your own laboratory |
-| Dashed boundary marker | Positive value below 1 or above 10000, displayed at the axis boundary |
+| Dashed boundary marker | Positive value below 1 or above 30000, displayed at the axis boundary |
 
-The MFI axis runs from **1 to 10000** in every view. **Log** is the default; **Linear** is an explicit alternative. Logarithmic minor ticks appear on the axis only. All displayed MFI numbers are rounded integers without a thousands separator, for example `8002`. Calculations and numeric exports preserve `8001.5` if that was the source value.
+The MFI axis runs from **1 to 30000** in every view. **Log** is the default; **Linear** is an explicit alternative. Ticks at 10, 100, 1000 and 10000 are longer than minor ticks. These ticks appear on the axis only. Values above 30000 are plotted at exactly 30000; table and numeric exports retain the original value. All displayed MFI numbers are rounded integers without a thousands separator, for example `8002`. Calculations and numeric exports preserve `8001.5` if that was the source value.
 
 **Individual peer values** shows or hides blue points without changing the violin. **Merge** calculates one distribution from pooled vendor observations per valid specificity. **Separate** calculates a distribution for each vendor separately. Only Werfen is present in this demo, so both modes use the same peer series. These modes are unavailable before release.
 
