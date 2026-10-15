@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT — style guide</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="concept_EN.html">Concept</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="style_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI EPT — style guide</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#foundation">Foundation</a><a href="#colour-tokens">Colour tokens</a><a href="#typography-and-grid">Typography and grid</a><a href="#buttons-and-filters">Buttons and filters</a><a href="#logo-and-images">Logo and images</a><a href="#vector-as-a-build-requirement">Vector as a build requirement</a><a href="#charts-and-reports">Charts and reports</a><a href="#bilingual-content-and-verification">Bilingual content and verification</a><a href="#public-references">Public references</a><a href="style_EN.md">Markdown</a></aside><main><p>Version 1.0 · 15 October 2026 · Public implementation conventions</p>
+<h2 id="foundation">Foundation</h2>
+<p>This project guide follows the existing EFI web style. It is not a formal replacement for an EFI brand manual. Use white and pale grey as the main surfaces, EFI blue as the identity anchor and coral for focused accents. Do not introduce separate committee or module palettes.</p>
+<h2 id="colour-tokens">Colour tokens</h2>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Colour</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--efi-blue</code></td>
+<td><code>#064A89</code></td>
+<td>Title band, primary buttons, active technique</td>
+</tr>
+<tr>
+<td><code>--efi-coral</code></td>
+<td><code>#DE5757</code></td>
+<td>Secondary buttons, active loci, own measurements</td>
+</tr>
+<tr>
+<td><code>--efi-ink</code></td>
+<td><code>#232424</code></td>
+<td>Text, including on coral</td>
+</tr>
+<tr>
+<td><code>--efi-white</code></td>
+<td><code>#FFFFFF</code></td>
+<td>Background and text on blue</td>
+</tr>
+<tr>
+<td><code>--efi-surface</code></td>
+<td><code>#F4F6F9</code></td>
+<td>Grey panels and deselected buttons</td>
+</tr>
+<tr>
+<td><code>--efi-light</code></td>
+<td><code>#EAEAEA</code></td>
+<td>Light button variant</td>
+</tr>
+<tr>
+<td><code>--efi-muted</code></td>
+<td><code>#5E6568</code></td>
+<td>Secondary metadata</td>
+</tr>
+<tr>
+<td><code>--efi-line</code></td>
+<td><code>#DFE4E8</code></td>
+<td>Subtle separators</td>
+</tr>
+</tbody>
+</table>
+<p>Small white text on coral has insufficient contrast: use dark text. Coral does not automatically mean failure. Status has an explicit label and icon. Focus stays visible and interaction does not depend on colour alone.</p>
+<h2 id="typography-and-grid">Typography and grid</h2>
+<p>Use locally hosted <strong>Montserrat</strong>, falling back to <code>ui-sans-serif, system-ui, sans-serif</code>. Marketing reference: H1 32–56px/700, H2 24–40px/700; a data platform uses a compact hierarchy with 16–18px/400 for forms and tables, metadata 14–16px/500. Use tabular numerals and unchanged HLA notation. One H1 per page.</p>
+<p>Technique and Locus share a grid with a 120px label column, 12px column gap and 10px row gap. SAB and A start at the same position. Buttons are at least 44px high. Narrow screens stack labels above groups; groups wrap without page overflow.</p>
+<h2 id="buttons-and-filters">Buttons and filters</h2>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Active</th>
+<th>Deselected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technique</td>
+<td>Blue, white text</td>
+<td>Grey with blue border and blue text</td>
+</tr>
+<tr>
+<td>Locus</td>
+<td>Coral, dark text</td>
+<td>Grey with coral border and dark text</td>
+</tr>
+</tbody>
+</table>
+<p>Borders stay 2px in both states. Disabled controls are muted grey with an accessible reason. Technique is single-select; Locus is multi-select with <code>aria-pressed</code>. Retain keyboard focus and selected state on language changes. Merge / Separate keeps the same labels in both languages.</p>
+<h2 id="logo-and-images">Logo and images</h2>
+<p>Place the original <strong>white EFI SVG logo directly on the blue banner</strong>, without a white tile, distortion or crowding. Desktop report target: 64–80px high. Use the coloured original on white. The demo wordmark is a provisional product title, not a new EFI logo.</p>
+<p>The banner may contain restrained decorative antibody/HLA imagery on the right. Keep the text and logo zones clear. Decorative molecular imagery may be raster; it establishes no structural scientific claims.</p>
+<h2 id="vector-as-a-build-requirement">Vector as a build requirement</h2>
+<p>Charts and diagrams use native SVG wherever practicable. All icons and pictograms are SVG. Keep editable source assets; a PNG wrapped in SVG is not a vector asset. PNG is an optional preview. Use Canvas/WebGL only for demonstrated performance needs, with a table and vector-export route.</p>
+<h2 id="charts-and-reports">Charts and reports</h2>
+<p>Every MFI axis defaults to log10. Axes show original values and name the scale. Zero/negative/missing values receive explicit treatment. Specificities appear as PL Strings. Circle = Werfen, square = One Lambda; peer points blue, own points larger and coral. Violins are pale blue with sufficiently distinct points.</p>
+<p>Before consensus release a report shows own results only with clear status. After release Merge/Separate and permitted peer points become available. No lab identity appears in peer points, exports or tooltips. Tables provide information without depending on charts.</p>
+<h2 id="bilingual-content-and-verification">Bilingual content and verification</h2>
+<p>Every page has a visible NL/EN switch. Documentation consists of synchronised Markdown/HTML pairs. Check keyboard interaction, 320px screens, unclipped PL Strings, contrast and reproducible SVG export. Generated mockups do not establish exact CSS, font embedding or logo geometry.</p>
+<h2 id="public-references">Public references</h2>
+<ul>
+<li><a href="https://efi-web.org/">EFI website</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-color.svg">Original coloured logo</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-white.svg">Original white logo</a></li>
+<li><a href="concept_EN.html">Platform concept</a></li>
+</ul></main></div><footer>Project documentation · not an official EFI service</footer></body></html>

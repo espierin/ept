@@ -1,0 +1,99 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT — stijlgids</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="concept_NL.html">Concept</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="style_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI EPT — stijlgids</h1><p>Publieke ontwerpdocumentatie · in ontwikkeling</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#basis">Basis</a><a href="#kleurtokens">Kleurtokens</a><a href="#typografie-en-raster">Typografie en raster</a><a href="#knoppen-en-filters">Knoppen en filters</a><a href="#logo-en-afbeeldingen">Logo en afbeeldingen</a><a href="#vector-als-bouwvoorwaarde">Vector als bouwvoorwaarde</a><a href="#grafieken-en-rapporten">Grafieken en rapporten</a><a href="#tweetaligheid-en-controle">Tweetaligheid en controle</a><a href="#publieke-referenties">Publieke referenties</a><a href="style_NL.md">Markdown</a></aside><main><p>Versie 1.0 · 15 oktober 2026 · Publieke implementatieafspraken</p>
+<h2 id="basis">Basis</h2>
+<p>Deze projectstijlgids volgt de bestaande EFI-webstijl. Het is geen formele vervanging van een EFI-brandmanual. Gebruik wit en lichtgrijs als hoofdmateriaal, EFI-blauw als herkenningsanker en koraal voor gerichte accenten. Geen eigen kleurpalet per commissie of module.</p>
+<h2 id="kleurtokens">Kleurtokens</h2>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Kleur</th>
+<th>Toepassing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--efi-blue</code></td>
+<td><code>#064A89</code></td>
+<td>Titelband, primaire knoppen, actieve techniek</td>
+</tr>
+<tr>
+<td><code>--efi-coral</code></td>
+<td><code>#DE5757</code></td>
+<td>Secundaire knoppen, actieve loci, eigen meetpunten</td>
+</tr>
+<tr>
+<td><code>--efi-ink</code></td>
+<td><code>#232424</code></td>
+<td>Tekst, ook op koraal</td>
+</tr>
+<tr>
+<td><code>--efi-white</code></td>
+<td><code>#FFFFFF</code></td>
+<td>Achtergrond en tekst op blauw</td>
+</tr>
+<tr>
+<td><code>--efi-surface</code></td>
+<td><code>#F4F6F9</code></td>
+<td>Grijze panelen en niet-geselecteerde knoppen</td>
+</tr>
+<tr>
+<td><code>--efi-light</code></td>
+<td><code>#EAEAEA</code></td>
+<td>Lichte knopvariant</td>
+</tr>
+<tr>
+<td><code>--efi-muted</code></td>
+<td><code>#5E6568</code></td>
+<td>Secundaire metadata</td>
+</tr>
+<tr>
+<td><code>--efi-line</code></td>
+<td><code>#DFE4E8</code></td>
+<td>Subtiele scheidingslijnen</td>
+</tr>
+</tbody>
+</table>
+<p>Kleine witte tekst op koraal is onvoldoende contrastrijk: gebruik donkere tekst. Koraal betekent niet automatisch fout of afkeur. Status krijgt een expliciet label en pictogram. Focus blijft zichtbaar en bediening is niet alleen kleurafhankelijk.</p>
+<h2 id="typografie-en-raster">Typografie en raster</h2>
+<p>Gebruik lokaal gehoste <strong>Montserrat</strong> met <code>ui-sans-serif, system-ui, sans-serif</code> als terugval. Marketingreferentie: H1 32–56px/700, H2 24–40px/700; een dataplatform gebruikt compactere hiërarchie met 16–18px/400 voor tabellen en formulieren, metadata 14–16px/500. Gebruik tabulaire cijfers en onveranderde HLA-notatie. Eén H1 per pagina.</p>
+<p>Technique en Locus delen een raster met een labelkolom van 120px, 12px kolomafstand en 10px rijafstand. SAB en A beginnen gelijk. Knoppen zijn minimaal 44px hoog. Smalle schermen stapelen labels boven de knopgroep; groepen lopen door zonder pagina-overloop.</p>
+<h2 id="knoppen-en-filters">Knoppen en filters</h2>
+<table>
+<thead>
+<tr>
+<th>Groep</th>
+<th>Actief</th>
+<th>Niet geselecteerd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technique</td>
+<td>Blauw, witte tekst</td>
+<td>Grijs met blauwe rand en blauwe tekst</td>
+</tr>
+<tr>
+<td>Locus</td>
+<td>Koraal, donkere tekst</td>
+<td>Grijs met koraalrand en donkere tekst</td>
+</tr>
+</tbody>
+</table>
+<p>Randen zijn in beide toestanden 2px breed. Uitgeschakeld is gedempt grijs met een toegankelijke reden. Technique is een enkelvoudige keuze; Locus meervoudig met <code>aria-pressed</code>. Behoud toetsenbordfocus en geselecteerde status bij taalwissel. Merge / Separate houdt in beide talen dezelfde labels.</p>
+<h2 id="logo-en-afbeeldingen">Logo en afbeeldingen</h2>
+<p>Plaats het originele <strong>witte EFI-SVG-logo rechtstreeks op de blauwe banner</strong>, zonder wit vlak, zonder vervorming en met vrije ruimte. Richtmaat in een desktoprapport: 64–80px hoog. Gebruik het gekleurde origineel op witte ondergrond. Het woordmerk van de demo is een voorlopige producttitel, geen nieuw EFI-logo.</p>
+<p>De banner mag rechts een ingetogen decoratieve antistof-/HLA-afbeelding hebben. Houd tekstzone en logo vrij. De decoratieve moleculaire afbeelding mag raster zijn; structurele wetenschappelijke claims volgen niet uit een decoratie.</p>
+<h2 id="vector-als-bouwvoorwaarde">Vector als bouwvoorwaarde</h2>
+<p>Grafieken en schema’s worden waar praktisch mogelijk native SVG. Alle iconen en pictogrammen zijn SVG. Bewaar bewerkbare bronassets; een PNG in een SVG-container is geen vectorbestand. PNG is een optionele preview. Gebruik Canvas/WebGL alleen bij een aangetoonde prestatiebehoefte met tabel en vector-exportroute.</p>
+<h2 id="grafieken-en-rapporten">Grafieken en rapporten</h2>
+<p>Alle MFI-assen starten op log10. Assen tonen oorspronkelijke waarden en benoemen de schaal. Nul/negatief/ontbrekend wordt expliciet behandeld. Specificiteiten staan als PL String in de grafiek. Cirkel = Werfen, vierkant = One Lambda; peerpunten blauw, eigen punten groter en koraal. De violin is lichtblauw met voldoende contrast voor punten.</p>
+<p>Voor consensusvrijgave toont een rapport alleen eigen resultaten met een duidelijke statusmelding. Na vrijgave zijn Merge/Separate en toegestane peerpunten beschikbaar. Geen labidentificatie in peerpunten, exports of tooltips. Tabellen bieden dezelfde informatie zonder afhankelijkheid van een grafiek.</p>
+<h2 id="tweetaligheid-en-controle">Tweetaligheid en controle</h2>
+<p>Iedere pagina heeft een zichtbare NL/EN-wissel. Documentatie bestaat als gesynchroniseerde Markdown/HTML-paren. Controleer toetsenbordbediening, 320px-schermen, geen afgesneden PL Strings, contrast en reproduceerbare SVG-export. Gegenereerde mockups zijn geen bewijs van exacte CSS, fontinsluiting of logo-geometrie.</p>
+<h2 id="publieke-referenties">Publieke referenties</h2>
+<ul>
+<li><a href="https://efi-web.org/">EFI-website</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-color.svg">Origineel gekleurd logo</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-white.svg">Origineel wit logo</a></li>
+<li><a href="concept_NL.html">Platformconcept</a></li>
+</ul></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>

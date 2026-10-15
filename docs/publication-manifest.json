@@ -1,0 +1,30 @@
+{
+  "scope": "Explicit public documentation only",
+  "files": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "concept_EN.html": "3bb9071b6fcac78973d03f088cd3031e12694004bfd0e096034d300dff38e0d1",
+    "concept_EN.md": "5cd7094bb10ce6e6d95d41bdfecf7575ace5f98d4a8fb10011f0a9cd3d7b4f5d",
+    "concept_NL.html": "20b42d9818807b4294fd5d7e70bd1cb38188fabea82fdf33201bc0b53112a923",
+    "concept_NL.md": "2d9121bce0732e18383a9bb93ef0b5527b060ebb50874d2dc476074ef1dd91ea",
+    "index.html": "7cb224976f1b0362d1ff178cefd2eddf643e1cbfe205cfa53b1da256430e3b58",
+    "index_EN.html": "042c9715dabe77ce0b209de54d70690d51a1bfe6d59dffe228c90bbc2319870d",
+    "index_EN.md": "0c934b14d0fafdef73194ddb89016a7afa7ded19ff311eb802c709b8ca01139a",
+    "index_NL.html": "7cb224976f1b0362d1ff178cefd2eddf643e1cbfe205cfa53b1da256430e3b58",
+    "index_NL.md": "69d66d6ba4de5137c0a708a7eb1cfd27fc38629cb200be1f7736a8f0f12842f7",
+    "style_EN.html": "f6c97114359f6adc2fad99ac449a9ea19c6b59b6a98b5dfe1995776804b1316c",
+    "style_EN.md": "4d0a98c6aac4b929553c6222f06b4436b4cf75bb61f864b71cf116c528d17dce",
+    "style_NL.html": "5fe41268f63ab22acd144a1099b0925064eac1d30e7ea8f5ebb21f1b20fc0390",
+    "style_NL.md": "39ac0c0cc67c6f4daf5c1d7303f7aba10ea126ed39198c329c4507f637dcd8a1",
+    "assets/efi.css": "43ee6df48115b73f893748063da34869660961976cd1d9b9a437ff327d49ae4f",
+    "assets/logo-color.svg": "05ee6ed936ac3480690ef51b9f15b6693e55b4f23a537c4447625b8d7021a398",
+    "assets/logo-white.svg": "fd705df3aaa832a5a7d1f7b6e317f31805943e2d305067a3bde98e56bc338014",
+    "assets/montserrat-italic-variable.ttf": "225da7d3255aaac9ab6bef71bf27ccbfab0b65a58a6b0a3d5c14c26cdd988691",
+    "assets/montserrat-variable.ttf": "498dc34d0fa45288e0ac5345bd385c98bf81c56ee70209aacfb4a22a6510697c",
+    "assets/mockups/overview-en.png": "68b72000d3feaedf59526c9d7d723b09751ae17d11d8ceca98b6eaeffdec7a5e",
+    "assets/mockups/overview-nl.png": "7079099779b7e0958b8b842b9842abf80975c83761cb118a7fcdbcfa86b39b03",
+    "assets/mockups/own-en.png": "351a227c6792930eeff3034bef11b639c99ac0f1c9e4fab34ad423af37a95a33",
+    "assets/mockups/own-nl.png": "0c5edecf3412e2cbfa657c33bc4e9949ae11d1b6fe8b41e3b34cdbadabafe790",
+    "assets/mockups/report-en.png": "bfbc535d7387e04298226feaec1a0ecacd1fdf27eedc4fd4712cf232a7bd6173",
+    "assets/mockups/report-nl.png": "eba47f0bf5f801c1588aade645fd07034340e05cfbd620e968af0f6196b72bdb"
+  }
+}
