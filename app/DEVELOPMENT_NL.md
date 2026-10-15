@@ -73,3 +73,11 @@ De MFI-as start op log10. Hoofdticks markeren de machten van tien. Binnen elke d
 Toon MFI-waarden als afgeronde gehele getallen, zonder punt, komma of spatie als duizendtalscheiding. Dit geldt voor tabellen, aslabels en tooltips, in beide talen. Voorbeeld: 8001,5 wordt weergegeven als 8002. Berekeningen, puntposities en CSV/JSON-data-exports behouden de oorspronkelijke precisie; SVG-export volgt de visuele integerweergave.
 
 De demovrijgave wordt per provider, schema, ronde, sample, klasse en techniek in deze browser bewaard. Na een overeenkomende deelnemersimport wordt die vrijgave toegepast; intrekken verwijdert deze lokale vrijgave. Andere browsers delen deze status nog niet. Er worden geen ruwe labresultaten centraal opgeslagen.
+
+## Uitgebreide verificatie en herpublicatie
+
+De controles omvatten 13 analysetests, 13 oorspronkelijke browsercontroles, 12 rollencontroles, 12 aanvullende workflowcontroles en 17 controles op het publicatiepakket. De aanvullende gevallen testen ontbrekende inschrijving, ontbrekende vendor, One Lambda-deelname met Werfen-input, meerdere schema’s, verkeerde wachtwoorden, ongeldige e-mail, herladen, vrijgave en intrekken tussen twee tabs en vijf schermbreedtes van 320 tot 1440 pixels.
+
+Een gevonden fout bij wisselen tussen Median en Net MFI is hersteld: een geldige contextgebonden consensus blijft actief, terwijl de referentiewaarden opnieuw voor de gekozen meetsectie worden berekend. Een ongeldige consensus vervangt geen bestaande geldige vrijgave. De importmelding bevestigt de context zonder onterecht te zeggen dat een eerder vrijgegeven consensus vergrendeld is.
+
+Browsercommando’s: `node app/tests/browser.cjs`, `node app/tests/roles.cjs`, `node app/tests/detailed.cjs` en `node app/tests/online.cjs`. Geef de accountwachtwoorden uitsluitend via de procesvariabele `EPT_TEST_PASSWORDS` als JSON-object met gebruikersnamen als sleutels mee; sla ze niet in tests of documentatie op. `EPT_PLAYWRIGHT_PATH` wijst naar Playwright. `EPT_BASE_URL` is voor roles/detailed de app-URL en voor online de root-URL van het publicatiepakket. Testrapporten en screenshots blijven in de genegeerde map `.local/`. De browsercontroles toetsen de demo en bewijzen geen beveiligde productieautorisatie.

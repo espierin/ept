@@ -73,3 +73,11 @@ The MFI axis defaults to log10. Major ticks mark powers of ten. Each decade cont
 Display MFI values as rounded integers with no dot, comma or space as a thousands separator. Apply this to tables, axis labels and tooltips in both languages. Example: 8001.5 is displayed as 8002. Calculations, point positions and CSV/JSON data exports retain original precision; SVG export follows the visual integer display.
 
 Demo releases are retained in this browser by provider, scheme, round, sample, class and technique. A matching participant import applies the release; withdrawal removes that local release. Other browsers do not yet share this status. No raw laboratory results are stored centrally.
+
+## Detailed verification and republication
+
+Checks cover 13 analysis tests, 13 original browser checks, 12 role checks, 12 additional workflow checks and 17 publication-package checks. Additional cases cover missing enrolment, missing vendor, One Lambda enrolment with Werfen input, multiple schemes, wrong passwords, invalid email, refresh, release and withdrawal between two tabs, and five viewport widths from 320 to 1440 pixels.
+
+A fault when switching between Median and Net MFI has been corrected: a valid context-scoped consensus remains active while reference values are recomputed for the selected measurement section. Invalid consensus does not replace an existing valid release. The import message confirms context without incorrectly claiming that previously released consensus has been locked.
+
+Browser commands: `node app/tests/browser.cjs`, `node app/tests/roles.cjs`, `node app/tests/detailed.cjs` and `node app/tests/online.cjs`. Supply account passwords only through the process variable `EPT_TEST_PASSWORDS` as a JSON object keyed by usernames; do not store them in tests or documentation. `EPT_PLAYWRIGHT_PATH` points to Playwright. `EPT_BASE_URL` is the app URL for roles/detailed and the publication-package root URL for online. Reports and screenshots remain in the ignored `.local/` directory. Browser checks verify the demo and do not prove secure production authorisation.
