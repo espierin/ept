@@ -1,6 +1,9 @@
 # EFI EPT — style guide
 
-Version 1.0 · 15 October 2026 · Public implementation conventions
+Version 1.1 · 15 October 2026 · Public implementation conventions
+
+
+The [general EFI foundation style guide](efi-style_EN.html) shows colours, Montserrat, logos and button examples. This EPT guide describes their module-specific use.
 
 ## Foundation
 
@@ -36,6 +39,8 @@ Technique and Locus share a grid with a 120px label column, 12px column gap and 
 
 Borders stay 2px in both states. Disabled controls are muted grey with an accessible reason. Technique is single-select; Locus is multi-select with `aria-pressed`. Retain keyboard focus and selected state on language changes. Merge / Separate keeps the same labels in both languages.
 
+<!--EPT_SPECIMEN-->
+
 ## Logo and images
 
 Place the original **white EFI SVG logo directly on the blue banner**, without a white tile, distortion or crowding. Desktop report target: 64–80px high. Use the coloured original on white. The demo wordmark is a provisional product title, not a new EFI logo.
@@ -62,3 +67,7 @@ Every page has a visible NL/EN switch. Documentation consists of synchronised Ma
 - [Original coloured logo](https://efi-web.org/dist/images/logos/logo-color.svg)
 - [Original white logo](https://efi-web.org/dist/images/logos/logo-white.svg)
 - [Platform concept](concept_EN.html)
+
+## Persistent navigation
+
+The menu above the banner is sticky. Section headings use an offset based on actual menu height, including wrapped mobile navigation. The molecular banner is a PNG from the image generator; its white logo is a separate original SVG.

@@ -1,0 +1,71 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI — visuele basisstijlgids</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="concept_NL.html">Concept</a><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="efi-style_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI — visuele basisstijlgids</h1><p>Publieke ontwerpdocumentatie · in ontwikkeling</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#basis-en-relatie-met-ept">Basis en relatie met EPT</a><a href="#kleuren-zichtbaar-naast-elkaar">Kleuren, zichtbaar naast elkaar</a><a href="#montserrat-en-teksthierarchie">Montserrat en teksthiërarchie</a><a href="#knoppen-en-interactie">Knoppen en interactie</a><a href="#logo-banner-en-beeldgebruik">Logo, banner en beeldgebruik</a><a href="#opbouw-en-witruimte">Opbouw en witruimte</a><a href="#vector-en-toegankelijkheid">Vector en toegankelijkheid</a><a href="#bronnen-en-moduleafspraken">Bronnen en moduleafspraken</a><a href="efi-style_NL.md">Markdown</a></aside><main><p>Versie 1.0 · 15 oktober 2026 · Publieke projectreferentie</p>
+<h2 id="basis-en-relatie-met-ept">Basis en relatie met EPT</h2>
+<p>Dit is de algemene visuele basis voor dit project, gebaseerd op de EFI-webstijl. De <a href="efi-style_NL.html">EFI</a><a href="style_NL.html">EPT-stijlgids</a> past deze basis toe op filters, resultaten en EPT-rapporten. Dit document is een projectreferentie, geen formeel door EFI uitgegeven brandmanual.</p>
+<h2 id="kleuren-zichtbaar-naast-elkaar">Kleuren, zichtbaar naast elkaar</h2>
+<p>De kleurstalen hieronder bevatten de exacte CSS-token en hexwaarde. Wit/lichtgrijs vormen de hoofdmateriaalkeuze; blauw verankert de identiteit. Koraal is een secundair accent, geen automatische foutkleur.</p>
+<div class="colour-grid"><div class="colour-card"><div class="colour-chip" style="background:#064A89"></div><strong>EFI blue</strong><code>--efi-blue</code><code>#064A89</code><small>RGB 6, 74, 137</small></div><div class="colour-card"><div class="colour-chip" style="background:#DE5757"></div><strong>EFI coral</strong><code>--efi-coral</code><code>#DE5757</code><small>RGB 222, 87, 87</small></div><div class="colour-card"><div class="colour-chip" style="background:#232424"></div><strong>Ink</strong><code>--efi-ink</code><code>#232424</code><small>RGB 35, 36, 36</small></div><div class="colour-card"><div class="colour-chip" style="background:#FFFFFF"></div><strong>White</strong><code>--efi-white</code><code>#FFFFFF</code><small>RGB 255, 255, 255</small></div><div class="colour-card"><div class="colour-chip" style="background:#F4F6F9"></div><strong>Surface</strong><code>--efi-surface</code><code>#F4F6F9</code><small>RGB 244, 246, 249</small></div><div class="colour-card"><div class="colour-chip" style="background:#EAEAEA"></div><strong>Light</strong><code>--efi-light</code><code>#EAEAEA</code><small>RGB 234, 234, 234</small></div><div class="colour-card"><div class="colour-chip" style="background:#5E6568"></div><strong>Muted</strong><code>--efi-muted</code><code>#5E6568</code><small>RGB 94, 101, 104</small></div><div class="colour-card"><div class="colour-chip" style="background:#DFE4E8"></div><strong>Line</strong><code>--efi-line</code><code>#DFE4E8</code><small>RGB 223, 228, 232</small></div></div>
+
+<p>Kleine witte tekst op koraal heeft onvoldoende contrast. Gebruik donkere tekst op koraal en witte tekst op blauw. Gebruik secundaire tekstkleur uitsluitend op voldoende lichte achtergrond. Status wordt ook in tekst en met een icoon benoemd.</p>
+<h2 id="montserrat-en-teksthierarchie">Montserrat en teksthiërarchie</h2>
+<p>Gebruik lokaal gehoste Montserrat, met <code>ui-sans-serif, system-ui, sans-serif</code> als terugval. De voorbeelden hieronder gebruiken de echte fontbestanden. Cijfers in datatabellen zijn tabulair; HLA-notatie wordt niet cosmetisch veranderd.</p>
+<div class="type-specimen"><div class="type-title">Montserrat · EFI</div><div class="type-h2">Heldere informatie, herkenbare stijl</div><p class="type-body">HLA-A*01:01 · HLA-DQA1*05:01~HLA-DQB1*02:01<br>0123456789 · Aa Bb Cc Dd Ee Ff Gg</p><div class="weight-row"><span style="font-weight:300">300 · Montserrat</span><span style="font-weight:400">400 · Montserrat</span><span style="font-weight:500">500 · Montserrat</span><span style="font-weight:600">600 · Montserrat</span><span style="font-weight:700">700 · Montserrat</span></div></div>
+
+<table>
+<thead>
+<tr>
+<th>Onderdeel</th>
+<th>Richtmaat</th>
+<th>Gewicht</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Website H1</td>
+<td>32–56px</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Website H2</td>
+<td>24–40px</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Data-app H2</td>
+<td>22–28px</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Formulier / tabel</td>
+<td>16–18px</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Metadata / label</td>
+<td>14–16px</td>
+<td>500–600</td>
+</tr>
+</tbody>
+</table>
+<p>De data-app mag compacter zijn dan een marketingpagina, met behoud van hiërarchie en leesbaarheid. Eén H1 per pagina; gebruik echte koppen, geen losse vetgedrukte tekst als structuur.</p>
+<h2 id="knoppen-en-interactie">Knoppen en interactie</h2>
+<p>De primaire knop is blauw/wit. De secundaire is koraal/donker. De lichte variant is lichtgrijs/donker. De demo laat actieve, niet-geselecteerde en uitgeschakelde toestanden zien. Gebruik Tab om de focusrand te controleren.</p>
+<div class="button-specimen"><div class="button-row"><button class="button-demo primary">Primair</button><button class="button-demo secondary">Secundair</button><button class="button-demo light">Licht</button><button class="button-demo" disabled>Uitgeschakeld</button></div><p class="token-note">Beweeg over de knoppen en gebruik Tab voor focus.</p></div>
+
+<p>Knoppen zijn in een data-app minimaal 44px hoog. Behoud randbreedte bij wisseling van toestand. Uitgeschakeld is niet hetzelfde als niet geselecteerd. Toetsenbordfocus is zichtbaar. Links in lopende tekst zijn onderstreept.</p>
+<h2 id="logo-banner-en-beeldgebruik">Logo, banner en beeldgebruik</h2>
+<p>Gebruik originele SVG-bestanden, zonder vervorming, overtrekken of herkleuren. Wit EFI-logo op blauw; gekleurd EFI-logo op wit. Laat ademruimte en behoud bescheiden maar leesbare zichtbaarheid. De banner mag een decoratieve moleculaire antistof-/HLA-afbeelding bevatten als PNG, zoals in het ontwerp. Tekst en logo blijven echte HTML/SVG-lagen en worden niet in de afbeelding gebakken.</p>
+<div class="logo-examples"><figure><img src="assets/logo-color.svg" alt="EFI"><figcaption>Gekleurd origineel op wit</figcaption></figure><figure><img src="assets/logo-white.svg" alt="EFI"><figcaption>Wit origineel op EFI-blauw</figcaption></figure></div>
+
+<p>Het topmenu boven de banner blijft tijdens scrollen staan: <code>position: sticky; top: 0</code>, dekkend wit en met passende z-index. Meet de werkelijke menuhoogte bij responsieve rijomloop; gebruik die voor sectie-offsets en <code>scroll-padding-top</code>, zodat ankerdoelen en focus niet achter het menu vallen.</p>
+<h2 id="opbouw-en-witruimte">Opbouw en witruimte</h2>
+<p>Werk met duidelijke inhoudssecties, voldoende witruimte en herhaalde uitlijning. Gebruik wit en grijs voor panelen, dunne scheidingslijnen en consequent geplaatste acties. Tabel- en grafiekpanelen mogen horizontaal scrollen; de pagina zelf hoort op mobiel niet horizontaal te overlopen.</p>
+<h2 id="vector-en-toegankelijkheid">Vector en toegankelijkheid</h2>
+<p>Grafieken en schema’s worden waar praktisch mogelijk SVG. Alle iconen en pictogrammen zijn SVG. Een rasterafbeelding in een SVG-container is geen vectorasset. Decoratieve moleculaire PNG’s zijn toegestaan. Bied tabellen bij grafieken, tekst naast statuskleur, zichtbare focus en een NL/EN-wissel. Respecteer verminderde beweging en bied een afdrukweergave.</p>
+<h2 id="bronnen-en-moduleafspraken">Bronnen en moduleafspraken</h2>
+<ul>
+<li><a href="https://efi-web.org/">EFI-website</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-color.svg">Origineel gekleurd logo</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-white.svg">Origineel wit logo</a></li>
+<li><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">EPT-specifieke stijlgids</a></li>
+<li><a href="concept_NL.html">Platformconcept</a></li>
+</ul></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>

@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI — visual foundation style guide</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="efi-style_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI — visual foundation style guide</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#foundation-and-relationship-with-ept">Foundation and relationship with EPT</a><a href="#colours-shown-together">Colours, shown together</a><a href="#montserrat-and-text-hierarchy">Montserrat and text hierarchy</a><a href="#buttons-and-interaction">Buttons and interaction</a><a href="#logo-banner-and-images">Logo, banner and images</a><a href="#structure-and-whitespace">Structure and whitespace</a><a href="#vector-and-accessibility">Vector and accessibility</a><a href="#sources-and-module-conventions">Sources and module conventions</a><a href="efi-style_EN.md">Markdown</a></aside><main><p>Version 1.0 · 15 October 2026 · Public project reference</p>
+<h2 id="foundation-and-relationship-with-ept">Foundation and relationship with EPT</h2>
+<p>This is the general visual foundation for this project, based on EFI web styling. The <a href="efi-style_EN.html">EFI</a><a href="style_EN.html">EPT style guide</a> applies it to filters, results and EPT reports. This is a project reference, not a formally issued EFI brand manual.</p>
+<h2 id="colours-shown-together">Colours, shown together</h2>
+<p>The swatches below show exact CSS tokens and hexadecimal values. White/pale grey are the main surfaces; blue anchors identity. Coral is a secondary accent, not an automatic error colour.</p>
+<div class="colour-grid"><div class="colour-card"><div class="colour-chip" style="background:#064A89"></div><strong>EFI blue</strong><code>--efi-blue</code><code>#064A89</code><small>RGB 6, 74, 137</small></div><div class="colour-card"><div class="colour-chip" style="background:#DE5757"></div><strong>EFI coral</strong><code>--efi-coral</code><code>#DE5757</code><small>RGB 222, 87, 87</small></div><div class="colour-card"><div class="colour-chip" style="background:#232424"></div><strong>Ink</strong><code>--efi-ink</code><code>#232424</code><small>RGB 35, 36, 36</small></div><div class="colour-card"><div class="colour-chip" style="background:#FFFFFF"></div><strong>White</strong><code>--efi-white</code><code>#FFFFFF</code><small>RGB 255, 255, 255</small></div><div class="colour-card"><div class="colour-chip" style="background:#F4F6F9"></div><strong>Surface</strong><code>--efi-surface</code><code>#F4F6F9</code><small>RGB 244, 246, 249</small></div><div class="colour-card"><div class="colour-chip" style="background:#EAEAEA"></div><strong>Light</strong><code>--efi-light</code><code>#EAEAEA</code><small>RGB 234, 234, 234</small></div><div class="colour-card"><div class="colour-chip" style="background:#5E6568"></div><strong>Muted</strong><code>--efi-muted</code><code>#5E6568</code><small>RGB 94, 101, 104</small></div><div class="colour-card"><div class="colour-chip" style="background:#DFE4E8"></div><strong>Line</strong><code>--efi-line</code><code>#DFE4E8</code><small>RGB 223, 228, 232</small></div></div>
+
+<p>Small white text on coral has insufficient contrast. Use dark text on coral and white text on blue. Use muted text only on sufficiently light backgrounds. Status is also expressed in words and with an icon.</p>
+<h2 id="montserrat-and-text-hierarchy">Montserrat and text hierarchy</h2>
+<p>Use locally hosted Montserrat, falling back to <code>ui-sans-serif, system-ui, sans-serif</code>. These examples use the actual font files. Numbers in data tables are tabular; HLA notation is not cosmetically altered.</p>
+<div class="type-specimen"><div class="type-title">Montserrat · EFI</div><div class="type-h2">Clear information, recognisable style</div><p class="type-body">HLA-A*01:01 · HLA-DQA1*05:01~HLA-DQB1*02:01<br>0123456789 · Aa Bb Cc Dd Ee Ff Gg</p><div class="weight-row"><span style="font-weight:300">300 · Montserrat</span><span style="font-weight:400">400 · Montserrat</span><span style="font-weight:500">500 · Montserrat</span><span style="font-weight:600">600 · Montserrat</span><span style="font-weight:700">700 · Montserrat</span></div></div>
+
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Target size</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Website H1</td>
+<td>32–56px</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Website H2</td>
+<td>24–40px</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Data app H2</td>
+<td>22–28px</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Form / table</td>
+<td>16–18px</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Metadata / label</td>
+<td>14–16px</td>
+<td>500–600</td>
+</tr>
+</tbody>
+</table>
+<p>The data app may be more compact than a marketing page while preserving hierarchy and readability. One H1 per page; use real headings rather than standalone bold paragraphs for structure.</p>
+<h2 id="buttons-and-interaction">Buttons and interaction</h2>
+<p>Primary buttons are blue/white. Secondary buttons are coral/dark. The light variant is light grey/dark. The demo shows active, deselected and disabled states. Use Tab to inspect keyboard focus.</p>
+<div class="button-specimen"><div class="button-row"><button class="button-demo primary">Primary</button><button class="button-demo secondary">Secondary</button><button class="button-demo light">Light</button><button class="button-demo" disabled>Disabled</button></div><p class="token-note">Hover over buttons and use Tab to inspect focus.</p></div>
+
+<p>Data-app buttons are at least 44px high. Preserve border width when state changes. Disabled is distinct from deselected. Keyboard focus is visible. Links within prose are underlined.</p>
+<h2 id="logo-banner-and-images">Logo, banner and images</h2>
+<p>Use original SVG files without distortion, tracing or recolouring. White EFI logo on blue; coloured EFI logo on white. Retain breathing room and modest but readable prominence. The banner may contain a decorative antibody/HLA molecular PNG as in the design. Text and logo remain real HTML/SVG layers, not baked into the image.</p>
+<div class="logo-examples"><figure><img src="assets/logo-color.svg" alt="EFI"><figcaption>Coloured original on white</figcaption></figure><figure><img src="assets/logo-white.svg" alt="EFI"><figcaption>White original on EFI blue</figcaption></figure></div>
+
+<p>The menu above the banner stays visible while scrolling: <code>position: sticky; top: 0</code>, opaque white and an appropriate z-index. Measure actual menu height when responsive rows wrap; use it for section offsets and <code>scroll-padding-top</code> so anchor targets and focus are not hidden.</p>
+<h2 id="structure-and-whitespace">Structure and whitespace</h2>
+<p>Use clear content sections, sufficient whitespace and repeated alignment. Use white/grey panels, fine separators and consistently placed actions. Table/chart panels may scroll horizontally; the page itself should not overflow horizontally on mobile.</p>
+<h2 id="vector-and-accessibility">Vector and accessibility</h2>
+<p>Charts and diagrams use SVG wherever practicable. All icons and pictograms are SVG. A raster image inside an SVG container is not a vector asset. Decorative molecular PNGs are permitted. Provide tables alongside charts, text alongside status colours, visible focus and an NL/EN switch. Respect reduced motion and provide a print layout.</p>
+<h2 id="sources-and-module-conventions">Sources and module conventions</h2>
+<ul>
+<li><a href="https://efi-web.org/">EFI website</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-color.svg">Original coloured logo</a></li>
+<li><a href="https://efi-web.org/dist/images/logos/logo-white.svg">Original white logo</a></li>
+<li><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">EPT-specific style guide</a></li>
+<li><a href="concept_EN.html">Platform concept</a></li>
+</ul></main></div><footer>Project documentation · not an official EFI service</footer></body></html>

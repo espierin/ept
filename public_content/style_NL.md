@@ -1,6 +1,9 @@
 # EFI EPT — stijlgids
 
-Versie 1.0 · 15 oktober 2026 · Publieke implementatieafspraken
+Versie 1.1 · 15 oktober 2026 · Publieke implementatieafspraken
+
+
+De [algemene EFI-basisstijlgids](efi-style_NL.html) toont kleuren, Montserrat, logo’s en knopvoorbeelden. Deze EPT-gids beschrijft de toepassing in de module.
 
 ## Basis
 
@@ -36,6 +39,8 @@ Technique en Locus delen een raster met een labelkolom van 120px, 12px kolomafst
 
 Randen zijn in beide toestanden 2px breed. Uitgeschakeld is gedempt grijs met een toegankelijke reden. Technique is een enkelvoudige keuze; Locus meervoudig met `aria-pressed`. Behoud toetsenbordfocus en geselecteerde status bij taalwissel. Merge / Separate houdt in beide talen dezelfde labels.
 
+<!--EPT_SPECIMEN-->
+
 ## Logo en afbeeldingen
 
 Plaats het originele **witte EFI-SVG-logo rechtstreeks op de blauwe banner**, zonder wit vlak, zonder vervorming en met vrije ruimte. Richtmaat in een desktoprapport: 64–80px hoog. Gebruik het gekleurde origineel op witte ondergrond. Het woordmerk van de demo is een voorlopige producttitel, geen nieuw EFI-logo.
@@ -62,3 +67,7 @@ Iedere pagina heeft een zichtbare NL/EN-wissel. Documentatie bestaat als gesynch
 - [Origineel gekleurd logo](https://efi-web.org/dist/images/logos/logo-color.svg)
 - [Origineel wit logo](https://efi-web.org/dist/images/logos/logo-white.svg)
 - [Platformconcept](concept_NL.html)
+
+## Blijvend toegankelijk menu
+
+Het menu boven de banner is sticky. Sectiekoppen krijgen een offset op basis van de werkelijke menuhoogte; dit werkt ook wanneer het menu op mobiel over meerdere rijen loopt. De moleculaire banner is PNG uit de image generator; het witte logo is een afzonderlijk origineel SVG.
