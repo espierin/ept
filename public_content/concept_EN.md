@@ -18,7 +18,7 @@ The first local version processes files solely in the browser. There is no centr
 
 ## Techniques and vendors
 
-Conventional **IgG SAB**, **C1q** and **C3d** are parallel, separate techniques. Shared beadsets do not make measurements or consensus interchangeable. SAB in the interface means IgG SAB. Werfen/Immucor and Thermo Fisher/One Lambda have separate importer adapters; the first implementation focuses on Werfen. Unvalidated formats are explicitly rejected.
+Conventional **IgG SAB**, **C1q** and **C3d** are parallel, separate techniques. Shared beadsets do not make measurements or consensus interchangeable. SAB in the interface means IgG SAB. Werfen/Immucor and Thermo Fisher/One Lambda have separate importer adapters; the first implementation starts with Werfen xPONENT CSV + EDS. MATCH IT! follows later. Unvalidated formats are explicitly rejected.
 
 ## Laboratory report
 

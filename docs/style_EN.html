@@ -1,9 +1,9 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT — style guide</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="style_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI EPT — style guide</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#foundation">Foundation</a><a href="#colour-tokens">Colour tokens</a><a href="#typography-and-grid">Typography and grid</a><a href="#buttons-and-filters">Buttons and filters</a><a href="#logo-and-images">Logo and images</a><a href="#vector-as-a-build-requirement">Vector as a build requirement</a><a href="#charts-and-reports">Charts and reports</a><a href="#bilingual-content-and-verification">Bilingual content and verification</a><a href="#public-references">Public references</a><a href="#persistent-navigation">Persistent navigation</a><a href="style_EN.md">Markdown</a></aside><main><p>Version 1.1 · 15 October 2026 · Public implementation conventions</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT — style guide</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="style_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI EPT — style guide</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#foundation">Foundation</a><a href="#colour-tokens">Colour tokens</a><a href="#typography-and-grid">Typography and grid</a><a href="#buttons-and-filters">Buttons and filters</a><a href="#logo-and-images">Logo and images</a><a href="#vector-as-a-build-requirement">Vector as a build requirement</a><a href="#charts-and-reports">Charts and reports</a><a href="#bilingual-content-and-verification">Bilingual content and verification</a><a href="#public-references">Public references</a><a href="#persistent-navigation">Persistent navigation</a><a href="style_EN.md">Markdown</a></aside><main><p>Version 1.1 · 15 October 2026 · Public implementation conventions</p>
 <p>The <a href="efi-style_EN.html">general EFI foundation style guide</a> shows colours, Montserrat, logos and button examples. This EPT guide describes their module-specific use.</p>
 <h2 id="foundation">Foundation</h2>
 <p>This project guide follows the existing EFI web style. It is not a formal replacement for an EFI brand manual. Use white and pale grey as the main surfaces, EFI blue as the identity anchor and coral for focused accents. Do not introduce separate committee or module palettes.</p>
 <h2 id="colour-tokens">Colour tokens</h2>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>Token</th>
@@ -53,13 +53,13 @@
 <td>Subtle separators</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Small white text on coral has insufficient contrast: use dark text. Coral does not automatically mean failure. Status has an explicit label and icon. Focus stays visible and interaction does not depend on colour alone.</p>
 <h2 id="typography-and-grid">Typography and grid</h2>
 <p>Use locally hosted <strong>Montserrat</strong>, falling back to <code>ui-sans-serif, system-ui, sans-serif</code>. Marketing reference: H1 32–56px/700, H2 24–40px/700; a data platform uses a compact hierarchy with 16–18px/400 for forms and tables, metadata 14–16px/500. Use tabular numerals and unchanged HLA notation. One H1 per page.</p>
 <p>Technique and Locus share a grid with a 120px label column, 12px column gap and 10px row gap. SAB and A start at the same position. Buttons are at least 44px high. Narrow screens stack labels above groups; groups wrap without page overflow.</p>
 <h2 id="buttons-and-filters">Buttons and filters</h2>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>Group</th>
@@ -79,7 +79,7 @@
 <td>Grey with coral border and dark text</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Borders stay 2px in both states. Disabled controls are muted grey with an accessible reason. Technique is single-select; Locus is multi-select with <code>aria-pressed</code>. Retain keyboard focus and selected state on language changes. Merge / Separate keeps the same labels in both languages.</p>
 <div class="ept-specimen"><div class="ept-control-grid"><strong>Technique</strong><div class="button-row" data-demo-group="single"><button class="button-demo" aria-pressed="true">SAB</button><button class="button-demo" aria-pressed="false">C1q</button><button class="button-demo" aria-pressed="false">C3d</button></div><strong>Locus</strong><div class="button-row" data-demo-group="multiple"><button class="button-demo locus" aria-pressed="true">A</button><button class="button-demo locus" aria-pressed="true">B</button><button class="button-demo locus" aria-pressed="false">C</button><button class="button-demo locus" aria-pressed="false">DRB1</button><button class="button-demo locus" aria-pressed="false">DRB3-4-5</button><button class="button-demo locus" aria-pressed="false">DQ</button><button class="button-demo locus" aria-pressed="false">DP</button></div></div><p class="token-note">Click to test single technique selection and multiple locus selection.</p></div>
 

@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI — visuele basisstijlgids</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="concept_NL.html">Concept</a><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="efi-style_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI — visuele basisstijlgids</h1><p>Publieke ontwerpdocumentatie · in ontwikkeling</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#basis-en-relatie-met-ept">Basis en relatie met EPT</a><a href="#kleuren-zichtbaar-naast-elkaar">Kleuren, zichtbaar naast elkaar</a><a href="#montserrat-en-teksthierarchie">Montserrat en teksthiërarchie</a><a href="#knoppen-en-interactie">Knoppen en interactie</a><a href="#logo-banner-en-beeldgebruik">Logo, banner en beeldgebruik</a><a href="#opbouw-en-witruimte">Opbouw en witruimte</a><a href="#vector-en-toegankelijkheid">Vector en toegankelijkheid</a><a href="#bronnen-en-moduleafspraken">Bronnen en moduleafspraken</a><a href="efi-style_NL.md">Markdown</a></aside><main><p>Versie 1.0 · 15 oktober 2026 · Publieke projectreferentie</p>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI — visuele basisstijlgids</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="concept_NL.html">Concept</a><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="efi-style_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI — visuele basisstijlgids</h1><p>Publieke ontwerpdocumentatie · in ontwikkeling</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#basis-en-relatie-met-ept">Basis en relatie met EPT</a><a href="#kleuren-zichtbaar-naast-elkaar">Kleuren, zichtbaar naast elkaar</a><a href="#montserrat-en-teksthierarchie">Montserrat en teksthiërarchie</a><a href="#knoppen-en-interactie">Knoppen en interactie</a><a href="#logo-banner-en-beeldgebruik">Logo, banner en beeldgebruik</a><a href="#opbouw-en-witruimte">Opbouw en witruimte</a><a href="#vector-en-toegankelijkheid">Vector en toegankelijkheid</a><a href="#bronnen-en-moduleafspraken">Bronnen en moduleafspraken</a><a href="#css-bestanden">CSS-bestanden</a><a href="efi-style_NL.md">Markdown</a></aside><main><p>Versie 1.0 · 15 oktober 2026 · Publieke projectreferentie</p>
 <h2 id="basis-en-relatie-met-ept">Basis en relatie met EPT</h2>
 <p>Dit is de algemene visuele basis voor dit project, gebaseerd op de EFI-webstijl. De <a href="efi-style_NL.html">EFI</a><a href="style_NL.html">EPT-stijlgids</a> past deze basis toe op filters, resultaten en EPT-rapporten. Dit document is een projectreferentie, geen formeel door EFI uitgegeven brandmanual.</p>
 <h2 id="kleuren-zichtbaar-naast-elkaar">Kleuren, zichtbaar naast elkaar</h2>
@@ -10,7 +10,7 @@
 <p>Gebruik lokaal gehoste Montserrat, met <code>ui-sans-serif, system-ui, sans-serif</code> als terugval. De voorbeelden hieronder gebruiken de echte fontbestanden. Cijfers in datatabellen zijn tabulair; HLA-notatie wordt niet cosmetisch veranderd.</p>
 <div class="type-specimen"><div class="type-title">Montserrat · EFI</div><div class="type-h2">Heldere informatie, herkenbare stijl</div><p class="type-body">HLA-A*01:01 · HLA-DQA1*05:01~HLA-DQB1*02:01<br>0123456789 · Aa Bb Cc Dd Ee Ff Gg</p><div class="weight-row"><span style="font-weight:300">300 · Montserrat</span><span style="font-weight:400">400 · Montserrat</span><span style="font-weight:500">500 · Montserrat</span><span style="font-weight:600">600 · Montserrat</span><span style="font-weight:700">700 · Montserrat</span></div></div>
 
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>Onderdeel</th>
@@ -45,7 +45,7 @@
 <td>500–600</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>De data-app mag compacter zijn dan een marketingpagina, met behoud van hiërarchie en leesbaarheid. Eén H1 per pagina; gebruik echte koppen, geen losse vetgedrukte tekst als structuur.</p>
 <h2 id="knoppen-en-interactie">Knoppen en interactie</h2>
 <p>De primaire knop is blauw/wit. De secundaire is koraal/donker. De lichte variant is lichtgrijs/donker. De demo laat actieve, niet-geselecteerde en uitgeschakelde toestanden zien. Gebruik Tab om de focusrand te controleren.</p>
@@ -68,4 +68,6 @@
 <li><a href="https://efi-web.org/dist/images/logos/logo-white.svg">Origineel wit logo</a></li>
 <li><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">EPT-specifieke stijlgids</a></li>
 <li><a href="concept_NL.html">Platformconcept</a></li>
-</ul></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>
+</ul>
+<h2 id="css-bestanden">CSS-bestanden</h2>
+<p><a href="assets/tokens.css">Gedeelde kleurtokens</a>, <a href="assets/efi.css">documentatiestijl</a> en <a href="assets/specimen.css">visuele componentvoorbeelden</a> zijn rechtstreeks beschikbaar. De lokale EPT-app importeert dezelfde kleurtokens.</p></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>

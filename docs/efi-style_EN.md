@@ -61,3 +61,7 @@ Charts and diagrams use SVG wherever practicable. All icons and pictograms are S
 - [Original white logo](https://efi-web.org/dist/images/logos/logo-white.svg)
 - [EPT-specific style guide](style_EN.html)
 - [Platform concept](concept_EN.html)
+
+## CSS files
+
+[Shared colour tokens](assets/tokens.css), [documentation styles](assets/efi.css) and [visual component examples](assets/specimen.css) are directly available. The local EPT app imports the same colour tokens.

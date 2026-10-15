@@ -61,3 +61,7 @@ Grafieken en schema’s worden waar praktisch mogelijk SVG. Alle iconen en picto
 - [Origineel wit logo](https://efi-web.org/dist/images/logos/logo-white.svg)
 - [EPT-specifieke stijlgids](style_NL.html)
 - [Platformconcept](concept_NL.html)
+
+## CSS-bestanden
+
+[Gedeelde kleurtokens](assets/tokens.css), [documentatiestijl](assets/efi.css) en [visuele componentvoorbeelden](assets/specimen.css) zijn rechtstreeks beschikbaar. De lokale EPT-app importeert dezelfde kleurtokens.

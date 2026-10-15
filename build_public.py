@@ -16,7 +16,7 @@ if not (ASSETS/'efi.css').exists():
     css = (WORKSPACE / 'docs/assets/efi-documentation.css').read_text(encoding='utf-8').replace('../../efi_style/assets/', '')
     css += '\n.hero{position:relative;padding-right:max(140px,calc((100vw - 1320px)/2 + 120px))}.hero-logo{position:absolute;right:max(28px,calc((100vw - 1320px)/2));top:36px;width:76px;height:76px}.top .brand{color:var(--blue);font-weight:700;font-size:22px}.hero p{max-width:70ch}.top a{white-space:nowrap}@media(max-width:600px){.hero{padding-right:24px;padding-top:126px}.hero-logo{top:24px;left:24px;width:64px;height:64px}.top{padding:18px;gap:14px}.top img{width:65px;height:48px}}'
     (ASSETS / 'efi.css').write_text(css, encoding='utf-8')
-for name in ('specimen.css','style-demo.js'): shutil.copy2(ROOT/'public_content'/name,ASSETS/name)
+for name in ('specimen.css','style-demo.js','tokens.css'): shutil.copy2(ROOT/'public_content'/name,ASSETS/name)
 banner=ROOT/'app/assets/antibody-hla-banner.png'
 if banner.exists():shutil.copy2(banner,ASSETS/'antibody-hla-banner.png')
 (ASSETS / 'mockups').mkdir(exist_ok=True)
@@ -41,9 +41,10 @@ def render(stem, lang, content):
     nl = lang == 'NL'
     title = content.splitlines()[0].removeprefix('# ')
     body = markdown.markdown(specimens('\n'.join(content.splitlines()[1:]),lang), extensions=['tables','fenced_code','toc'])
+    body = re.sub(r'(<table>.*?</table>)',r'<div class="table-scroll">\1</div>',body,flags=re.S)
     toc = ''.join(f'<a href="#{m[0]}">{m[1]}</a>' for m in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>',body))
     page = f'''<!doctype html><html lang="{lang.lower()}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>{html.escape(title)}</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_{lang}.html">EPT Insights</a><div class="header-actions"><a href="concept_{lang}.html">{'Concept' if nl else 'Concept'}</a><a href="style_{lang}.html">{'Stijlgids' if nl else 'Style guide'}</a><a class="language-switch" href="{stem}_{other}.html" lang="{other.lower()}" hreflang="{other.lower()}">{other}</a><button class="print" onclick="window.print()">{'Afdrukken' if nl else 'Print'}</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · {'Onderzoeksprototype' if nl else 'Research prototype'}</div><h1>{html.escape(title)}</h1><p>{'Publieke ontwerpdocumentatie · in ontwikkeling' if nl else 'Public design documentation · work in progress'}</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>{'INHOUD' if nl else 'CONTENTS'}</strong>{toc}<a href="{stem}_{lang}.md">Markdown</a></aside><main>{body}</main></div><footer>{'Projectdocumentatie · geen officiële EFI-dienst' if nl else 'Project documentation · not an official EFI service'}</footer></body></html>'''
-    page=page.replace('</head>','<link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head>')
+    page=page.replace('</head>','<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head>')
     page=page.replace(f'<a href="style_{lang}.html">',f'<a href="efi-style_{lang}.html">EFI</a><a href="style_{lang}.html">')
     (OUT / f'{stem}_{lang}.html').write_text(page,encoding='utf-8')
     (OUT / f'{stem}_{lang}.md').write_text(content,encoding='utf-8')

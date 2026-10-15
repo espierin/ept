@@ -18,7 +18,7 @@ De lokale eerste versie verwerkt bestanden uitsluitend in de browser. Er is nog 
 
 ## Technieken en vendors
 
-Reguliere **IgG SAB**, **C1q** en **C3d** zijn parallelle, afzonderlijke technieken. Gedeelde beadsets maken meetwaarden of consensus niet uitwisselbaar. In de interface staat SAB voor IgG SAB. Werfen/Immucor en Thermo Fisher/One Lambda krijgen afzonderlijke importadapters; de eerste implementatie richt zich op Werfen. Een ongevalideerd formaat wordt expliciet geweigerd.
+Reguliere **IgG SAB**, **C1q** en **C3d** zijn parallelle, afzonderlijke technieken. Gedeelde beadsets maken meetwaarden of consensus niet uitwisselbaar. In de interface staat SAB voor IgG SAB. Werfen/Immucor en Thermo Fisher/One Lambda krijgen afzonderlijke importadapters; de eerste implementatie begint met Werfen xPONENT CSV + EDS. MATCH IT! volgt later. Een ongevalideerd formaat wordt expliciet geweigerd.
 
 ## Labrapport
 

@@ -1,0 +1,14 @@
+:root{
+ --efi-blue:#064A89;
+ --efi-coral:#DE5757;
+ --efi-ink:#232424;
+ --efi-white:#FFFFFF;
+ --efi-surface:#F4F6F9;
+ --efi-light:#EAEAEA;
+ --efi-muted:#5E6568;
+ --efi-line:#DFE4E8;
+ --blue:var(--efi-blue);
+ --coral:var(--efi-coral);
+ --ink:var(--efi-ink);
+ --surface:var(--efi-surface);
+}

@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI — visual foundation style guide</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="efi-style_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI — visual foundation style guide</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#foundation-and-relationship-with-ept">Foundation and relationship with EPT</a><a href="#colours-shown-together">Colours, shown together</a><a href="#montserrat-and-text-hierarchy">Montserrat and text hierarchy</a><a href="#buttons-and-interaction">Buttons and interaction</a><a href="#logo-banner-and-images">Logo, banner and images</a><a href="#structure-and-whitespace">Structure and whitespace</a><a href="#vector-and-accessibility">Vector and accessibility</a><a href="#sources-and-module-conventions">Sources and module conventions</a><a href="efi-style_EN.md">Markdown</a></aside><main><p>Version 1.0 · 15 October 2026 · Public project reference</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI — visual foundation style guide</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="efi-style_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI — visual foundation style guide</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#foundation-and-relationship-with-ept">Foundation and relationship with EPT</a><a href="#colours-shown-together">Colours, shown together</a><a href="#montserrat-and-text-hierarchy">Montserrat and text hierarchy</a><a href="#buttons-and-interaction">Buttons and interaction</a><a href="#logo-banner-and-images">Logo, banner and images</a><a href="#structure-and-whitespace">Structure and whitespace</a><a href="#vector-and-accessibility">Vector and accessibility</a><a href="#sources-and-module-conventions">Sources and module conventions</a><a href="#css-files">CSS files</a><a href="efi-style_EN.md">Markdown</a></aside><main><p>Version 1.0 · 15 October 2026 · Public project reference</p>
 <h2 id="foundation-and-relationship-with-ept">Foundation and relationship with EPT</h2>
 <p>This is the general visual foundation for this project, based on EFI web styling. The <a href="efi-style_EN.html">EFI</a><a href="style_EN.html">EPT style guide</a> applies it to filters, results and EPT reports. This is a project reference, not a formally issued EFI brand manual.</p>
 <h2 id="colours-shown-together">Colours, shown together</h2>
@@ -10,7 +10,7 @@
 <p>Use locally hosted Montserrat, falling back to <code>ui-sans-serif, system-ui, sans-serif</code>. These examples use the actual font files. Numbers in data tables are tabular; HLA notation is not cosmetically altered.</p>
 <div class="type-specimen"><div class="type-title">Montserrat · EFI</div><div class="type-h2">Clear information, recognisable style</div><p class="type-body">HLA-A*01:01 · HLA-DQA1*05:01~HLA-DQB1*02:01<br>0123456789 · Aa Bb Cc Dd Ee Ff Gg</p><div class="weight-row"><span style="font-weight:300">300 · Montserrat</span><span style="font-weight:400">400 · Montserrat</span><span style="font-weight:500">500 · Montserrat</span><span style="font-weight:600">600 · Montserrat</span><span style="font-weight:700">700 · Montserrat</span></div></div>
 
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>Element</th>
@@ -45,7 +45,7 @@
 <td>500–600</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>The data app may be more compact than a marketing page while preserving hierarchy and readability. One H1 per page; use real headings rather than standalone bold paragraphs for structure.</p>
 <h2 id="buttons-and-interaction">Buttons and interaction</h2>
 <p>Primary buttons are blue/white. Secondary buttons are coral/dark. The light variant is light grey/dark. The demo shows active, deselected and disabled states. Use Tab to inspect keyboard focus.</p>
@@ -68,4 +68,6 @@
 <li><a href="https://efi-web.org/dist/images/logos/logo-white.svg">Original white logo</a></li>
 <li><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">EPT-specific style guide</a></li>
 <li><a href="concept_EN.html">Platform concept</a></li>
-</ul></main></div><footer>Project documentation · not an official EFI service</footer></body></html>
+</ul>
+<h2 id="css-files">CSS files</h2>
+<p><a href="assets/tokens.css">Shared colour tokens</a>, <a href="assets/efi.css">documentation styles</a> and <a href="assets/specimen.css">visual component examples</a> are directly available. The local EPT app imports the same colour tokens.</p></main></div><footer>Project documentation · not an official EFI service</footer></body></html>
