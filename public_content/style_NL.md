@@ -28,16 +28,16 @@ Kleine witte tekst op koraal is onvoldoende contrastrijk: gebruik donkere tekst.
 
 Gebruik lokaal gehoste **Montserrat** met `ui-sans-serif, system-ui, sans-serif` als terugval. Marketingreferentie: H1 32–56px/700, H2 24–40px/700; een dataplatform gebruikt compactere hiërarchie met 16–18px/400 voor tabellen en formulieren, metadata 14–16px/500. Gebruik tabulaire cijfers en onveranderde HLA-notatie. Eén H1 per pagina.
 
-Technique en Locus delen een raster met een labelkolom van 120px, 12px kolomafstand en 10px rijafstand. SAB en A beginnen gelijk. Knoppen zijn minimaal 44px hoog. Smalle schermen stapelen labels boven de knopgroep; groepen lopen door zonder pagina-overloop.
+Techniek en Locus delen een raster met een labelkolom van 120px, 12px kolomafstand en 10px rijafstand. SAB en A beginnen gelijk. Knoppen zijn minimaal 44px hoog. Smalle schermen stapelen labels boven de knopgroep; groepen lopen door zonder pagina-overloop.
 
 ## Knoppen en filters
 
 | Groep | Actief | Niet geselecteerd |
 | --- | --- | --- |
-| Technique | Blauw, witte tekst | Grijs met blauwe rand en blauwe tekst |
+| Techniek | Blauw, witte tekst | Grijs met blauwe rand en blauwe tekst |
 | Locus | Koraal, donkere tekst | Grijs met koraalrand en donkere tekst |
 
-Randen zijn in beide toestanden 2px breed. Uitgeschakeld is gedempt grijs met een toegankelijke reden. Technique is een enkelvoudige keuze; Locus meervoudig met `aria-pressed`. Behoud toetsenbordfocus en geselecteerde status bij taalwissel. Merge / Separate houdt in beide talen dezelfde labels.
+Randen zijn in beide toestanden 2px breed. Uitgeschakeld is gedempt grijs met een toegankelijke reden. Techniek is een enkelvoudige keuze; Locus meervoudig met `aria-pressed`. Behoud toetsenbordfocus en geselecteerde status bij taalwissel. Merge / Separate houdt in beide talen dezelfde labels.
 
 <!--EPT_SPECIMEN-->
 
