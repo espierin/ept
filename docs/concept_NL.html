@@ -1,4 +1,5 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT - platformconcept</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="app/">Prototype</a><a href="manual_NL.html">Handleiding</a><a href="concept_NL.html">Concept</a><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="concept_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI EPT - platformconcept</h1><p>Publieke ontwerpdocumentatie · in ontwikkeling</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#doel">Doel</a><a href="#ept-context-en-identiteit">EPT-context en identiteit</a><a href="#eigen-data-en-vrijgave">Eigen data en vrijgave</a><a href="#technieken-en-vendors">Technieken en vendors</a><a href="#labrapport">Labrapport</a><a href="#input-en-output">Input en output</a><a href="#privacy-en-publicatie">Privacy en publicatie</a><a href="#ontwerpbeelden">Ontwerpbeelden</a><a href="#publieke-bronnen">Publieke bronnen</a><a href="#aparte-dashboards-per-gebruiker">Aparte dashboards per gebruiker</a><a href="#rollen-inloggen-en-deelnemersworkflow">Rollen, inloggen en deelnemersworkflow</a><a href="#onderverdeling-van-de-log-as">Onderverdeling van de log-as</a><a href="#mfi-weergave">MFI-weergave</a><a href="#beide-demoklassen-en-vaste-mfi-as">Beide demoklassen en vaste MFI-as</a><a href="concept_NL.md">Markdown</a></aside><main><p>Versie 1.0 · 15 oktober 2026 · Publieke ontwerpdocumentatie</p>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT - concept voor het platform</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_NL.html">EPT Insights</a><div class="header-actions"><a href="app/">Prototype</a><a href="manual_NL.html">Handleiding</a><a href="concept_NL.html">Concept</a><a href="efi-style_NL.html">EFI</a><a href="style_NL.html">Stijlgids</a><a class="language-switch" href="concept_EN.html" lang="en" hreflang="en">EN</a><button class="print" onclick="window.print()">Afdrukken</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Onderzoeksprototype</div><h1>EFI EPT - concept voor het platform</h1><p>Publieke ontwerpdocumentatie · in ontwikkeling</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>INHOUD</strong><a href="#doel">Doel</a><a href="#ept-context-en-identiteit">EPT-context en identiteit</a><a href="#eigen-data-en-vrijgave">Eigen data en vrijgave</a><a href="#technieken-en-vendors">Technieken en vendors</a><a href="#labrapport">Labrapport</a><a href="#input-en-output">Input en output</a><a href="#privacy-en-publicatie">Privacy en publicatie</a><a href="#ontwerpbeelden">Ontwerpbeelden</a><a href="#publieke-bronnen">Publieke bronnen</a><a href="#aparte-dashboards-per-gebruiker">Aparte dashboards per gebruiker</a><a href="#rollen-inloggen-en-deelnemersworkflow">Rollen, inloggen en deelnemersworkflow</a><a href="#onderverdeling-van-de-log-as">Onderverdeling van de log-as</a><a href="#mfi-weergave">MFI-weergave</a><a href="#beide-demoklassen-en-vaste-mfi-as">Beide demoklassen en vaste MFI-as</a><a href="#voorgestelde-centrale-architectuur-status-en-afbakening">Voorgestelde centrale architectuur: status en afbakening</a><a href="#welke-backend-en-hosting-zijn-nodig">Welke backend en hosting zijn nodig?</a><a href="#echte-login-en-accountlevenscyclus">Echte login en accountlevenscyclus</a><a href="#rechtenmodel-per-rol-lab-en-provider">Rechtenmodel per rol, lab en provider</a><a href="#indeling-en-gegevenscontract-van-ept-data">Indeling en gegevenscontract van ept-data</a><a href="#opslaan-verwerken-en-opnieuw-ophalen">Opslaan, verwerken en opnieuw ophalen</a><a href="#consensusvrijgave-als-centrale-toestand">Consensusvrijgave als centrale toestand</a><a href="#anonimisering-en-vergelijking-van-kwaliteit-tussen-providers">Anonimisering en vergelijking van kwaliteit tussen providers</a><a href="#voorgestelde-api-contracten">Voorgestelde API-contracten</a><a href="#github-koppeling-beheer-en-groeipad">GitHub-koppeling, beheer en groeipad</a><a href="#voorwaarden-voor-een-latere-bouwfase">Voorwaarden voor een latere bouwfase</a><a href="#technische-bronnen-bij-het-architectuurvoorstel">Technische bronnen bij het architectuurvoorstel</a><a href="concept_NL.md">Markdown</a></aside><main><p>Versie 1.1 · 16 oktober 2026 · Publieke ontwerpdocumentatie</p>
+<p><strong>Status 16 oktober 2026:</strong> de huidige browserdemo en het voorgestelde centrale platform zijn hieronder afzonderlijk beschreven. Het voorstel voor private opslag, echte login en een externe backend is uitsluitend documentatie; deze functies zijn nog niet gebouwd.</p>
 <h2 id="doel">Doel</h2>
 <p>Een tweetalig onderzoeksprototype voor aanvullende analyse van HLA single antigen bead-resultaten binnen EPT-rondzendingen. Deelnemers kunnen eigen metingen onderzoeken en die na providervrijgave vergelijken met passende referenties. Dit is een ontwerp in ontwikkeling, geen officiële EFI-dienst, accreditatiebeoordeling of medisch advies.</p>
 <h2 id="ept-context-en-identiteit">EPT-context en identiteit</h2>
@@ -34,7 +35,7 @@
 <p>Publieke bronverwijzingen zijn geen bevestiging van samenwerking of deelname. <a href="efi-style_NL.html">EFI</a><a href="style_NL.html">EFI-stijlgids</a>.</p>
 <h2 id="aparte-dashboards-per-gebruiker">Aparte dashboards per gebruiker</h2>
 <p>Het dashboard voor deelnemende labs bevat de eigen import, meetwaarden, rapportage en exports. Groepscontext wordt pas zichtbaar na vrijgave door de eigen EPT-provider. Het aparte providerdashboard bevat het overzicht per provider, schema/ editie, ronde, sample en techniek, plus consensusvalidatie en vrijgave. Providers en technieken blijven gescheiden.</p>
-<p>In het huidige browserprototype wissel je met de dashboardkeuze tussen deze twee routes. Dit is navigatie binnen een simulatie, geen authenticatie of beveiligde autorisatie. Een nieuwe labimport vergrendelt de groepscontext opnieuw.</p>
+<p>In het huidige browserprototype wissel je met de dashboardkeuze tussen deze twee routes. Dit is navigatie binnen een simulatie, geen authenticatie of beveiligde autorisatie. Een nieuwe labimport controleert opnieuw of een geldige lokale demovrijgave voor de actieve context bestaat; anders blijft alleen eigen data zichtbaar.</p>
 <h2 id="rollen-inloggen-en-deelnemersworkflow">Rollen, inloggen en deelnemersworkflow</h2>
 <p>Er zijn drie demorollen: admin, provider en participant. Admin espierin ziet het accountoverzicht en kan de dashboards voor beide andere rollen bekijken. Provider provider_1 ziet de consensusroute. Participant participant_1 kiest eerst de eigen EPT-schema’s en vendors, importeert daarna CSV en EDS en ziet pas na bevestiging de analyses. De rapportage blijft met de ingeschreven provider en schema-editie gekoppeld. Een One Lambda-deelname kan al worden geregistreerd; de One Lambda-importer is nog niet beschikbaar.</p>
 <p>Via Mijn profiel kun je optioneel een e-mailadres toevoegen en je wachtwoord wijzigen. Wachtwoord wijzigen vereist het huidige wachtwoord en een herhaling van het nieuwe wachtwoord. Er worden geen e-mails verstuurd en er is nog geen herstel via e-mail. Bij uitloggen verdwijnen de geïmporteerde resultaten en referentiedata uit de sessie.</p>
@@ -42,9 +43,253 @@
 <h2 id="onderverdeling-van-de-log-as">Onderverdeling van de log-as</h2>
 <p>De MFI-as start op log10. Hoofdticks markeren de machten van tien. Binnen elke decade komen korte asstreepjes voor de veelvouden 2 tot en met 9, op hun logaritmische positie. Deze onderverdelingen lopen niet als lijnen door de grafiek. De lineaire stand krijgt geen logaritmische tussenstreepjes. SVG-export behoudt de onderverdeling.</p>
 <h2 id="mfi-weergave">MFI-weergave</h2>
-<p>Toon MFI-waarden als afgeronde gehele getallen, zonder punt, komma of spatie als duizendtalscheiding. Dit geldt voor tabellen, aslabels en tooltips, in beide talen. Voorbeeld: 8001,5 wordt weergegeven als 8002. Berekeningen, puntposities en CSV/JSON-data-exports behouden de oorspronkelijke precisie; SVG-export volgt de visuele integerweergave.</p>
+<p>Toon MFI-waarden als afgeronde gehele getallen, zonder punt, komma of spatie als duizendtalscheiding. Dit geldt voor tabellen, aslabels en tooltips, in beide talen. Voorbeeld: 8001,5 wordt weergegeven als 8002. Berekeningen en CSV/JSON-data-exports behouden de oorspronkelijke precisie; puntposities worden alleen aan de zichtbare asgrenzen begrensd; SVG-export volgt de visuele integerweergave.</p>
 <p>De demovrijgave wordt per provider, schema, ronde, sample, klasse en techniek in deze browser bewaard. Na een overeenkomende deelnemersimport wordt die vrijgave toegepast; intrekken verwijdert deze lokale vrijgave. Andere browsers delen deze status nog niet. Er worden geen ruwe labresultaten centraal opgeslagen.</p>
 <h2 id="beide-demoklassen-en-vaste-mfi-as">Beide demoklassen en vaste MFI-as</h2>
 <p>De publieke demo bevat standaard klasse I (vier HLA-beads) en klasse II (vijf HLA-beads), elk met een eigen CSV en EDS-lotbestand. Admin en provider krijgen beide demoklassen na inloggen. Een deelnemer bevestigt eerst een publieke demo-import; daarna wordt de andere demoklasse automatisch toegevoegd. Dit geldt uitsluitend voor de publieke demo. Bij eigen bestanden vindt geen automatische bijmenging van demodata plaats. Gebruik de knoppen I en II om te wisselen. Data, lot, loci, meetsectie en consensus blijven per klasse gescheiden; uitloggen wist beide imports.</p>
 <p>Alle MFI-grafieken gebruiken een vast zichtbaar bereik van 1 tot en met 30000, zowel logaritmisch als lineair. De log-as heeft hoofdticks op 1, 10, 100, 1000, 10000 en de eindgrens 30000 en korte logaritmische onderverdelingen uitsluitend op de as. Waarden buiten het zichtbare bereik krijgen een gestippelde randmarkering en worden in de toelichting geteld. Brongegevens, berekeningen en numerieke exports behouden hun oorspronkelijke waarde. Tickmarks bij 10, 100, 1000 en 10000 zijn langer dan de tussenstreepjes. Waarden boven 30000 worden op precies 30000 getekend. De vaste as verandert geen meetresultaten.</p>
-<p>Vijf extra browsercontroles in <code>app/tests/classes.cjs</code> toetsen de standaard klasse-II-import, gepaarde DQ/DP-specificiteiten, terugwisselen naar klasse I, beide vaste assen, waarden onder 1 en boven 30000, exportprecisie en het wissen van beide klassen bij uitloggen.</p></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>
+<p>Vijf extra browsercontroles in <code>app/tests/classes.cjs</code> toetsen de standaard klasse-II-import, gepaarde DQ/DP-specificiteiten, terugwisselen naar klasse I, beide vaste assen, waarden onder 1 en boven 30000, exportprecisie en het wissen van beide klassen bij uitloggen.</p>
+<h2 id="voorgestelde-centrale-architectuur-status-en-afbakening">Voorgestelde centrale architectuur: status en afbakening</h2>
+<p><strong>Ontwerpvoorstel van 16 oktober 2026, nog niet geïmplementeerd.</strong> De huidige lokale browserdemo blijft functioneren zoals beschreven. De repository <code>ept-data</code>, onderstaande backend, logindienst en productierechten zijn nog niet aangemaakt. Demoaccounts worden niet automatisch productieaccounts. Deze secties beschrijven de beoogde vervolgfase en vervangen geen bestaande toegangscontrole door een belofte van beveiliging.</p>
+<p>De voorkeursopzet houdt de openbare website op GitHub Pages en bewaart toegestane bronbestanden en verwerkte meetbestanden in een afzonderlijke <strong>private repository <code>ept-data</code></strong>. Een externe backend verzorgt echte login, autorisatie, validatie, opslag en rapportlevering. Gebruikers hoeven daarvoor geen GitHub-account of rechtstreekse repositorytoegang te krijgen.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Onderdeel</th>
+<th>Beoogde taak</th>
+<th>Plaats en toegang</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Openbare repository <code>ept</code> en GitHub Pages</td>
+<td>Interface, code, handleiding, stijlgids en toegestane demobestanden</td>
+<td>Publiek; geen echte inzendingen of geheime sleutels</td>
+</tr>
+<tr>
+<td>Private repository <code>ept-data</code></td>
+<td>Ongewijzigde toegestane bronnen, genormaliseerde meetbestanden, importmanifesten en consensusversies</td>
+<td>Alleen opslagservice en expliciet bevoegde beheerders</td>
+</tr>
+<tr>
+<td>FastAPI-backend</td>
+<td>Sessies/tokens controleren, rol en scope afdwingen, API en exports leveren</td>
+<td>Afzonderlijke HTTPS-hosting; draait niet in GitHub Pages</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Accountsleutels, labs, providerrelaties, rollen, goedgekeurde deelnames, taakstatus, bestandsindex en audit</td>
+<td>Private database achter de backend</td>
+</tr>
+<tr>
+<td>Achtergrondworker</td>
+<td>Bestanden valideren en verwerken, Git-commits schrijven en index bijwerken</td>
+<td>Afzonderlijk werkproces met duurzame taken uit PostgreSQL</td>
+</tr>
+<tr>
+<td>OpenID Connect-logindienst</td>
+<td>Wachtwoorden, e-mailverificatie, herstel en MFA</td>
+<td>Beheerde identiteitsdienst; geen wachtwoorddatabase in Git</td>
+</tr>
+<tr>
+<td>Private tijdelijke bestandsopslag en secretsbeheer</td>
+<td>Gecontroleerde uploadbuffer en beveiligde servicesleutels</td>
+<td>Backendomgeving, beperkte bewaartijd en toegang</td>
+</tr>
+</tbody>
+</table></div>
+<p>Dit is een concrete voorkeursstack, geen technische verplichting om Python te gebruiken. Een andere backend is mogelijk als dezelfde autorisatie-, opslag- en verwerkingscontracten worden gerealiseerd. De definitieve hostingpartij, identiteitsdienst, regio, contracten en kosten moeten vóór de bouw worden gekozen.</p>
+<h2 id="welke-backend-en-hosting-zijn-nodig">Welke backend en hosting zijn nodig?</h2>
+<p>Minimaal zijn een HTTPS-API, een achtergrondworker, een duurzame PostgreSQL-database, een OpenID Connect-provider en beveiligd secretsbeheer nodig. Voor de pilot kan een PostgreSQL-takentabel de duurzame wachtrij vormen; Redis is dan niet verplicht. De worker draait buiten het webrequest, zodat een upload of GitHub-storing niet afhankelijk is van een open browsertab. Tijdelijke uploads staan versleuteld in private objectopslag en worden na verwerking of afwijzing volgens een ingestelde termijn verwijderd.</p>
+<p>FastAPI wordt als containerdienst voorgesteld, met een apart workerproces en een beheerde database. Beide processen moeten na herstart onafgeronde taken betrouwbaar kunnen hervatten. Het voorstel vereist geen eigen fysieke server, maar wel externe reken- en opslagdiensten naast GitHub Pages. GitHub Actions kan later controles of periodieke archivering uitvoeren; het is niet de interactieve login- of toegangsserver.</p>
+<p>De backend valideert ook bestanden die al in de browser zijn gecontroleerd. Browservalidatie is alleen gebruikersondersteuning. Ondersteunde formaten, omvang, encoding, lotkoppeling, samples, techniek, klassetoewijzing en meetsecties worden serverzijdig opnieuw gecontroleerd. De eerste centrale importer blijft Werfen xPONENT CSV + EDS; One Lambda, MATCH IT!, C1q en C3d krijgen pas een productiestatus na hun eigen validatie.</p>
+<p>Hosting moet HTTPS, vaste toegestane redirect-URL’s, private databaseverbindingen, gescheiden test/productie, monitoring, back-ups en herstel ondersteunen. Voor echte gegevens moeten ook vestigingsregio, bewaartermijnen en organisatorische verantwoordelijkheden worden vastgelegd. Een EU-regio voor API/database betekent niet automatisch dat GitHub-opslag dezelfde gegevenslocatie heeft; de geschiktheid van de gekozen GitHub-dienst moet afzonderlijk worden beoordeeld.</p>
+<h2 id="echte-login-en-accountlevenscyclus">Echte login en accountlevenscyclus</h2>
+<p>Voorgesteld wordt OpenID Connect met <strong>Authorization Code + PKCE</strong>, via een daarvoor bedoelde clientbibliotheek. De identiteitsdienst verzorgt aanmelding, e-mailverificatie, wachtwoordwijziging en herstel. MFA wordt vereist voor admin en provider; voor participants wordt het beleid vóór ingebruikname vastgesteld. De publieke demo-startcodes worden niet overgenomen. Productieaccounts ontstaan via een gecontroleerde uitnodiging en bevestigde koppeling aan een lab of provider.</p>
+<p>De browser ontvangt uitsluitend kort geldige gebruikerstoegang tot de EPT-API. Langdurige servicesleutels en GitHub-tokens komen nooit in de browser. Toegangstokens worden niet als productie-equivalent van de huidige localStorage-login opgeslagen. De backend controleert handtekening, uitgever, doelgroep en geldigheid van tokens. De onveranderlijke combinatie van identiteitsuitgever en subject identificeert een gebruiker; een e-mailadres of schermnaam is geen blijvende account-ID.</p>
+<p>PostgreSQL bewaart het interne gebruikers-ID en de actuele roltoekenningen. Rollen uit een formulier, URL of localStorage zijn nooit gezaghebbend. Een geblokkeerd account, ingetrokken rol of verlopen deelname verliest bij volgende API-controle toegang, ook als een toegangstoken nog niet verlopen is. Productie-uitloggen omvat de applicatiesessie en waar van toepassing de identiteitsdienst; herladen verwijdert centraal opgeslagen inzendingen niet.</p>
+<p>Voor de pilot kan de frontend op <code>espierin.github.io/ept</code> blijven staan en de API op een andere HTTPS-host met expliciet toegestane CORS-origin. CORS onderscheidt origins, geen projectpaden: <code>/ept</code> is geen afzonderlijke origin binnen <code>espierin.github.io</code>. CORS is geen autorisatie. Voor productie heeft een eigen, uitsluitend voor EPT gebruikt domein de voorkeur. De toekomstige Content Security Policy moet de gekozen API- en loginhosts expliciet toelaten; de huidige demo blijft ongewijzigd. Een eventuele cookie/BFF-opzet moet apart worden ontworpen, inclusief SameSite, CSRF en het gedrag tussen domeinen.</p>
+<h2 id="rechtenmodel-per-rol-lab-en-provider">Rechtenmodel per rol, lab en provider</h2>
+<p>Een gebruikersaccount is niet hetzelfde als een laboratorium. Meerdere gebruikers kunnen aan één lab verbonden zijn; een lab kan deelnemen bij meerdere providers en aan meerdere schema’s. Rollen zijn toekenningen met scope, bijvoorbeeld providerbeheer voor één provider en bepaalde schema-edities. Een gebruiker kan meerdere toekenningen hebben, maar de actieve context moet steeds zichtbaar en begrensd zijn.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Handeling</th>
+<th>Participant</th>
+<th>Provider</th>
+<th>Admin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eigen profiel beheren</td>
+<td>Eigen account</td>
+<td>Eigen account</td>
+<td>Eigen account</td>
+</tr>
+<tr>
+<td>Deelname en vendors aanvragen</td>
+<td>Voor gekoppeld lab</td>
+<td>Voor eigen organisatie waar van toepassing</td>
+<td>Beheer en correctie</td>
+</tr>
+<tr>
+<td>Deelname goedkeuren</td>
+<td>Nee</td>
+<td>Alleen eigen provider en schema</td>
+<td>Platformbeheer met audit</td>
+</tr>
+<tr>
+<td>Resultaten insturen en teruglezen</td>
+<td>Eigen lab, goedgekeurde deelname en geopende ronde</td>
+<td>Eigen providercontext, volgens vastgelegde bevoegdheid</td>
+<td>Alleen via expliciete, gelogde beheertoegang</td>
+</tr>
+<tr>
+<td>Inzendingen van andere labs inzien</td>
+<td>Geen ruwe bestanden</td>
+<td>Alleen binnen eigen provider en toegewezen schema’s</td>
+<td>Expliciete beheertoegang; geen stille labimitatie</td>
+</tr>
+<tr>
+<td>Consensus voorbereiden, publiceren en intrekken</td>
+<td>Nee</td>
+<td>Alleen eigen scope</td>
+<td>Alleen met expliciete bevoegdheid en reden</td>
+</tr>
+<tr>
+<td>Groepscontext ophalen</td>
+<td>Alleen passend toegelaten lab en geldige vrijgave</td>
+<td>Eigen providercontext</td>
+<td>Binnen expliciete beheerscope</td>
+</tr>
+<tr>
+<td>Rollen en providerorganisaties beheren</td>
+<td>Nee</td>
+<td>Geen platformrollen toekennen</td>
+<td>Ja, met audit</td>
+</tr>
+</tbody>
+</table></div>
+<p>De eerste admin wordt bij een latere ingebruikname expliciet gekoppeld aan de geverifieerde identiteit van de platformbeheerder. De schermnaam <code>espierin</code> verleent op zichzelf geen rechten. Er komt geen hardcoded adminwachtwoord of open route om jezelf admin te maken; latere rolwijzigingen gebruiken het geauditeerde beheerproces.</p>
+<p>Een participant mag een schema en vendors opgeven, maar dit levert geen zelfverleende toegang op: de provider keurt deelname goed. De backend bepaalt het lab-ID uit de accountkoppeling en controleert de provider-, schema-, ronde- en sampletoegang. Een participant kan geen ander lab kiezen door een ID in een upload of URL te veranderen. Vendorregistratie activeert geen ongevalideerde importer.</p>
+<p>Elke lees-, schrijf-, download- en exportaanvraag krijgt dezelfde controles. Standaard wordt toegang geweigerd. Geen enkele rol krijgt via de webapp de volledige private repository of GitHub-toegangstokens. Rechtstreekse GitHub-toegang blijft beperkt tot de opslagservice en aangewezen beheerders, omdat een map geen beveiligingsgrens per lab vormt.</p>
+<h2 id="indeling-en-gegevenscontract-van-ept-data">Indeling en gegevenscontract van ept-data</h2>
+<p>De naam <code>ept-data</code> is de beoogde private repositorynaam; aanmaken is een afzonderlijke toekomstige stap. Er wordt geen GitHub Pages-publicatie voor deze repository ingesteld. De openbare build van <code>ept</code> mag de private repository niet ophalen of bestanden daarvan opnemen.</p>
+<p>Een mogelijke indeling, uitsluitend als schema en met fictieve interne IDs:</p>
+<pre><code class="language-text">providers/{provider_id}/editions/{edition_id}/rounds/{round_id}/samples/{sample_id}/
+  submissions/{submission_id}/revisions/{revision_id}/
+    source/run.csv
+    source/lot.eds
+    normalized/measurements.json
+    validation/report.json
+    manifest.json
+  releases/{technique}/{hla_class}/{release_id}/
+    consensus.json
+    cohort-manifest.json
+    release.json
+</code></pre>
+<p>Het inzendmanifest bevat ten minste schema-/parser-/methodeversie, provider, editie, ronde, sample, lab-ID, vendor, techniek, klasse, lot, geselecteerde bronmeting en well, meetsecties, bronhashes, bestandsverwijzingen, invoertijd en revisie. Het cohortmanifest verwijst naar exact de toegelaten inzendrevisies en analysemethode. De fysieke mappen en metadata moeten overeenkomen; de database maakt deze gegevens doorzoekbaar zonder de autorisatie uit paden af te leiden.</p>
+<p>Bronbestanden blijven na acceptatie ongewijzigd. Een correctie vormt een nieuwe revisie met verwijzing naar de voorganger en een reden; geen stille overschrijving. Alleen toegestane bronbestanden gaan naar Git. Uploads met niet-toegestane patiënt- of identificatievelden worden vóór archivering tegengehouden; de aanleveraar moet een geschikt bestand leveren. Het stilzwijgend strippen van velden mag een gewijzigd bestand niet als oorspronkelijk presenteren.</p>
+<p>Gebruikerswachtwoorden, toegangstokens, e-mailadressenlijsten en de identificerende labnaam-/gebruikerskoppeling worden niet in de meetrepository opgeslagen. Die koppeling staat afgeschermd in de identiteitsdienst/database. Interne IDs verminderen identificatie in bestandsnamen, maar maken de private meetbestanden niet automatisch anoniem of openbaar.</p>
+<h2 id="opslaan-verwerken-en-opnieuw-ophalen">Opslaan, verwerken en opnieuw ophalen</h2>
+<p>De deelnemer doorloopt achtereenvolgens <strong>inloggen → goedgekeurde deelname kiezen → bestanden en bronmeting bevestigen → servervalidatie → opslag → eigen analyse</strong>. De server controleert rechten voordat hij een upload aanneemt. Provider, lab en bronkoppeling worden opnieuw gevalideerd; een cliëntverklaring alleen is onvoldoende.</p>
+<p>De API kan eerst een taak-ID teruggeven met status <code>queued</code>. Dat betekent nog niet dat de inzending duurzaam is opgeslagen. Voorgestelde taakstatussen zijn <code>queued</code>, <code>validating</code>, <code>rejected</code>, <code>committing</code>, <code>indexing</code> en <code>available</code>, met afzonderlijke herstelbare <code>failed</code>-status. De interface meldt pas opgeslagen/beschikbaar wanneer Git-commit, bronhashcontrole en database-index bevestigd zijn.</p>
+<p>De worker verwerkt de tijdelijke upload, maakt een samenhangende Git-commit voor bronnen, normalisatie en manifest en legt commit-SHA en revisie vast in PostgreSQL. Git en database vormen geen gezamenlijke transactie. Daarom zijn een duurzame taak/outbox, herhaalbare verwerking en een reconciliatiecontrole nodig. Een herstart na een geslaagde commit mag geen dubbele inzending maken. Een idempotentiesleutel omvat de bevestigde inzendcontext; alleen de bestandshash is onvoldoende, omdat hetzelfde bestand meerdere wells of legitieme contexten kan bevatten.</p>
+<p>In de pilot wordt één schrijver per repository gebruikt, met controle van de verwachte branch-head en herpoging bij een conflict. Er wordt nooit blind een conflicterende versie overschreven. Wachtrijvertraging, GitHub-limieten en tijdelijke storingen worden als taakstatus teruggegeven. Voor herladen op een ander apparaat haalt de backend de geautoriseerde index en bestanden opnieuw op; de gebruiker krijgt geen rechtstreekse private GitHub-download-URL of repositorytoken.</p>
+<h2 id="consensusvrijgave-als-centrale-toestand">Consensusvrijgave als centrale toestand</h2>
+<p>Vrijgave blijft gebonden aan <strong>provider + schema-editie + ronde + sample + techniek + klasse</strong>, met geldige bron, versie, datum, vastgelegde meetgrootheid en toegelaten lotselectie. Alleen een bevoegde provider, of een expliciet daarvoor bevoegde admin, mag publiceren. Het uploaden van een consensusbestand levert eerst een gevalideerd concept op en opent niet op zichzelf de groepscontext.</p>
+<p>Voorgestelde vrijgavestatussen zijn <code>draft</code>, <code>validated</code>, <code>published</code>, <code>revoked</code> en <code>superseded</code>. Publiceren legt een versie vast, inclusief de consensus en het cohort van geldige inzendrevisies. Nieuwe inzendingen of gewijzigde analyses veranderen een eerder vrijgegeven cohort niet stilzwijgend; daarvoor is een nieuwe cohort-/vrijgaveversie nodig. De officiële consensus blijft de providerbron en wordt niet afgeleid uit een universele MFI-grens.</p>
+<p>Voor participants worden groepsgrafieken, peerpunten, groepsstatistieken en bijbehorende exports vóór <code>published</code> serverzijdig geweigerd. De backend controleert rol, actuele deelname en vrijgavestatus bij iedere aanvraag. Ook caches zijn per context, recht en versie gescheiden; responses met gevoelige data krijgen een private/no-store-beleid. Een foutieve aanvraag mag geen verborgen peerdataset of downloadbare bron bevatten.</p>
+<p>Intrekken sluit volgende groepsaanvragen en ongeldig verklaarde rapportcaches. Eigen inzendingen blijven toegankelijk binnen de geldige rechten. Een reeds gedownloade export kan technisch niet worden teruggehaald; rapporten dragen daarom versie, vrijgavetijd en statusinformatie. Herpublicatie krijgt een nieuwe versie. De huidige browserlokale demovrijgave wordt niet als centrale officiële vrijgave gemigreerd.</p>
+<h2 id="anonimisering-en-vergelijking-van-kwaliteit-tussen-providers">Anonimisering en vergelijking van kwaliteit tussen providers</h2>
+<p>De backend houdt labidentiteit intern voor autorisatie, ontdubbeling en uitsluiting van het eigen lab. De participant-response bevat geen lab-ID, accountnaam, e-mail, bestandsnaam van een ander lab, verborgen punt-ID of alternatieve route naar diens ruwe bestand. Beide vendors kunnen bijdragen, maar een lab telt één keer als uniek lab. Peerpunten houden de vendorvorm en de gezamenlijke peerkleur; technieken en meetgrootheden blijven gescheiden.</p>
+<p>Vóór echte ingebruikname moet een expliciet beleid voor kleine groepen en herleidbare punten worden vastgesteld. De minimale groepsgrootte voor privacy is een andere instelling dan het minimum voor een violin. Een provider mag groepsgegevens eerder intern beoordelen; dit geeft participants nog geen toegang.</p>
+<p>Een overkoepelende kwaliteitsanalyse van controles kan alleen via een afzonderlijk geautoriseerd project, met een bevestigde koppeling aan gedeeld controlemateriaal, expliciete providergoedkeuring en passende publicatiescope. Gelijke samplecodes of regio’s vormen geen bewijs van dezelfde controle. EPT-rondes en onbekende samples worden niet bij elkaar gevoegd. Vendorresultaten blijven afzonderlijk interpreteerbaar en kunnen via specificiteitsconsensus worden vergeleken. Dit verleent geen wederzijdse toegang tot private providerreposities of ruwe labdata.</p>
+<h2 id="voorgestelde-api-contracten">Voorgestelde API-contracten</h2>
+<p>Dit zijn ontwerpinterfaces, geen bestaande endpoints. De backend bepaalt scope steeds uit geverifieerde identiteit, databasekoppelingen en de gevraagde EPT-context.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Invoer en controles</th>
+<th>Beoogde uitvoer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /me</code></td>
+<td>Geldige identiteit en accountstatus</td>
+<td>Profiel, labs en toegestane rolscopes</td>
+</tr>
+<tr>
+<td><code>POST /participations</code></td>
+<td>Labkoppeling, provider, editie en vendors</td>
+<td>Aanvraag met goedkeuringsstatus, geen automatisch toegangsrecht</td>
+</tr>
+<tr>
+<td><code>POST /imports</code></td>
+<td>Goedgekeurde deelname, geopende ronde, bronbestanden, techniek en bevestigde well/samplekoppeling</td>
+<td>Taak-ID en validatiestatus</td>
+</tr>
+<tr>
+<td><code>GET /jobs/{id}</code></td>
+<td>Aanvrager of bevoegde provider/admin</td>
+<td>Voortgang, bruikbare foutcode en revisieverwijzing</td>
+</tr>
+<tr>
+<td><code>GET /submissions/{id}</code></td>
+<td>Labbezit of expliciete provider-/beheerscope</td>
+<td>Eigen of toegestane inzending op vaste revisie</td>
+</tr>
+<tr>
+<td><code>POST /releases</code></td>
+<td>Providerbevoegdheid, bronconsensus en context</td>
+<td>Gevalideerd concept met fouten of waarschuwingen</td>
+</tr>
+<tr>
+<td><code>POST /releases/{id}/publish</code></td>
+<td>Opnieuw gecontroleerde bevoegdheid en volledige gevalideerde versie</td>
+<td>Gepubliceerde vrijgave en cohortversie</td>
+</tr>
+<tr>
+<td><code>POST /releases/{id}/revoke</code></td>
+<td>Bevoegdheid en reden</td>
+<td>Ingetrokken status en auditverwijzing</td>
+</tr>
+<tr>
+<td><code>GET /group-context</code></td>
+<td>Actieve deelname, exacte context en gepubliceerde versie</td>
+<td>Toegestane grafiekdata en tellingen zonder peeridentiteit</td>
+</tr>
+<tr>
+<td><code>POST /exports</code></td>
+<td>Dezelfde rechten als de getoonde data, klasse, techniek, filters en versie</td>
+<td>Reproduceerbare CSV/JSON/SVG, via geautoriseerde levering</td>
+</tr>
+<tr>
+<td><code>POST /admin/role-grants</code></td>
+<td>Adminbevoegdheid, scope, doelaccount en reden</td>
+<td>Geregistreerde rolwijziging met audit</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="github-koppeling-beheer-en-groeipad">GitHub-koppeling, beheer en groeipad</h2>
+<p>De backend gebruikt een GitHub App voor de opslagservice, geïnstalleerd op uitsluitend <code>ept-data</code>, met minimaal benodigde repositoryrechten, in eerste instantie Contents read/write en noodzakelijke metadata. Geen workflow-, organisatiebeheer- of openbare-site-schrijfrechten. De privésleutel staat in een secretsmanager; kort geldige installation tokens blijven op de server. De service schrijft onder haar eigen technische identiteit; de interne audit legt vast welke geautoriseerde EPT-gebruiker de handeling initieerde. Een gedeeld persoonlijk toegangstoken in de frontend is geen onderdeel van dit ontwerp.</p>
+<p>Een audit bevat actor-ID, effectieve rol en scope, actie, doel-ID, tijd, reden, resultaat, bron-/rapportversie en zo nodig commit-SHA. Auditdetails zijn beperkt toegankelijk en bevatten geen wachtwoorden, tokens of onnodige ruwe meetinhoud. De Git-geschiedenis vervangt deze audit niet. Back-ups omvatten repository, database, identiteitsconfiguratie en herstelbare sleutelconfiguratie; herstel moet als samenhangende dataset worden getest.</p>
+<p>Vooraf zijn afspraken nodig over bewaartermijn en verwijdering, inclusief Git-geschiedenis, tijdelijke bestanden, caches en back-ups. Een bestand verwijderen uit de actuele branch verwijdert het niet uit oudere commits. Als de vereiste verwijderbaarheid of gegevenslocatie niet met de gekozen GitHub-opslag te realiseren is, moet private objectopslag de meetbestanden bewaren en Git alleen geschikte versiemanifesten. Dat is een expliciet beslispunt vóór opslag van echte gegevens.</p>
+<p>GitHub is voor deze opzet een versiearchief voor een afgebakende pilot, geen database voor alle losse meetwaarden of elke grafiekklik. PostgreSQL is de operationele autorisatie- en indexlaag. Omvang, commitsnelheid, wachttijden, conflicten en bewaarbehoefte worden gemeten. Groei of andere bewaareisen kunnen leiden tot objectopslag met dezelfde bestandscontracten en GitHub als manifest-/versiearchief. Er wordt nu geen uitspraak gedaan over kosten of maximale deelnemersaantallen.</p>
+<h2 id="voorwaarden-voor-een-latere-bouwfase">Voorwaarden voor een latere bouwfase</h2>
+<p>Vóór implementatie moeten hosting/identiteitsdienst, domein, gegevenslocatie, toegestane broninhoud, bewaartermijnen, providerbevoegdheden, deelnamegoedkeuring en het privacybeleid voor kleine groepen worden vastgesteld. Deze uitwerking maakt nog geen externe diensten, sleutels of accounts aan.</p>
+<p>De latere acceptatietests moeten minimaal aantonen dat een participant geen ander lab kan kiezen, providers geen andere provider kunnen benaderen, zelfregistratie geen deelname goedkeurt, verborgen endpoints en exports dezelfde rechten afdwingen en blokkeren/intrekken ook met nog geldige tokens effect heeft. Daarnaast: geen peertoegang vóór vrijgave, klasse/techniek/meetsectie niet vermengen, correcte dual-vendor-ontdubbeling, bestandshashes intact, geen dubbele commits bij retries, herstel na storing tussen Git-commit en database-update, en geslaagde back-up-/herstel- en verwijderproeven. Toegangsrechten moeten met echte afzonderlijke accounts en servercontroles worden getest, niet alleen door knoppen te verbergen.</p>
+<h2 id="technische-bronnen-bij-het-architectuurvoorstel">Technische bronnen bij het architectuurvoorstel</h2>
+<p>De genoemde productmogelijkheden zijn gecontroleerd op 16 oktober 2026. De architectuurkeuzes hierboven zijn projectvoorstellen, geen door GitHub geleverde EPT-functionaliteit.</p>
+<ul>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub Pages is statische hosting</a>.</li>
+<li><a href="https://docs.github.com/en/rest/repos/contents">GitHub repository contents API</a>.</li>
+<li><a href="https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app">GitHub App installation tokens en beperkte repositoryrechten</a>.</li>
+<li><a href="https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app">GitHub App: sleutels en autorisatie</a>.</li>
+<li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits">GitHub repositorylimieten</a>.</li>
+<li><a href="https://fastapi.tiangolo.com/deployment/concepts/">FastAPI: deploymentconcepten</a>.</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9700.html">OAuth 2.0 Security Best Current Practice, RFC 9700</a>.</li>
+</ul></main></div><footer>Projectdocumentatie · geen officiële EFI-dienst</footer></body></html>

@@ -1,4 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT - platform concept</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="app/">Prototype</a><a href="manual_EN.html">Manual</a><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="concept_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI EPT - platform concept</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#purpose">Purpose</a><a href="#ept-context-and-identity">EPT context and identity</a><a href="#own-data-and-release">Own data and release</a><a href="#techniques-and-vendors">Techniques and vendors</a><a href="#laboratory-report">Laboratory report</a><a href="#input-and-output">Input and output</a><a href="#privacy-and-publication">Privacy and publication</a><a href="#design-images">Design images</a><a href="#public-sources">Public sources</a><a href="#separate-dashboards-by-user-role">Separate dashboards by user role</a><a href="#roles-sign-in-and-participant-workflow">Roles, sign-in and participant workflow</a><a href="#logarithmic-axis-subdivisions">Logarithmic axis subdivisions</a><a href="#mfi-display">MFI display</a><a href="#both-demo-classes-and-a-fixed-mfi-axis">Both demo classes and a fixed MFI axis</a><a href="concept_EN.md">Markdown</a></aside><main><p>Version 1.0 · 15 October 2026 · Public design documentation</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>EFI EPT - platform concept</title><link rel="icon" href="assets/logo-color.svg"><link rel="stylesheet" href="assets/efi.css"><link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/specimen.css"><script src="assets/style-demo.js" defer></script></head><body><header class="top"><img src="assets/logo-color.svg" alt="EFI"><a class="brand" href="index_EN.html">EPT Insights</a><div class="header-actions"><a href="app/">Prototype</a><a href="manual_EN.html">Manual</a><a href="concept_EN.html">Concept</a><a href="efi-style_EN.html">EFI</a><a href="style_EN.html">Style guide</a><a class="language-switch" href="concept_NL.html" lang="nl" hreflang="nl">NL</a><button class="print" onclick="window.print()">Print</button></div></header><div class="hero"><div class="eyebrow">EFI · EPT · Research prototype</div><h1>EFI EPT - platform concept</h1><p>Public design documentation · work in progress</p><img class="hero-logo" src="assets/logo-white.svg" alt="EFI"></div><div class="layout"><aside><strong>CONTENTS</strong><a href="#purpose">Purpose</a><a href="#ept-context-and-identity">EPT context and identity</a><a href="#own-data-and-release">Own data and release</a><a href="#techniques-and-vendors">Techniques and vendors</a><a href="#laboratory-report">Laboratory report</a><a href="#input-and-output">Input and output</a><a href="#privacy-and-publication">Privacy and publication</a><a href="#design-images">Design images</a><a href="#public-sources">Public sources</a><a href="#separate-dashboards-by-user-role">Separate dashboards by user role</a><a href="#roles-sign-in-and-participant-workflow">Roles, sign-in and participant workflow</a><a href="#logarithmic-axis-subdivisions">Logarithmic axis subdivisions</a><a href="#mfi-display">MFI display</a><a href="#both-demo-classes-and-a-fixed-mfi-axis">Both demo classes and a fixed MFI axis</a><a href="#proposed-central-architecture-status-and-scope">Proposed central architecture: status and scope</a><a href="#required-backend-and-hosting">Required backend and hosting</a><a href="#real-sign-in-and-account-lifecycle">Real sign-in and account lifecycle</a><a href="#permissions-by-role-laboratory-and-provider">Permissions by role, laboratory and provider</a><a href="#ept-data-layout-and-data-contract">ept-data layout and data contract</a><a href="#saving-processing-and-retrieving-data">Saving, processing and retrieving data</a><a href="#consensus-release-as-central-state">Consensus release as central state</a><a href="#anonymisation-and-cross-provider-quality-comparisons">Anonymisation and cross-provider quality comparisons</a><a href="#proposed-api-contracts">Proposed API contracts</a><a href="#github-integration-operations-and-growth">GitHub integration, operations and growth</a><a href="#conditions-for-a-later-implementation-phase">Conditions for a later implementation phase</a><a href="#technical-sources-for-the-architecture-proposal">Technical sources for the architecture proposal</a><a href="concept_EN.md">Markdown</a></aside><main><p>Version 1.1 · 16 October 2026 · Public design documentation</p>
+<p><strong>Status on 16 October 2026:</strong> the current browser demo and proposed central platform are described separately below. The private storage, real sign-in and external backend proposal is documentation only; these features have not been implemented.</p>
 <h2 id="purpose">Purpose</h2>
 <p>A bilingual research prototype for supplementary analysis of HLA single antigen bead results within EPT distributions. Participants can inspect their own measurements and compare them with suitable references after provider release. This is a developing design, not an official EFI service, accreditation assessment or medical advice.</p>
 <h2 id="ept-context-and-identity">EPT context and identity</h2>
@@ -34,7 +35,7 @@
 <p>Public source links do not establish collaboration or enrolment. <a href="efi-style_EN.html">EFI</a><a href="style_EN.html">EFI style guide</a>.</p>
 <h2 id="separate-dashboards-by-user-role">Separate dashboards by user role</h2>
 <p>The participating laboratory dashboard contains its own import, measurements, report and exports. Group context becomes visible only after release by its EPT provider. The separate provider dashboard contains the overview by provider, scheme/edition, round, sample and technique, with consensus validation and release. Providers and techniques remain separate.</p>
-<p>In the current browser prototype, the dashboard selector switches between these routes. This is navigation within a simulation, not authentication or secure authorisation. A new laboratory import locks group context again.</p>
+<p>In the current browser prototype, the dashboard selector switches between these routes. This is navigation within a simulation, not authentication or secure authorisation. A new laboratory import rechecks whether a valid local demo release exists for the active context; otherwise only own data remain visible.</p>
 <h2 id="roles-sign-in-and-participant-workflow">Roles, sign-in and participant workflow</h2>
 <p>There are three demo roles: admin, provider and participant. Admin espierin sees the account overview and can inspect the other two dashboards. Provider provider_1 sees the consensus route. Participant participant_1 first chooses EPT schemes and vendors, then imports CSV and EDS, and sees analyses only after confirmation. Reporting remains linked to the enrolled provider and scheme edition. One Lambda participation can already be registered; its importer is not yet available.</p>
 <p>My profile lets you add an optional email address and change your password. A password change requires the current password and repetition of the new password. No emails are sent and email recovery is not yet available. Signing out clears imported results and reference data from the session.</p>
@@ -42,9 +43,253 @@
 <h2 id="logarithmic-axis-subdivisions">Logarithmic axis subdivisions</h2>
 <p>The MFI axis defaults to log10. Major ticks mark powers of ten. Each decade contains short axis ticks for multiples 2 through 9, positioned logarithmically. These subdivisions do not extend as gridlines into the chart. Linear mode has no logarithmic minor ticks. SVG export preserves the subdivisions.</p>
 <h2 id="mfi-display">MFI display</h2>
-<p>Display MFI values as rounded integers with no dot, comma or space as a thousands separator. Apply this to tables, axis labels and tooltips in both languages. Example: 8001.5 is displayed as 8002. Calculations, point positions and CSV/JSON data exports retain original precision; SVG export follows the visual integer display.</p>
+<p>Display MFI values as rounded integers with no dot, comma or space as a thousands separator. Apply this to tables, axis labels and tooltips in both languages. Example: 8001.5 is displayed as 8002. Calculations and CSV/JSON data exports retain original precision; point positions are bounded only at the visible axis limits; SVG export follows the visual integer display.</p>
 <p>Demo releases are retained in this browser by provider, scheme, round, sample, class and technique. A matching participant import applies the release; withdrawal removes that local release. Other browsers do not yet share this status. No raw laboratory results are stored centrally.</p>
 <h2 id="both-demo-classes-and-a-fixed-mfi-axis">Both demo classes and a fixed MFI axis</h2>
 <p>The public demo includes class I (four HLA beads) and class II (five HLA beads), each with its own CSV and EDS lot file. Admin and provider receive both demo classes after sign-in. A participant first confirms a public demo import; the other demo class is then added automatically. This applies only to the public demo. User-selected files do not automatically mix with demo data. Use buttons I and II to switch. Data, lot, loci, measurement section and consensus remain separate by class; signing out clears both imports.</p>
 <p>All MFI charts use a fixed visible range from 1 through 30000 in both logarithmic and linear modes. The log axis has major ticks at 1, 10, 100, 1000, 10000 and the upper limit 30000, with short logarithmic subdivisions on the axis only. Values outside the visible range receive dashed boundary markers and are counted in the chart explanation. Source data, calculations and numeric exports retain their original values. Ticks at 10, 100, 1000 and 10000 are longer than minor ticks. Values above 30000 are plotted at exactly 30000. Fixing the axis does not change measurements.</p>
-<p>Five additional browser checks in <code>app/tests/classes.cjs</code> cover default class II import, paired DQ/DP specificities, switching back to class I, both fixed axes, values below 1 and above 30000, export precision and clearing both classes on sign-out.</p></main></div><footer>Project documentation · not an official EFI service</footer></body></html>
+<p>Five additional browser checks in <code>app/tests/classes.cjs</code> cover default class II import, paired DQ/DP specificities, switching back to class I, both fixed axes, values below 1 and above 30000, export precision and clearing both classes on sign-out.</p>
+<h2 id="proposed-central-architecture-status-and-scope">Proposed central architecture: status and scope</h2>
+<p><strong>Design proposal dated 16 October 2026, not implemented.</strong> The current local browser demo continues to behave as documented. The <code>ept-data</code> repository, backend, identity service and production permissions below have not been created. Demo accounts do not automatically become production accounts. These sections describe the intended next phase and do not replace existing access control with a security claim.</p>
+<p>The preferred design retains the public website on GitHub Pages and stores permitted source files and processed measurement files in a separate <strong>private repository named <code>ept-data</code></strong>. An external backend provides real sign-in, authorisation, validation, storage and report delivery. Users do not need GitHub accounts or direct repository access.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Intended responsibility</th>
+<th>Location and access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public <code>ept</code> repository and GitHub Pages</td>
+<td>Interface, code, manual, style guide and permitted demo files</td>
+<td>Public; no real submissions or secret keys</td>
+</tr>
+<tr>
+<td>Private <code>ept-data</code> repository</td>
+<td>Unchanged permitted sources, normalised measurement files, import manifests and consensus versions</td>
+<td>Storage service and explicitly authorised administrators only</td>
+</tr>
+<tr>
+<td>FastAPI backend</td>
+<td>Verify sessions/tokens, enforce role and scope, serve the API and exports</td>
+<td>Separate HTTPS hosting; does not run in GitHub Pages</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Account identifiers, labs, provider relationships, roles, approved enrolments, job status, file index and audit</td>
+<td>Private database behind the backend</td>
+</tr>
+<tr>
+<td>Background worker</td>
+<td>Validate/process files, write Git commits and update the index</td>
+<td>Separate process with durable PostgreSQL jobs</td>
+</tr>
+<tr>
+<td>OpenID Connect identity service</td>
+<td>Passwords, email verification, recovery and MFA</td>
+<td>Managed identity service; no password database in Git</td>
+</tr>
+<tr>
+<td>Private temporary file storage and secret management</td>
+<td>Controlled upload buffer and protected service keys</td>
+<td>Backend environment with restricted retention and access</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is a concrete preferred stack, not a technical requirement to use Python. Another backend is possible if it meets the same authorisation, storage and processing contracts. Hosting provider, identity service, region, agreements and costs must be selected before implementation.</p>
+<h2 id="required-backend-and-hosting">Required backend and hosting</h2>
+<p>The minimum comprises an HTTPS API, background worker, durable PostgreSQL database, OpenID Connect provider and secure secret management. A PostgreSQL job table can provide the pilot's durable queue; Redis is then optional. The worker runs outside the web request, so an upload or GitHub outage does not depend on keeping a browser tab open. Temporary uploads are encrypted in private object storage and deleted after processing or rejection according to a configured retention period.</p>
+<p>FastAPI is proposed as a container service, with a separate worker process and managed database. Both processes must resume unfinished work reliably after restart. The proposal does not require a dedicated physical server, but does require external compute and storage services alongside GitHub Pages. GitHub Actions may later run checks or scheduled archiving; it is not the interactive sign-in or access-control server.</p>
+<p>The backend validates files even if the browser has already checked them. Browser validation is user assistance only. Supported formats, size, encoding, lot matching, samples, technique, class assignment and measurement sections are checked again server-side. The first central importer remains Werfen xPONENT CSV + EDS; One Lambda, MATCH IT!, C1q and C3d receive production status only after their own validation.</p>
+<p>Hosting must support HTTPS, fixed permitted redirect URLs, private database connections, separate test/production environments, monitoring, backups and recovery. Real data additionally require decisions about location, retention and organisational responsibilities. An EU region for API/database does not automatically give GitHub storage the same data location; suitability of the selected GitHub service requires a separate assessment.</p>
+<h2 id="real-sign-in-and-account-lifecycle">Real sign-in and account lifecycle</h2>
+<p>The proposal uses OpenID Connect with <strong>Authorization Code + PKCE</strong>, through an appropriate client library. The identity service handles sign-in, email verification, password changes and recovery. MFA is required for admin and provider; participant policy must be established before use. Public demo passwords are not carried over. Production accounts are created through controlled invitations and confirmed association with a laboratory or provider.</p>
+<p>The browser receives only short-lived user access to the EPT API. Long-lived service credentials and GitHub tokens never enter the browser. Access tokens are not stored as a production equivalent of the current localStorage login. The backend verifies token signature, issuer, audience and validity. The immutable identity issuer and subject identify a user; an email address or display name is not a permanent account ID.</p>
+<p>PostgreSQL retains the internal user ID and current role grants. Roles supplied through forms, URLs or localStorage are never authoritative. A blocked account, revoked role or expired enrolment loses access at the next API check even if an access token has not yet expired. Production sign-out covers the application session and, where appropriate, the identity service; refreshing does not delete centrally stored submissions.</p>
+<p>The pilot frontend may remain at <code>espierin.github.io/ept</code>, with an API on another HTTPS host and an explicitly allowed CORS origin. CORS distinguishes origins, not project paths: <code>/ept</code> is not a separate origin within <code>espierin.github.io</code>. CORS is not authorisation. Production preferably uses a domain dedicated exclusively to EPT. The future Content Security Policy must explicitly permit the selected API and identity hosts; the current demo remains unchanged. Any cookie/BFF arrangement requires a separate design covering SameSite, CSRF and cross-domain behaviour.</p>
+<h2 id="permissions-by-role-laboratory-and-provider">Permissions by role, laboratory and provider</h2>
+<p>A user account is not a laboratory. Multiple users may belong to one laboratory; a laboratory may participate with multiple providers and schemes. Roles are scoped grants, for example provider management for one provider and specified scheme editions. A user may hold multiple grants, but the active context must always remain visible and bounded.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Participant</th>
+<th>Provider</th>
+<th>Admin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manage own profile</td>
+<td>Own account</td>
+<td>Own account</td>
+<td>Own account</td>
+</tr>
+<tr>
+<td>Request participation and vendors</td>
+<td>For linked laboratory</td>
+<td>For own organisation where applicable</td>
+<td>Administration and correction</td>
+</tr>
+<tr>
+<td>Approve participation</td>
+<td>No</td>
+<td>Own provider and scheme only</td>
+<td>Platform administration with audit</td>
+</tr>
+<tr>
+<td>Submit and retrieve results</td>
+<td>Own lab, approved participation and open round</td>
+<td>Own provider context under documented authority</td>
+<td>Explicit, logged administrative access only</td>
+</tr>
+<tr>
+<td>Inspect other laboratories' submissions</td>
+<td>No raw files</td>
+<td>Own provider and assigned schemes only</td>
+<td>Explicit administrative access; no silent laboratory impersonation</td>
+</tr>
+<tr>
+<td>Prepare, publish and withdraw consensus</td>
+<td>No</td>
+<td>Own scope only</td>
+<td>Only with explicit authority and reason</td>
+</tr>
+<tr>
+<td>Retrieve group context</td>
+<td>Matching authorised lab and valid release only</td>
+<td>Own provider context</td>
+<td>Within explicit administrative scope</td>
+</tr>
+<tr>
+<td>Manage roles and provider organisations</td>
+<td>No</td>
+<td>Cannot grant platform roles</td>
+<td>Yes, with audit</td>
+</tr>
+</tbody>
+</table></div>
+<p>At a later initial deployment, the first admin is explicitly linked to the verified identity of the platform owner. The display name <code>espierin</code> does not itself grant permissions. There is no hardcoded admin password or open self-promotion route; subsequent role changes use the audited administration process.</p>
+<p>A participant may specify a scheme and vendors, but cannot thereby grant access to themselves: the provider approves participation. The backend derives lab ID from account association and checks provider, scheme, round and sample access. A participant cannot select another laboratory by changing an upload or URL ID. Vendor registration does not enable an unvalidated importer.</p>
+<p>Every read, write, download and export request receives the same checks. Access is denied by default. No role receives the entire private repository or GitHub access tokens through the web application. Direct GitHub access remains restricted to the storage service and designated administrators, because a directory is not a per-laboratory security boundary.</p>
+<h2 id="ept-data-layout-and-data-contract">ept-data layout and data contract</h2>
+<p><code>ept-data</code> is the intended private repository name; creation is a separate future step. GitHub Pages publishing is not enabled for this repository. The public <code>ept</code> build must not fetch the private repository or include any of its files.</p>
+<p>One possible layout, solely a schema with fictional internal IDs:</p>
+<pre><code class="language-text">providers/{provider_id}/editions/{edition_id}/rounds/{round_id}/samples/{sample_id}/
+  submissions/{submission_id}/revisions/{revision_id}/
+    source/run.csv
+    source/lot.eds
+    normalized/measurements.json
+    validation/report.json
+    manifest.json
+  releases/{technique}/{hla_class}/{release_id}/
+    consensus.json
+    cohort-manifest.json
+    release.json
+</code></pre>
+<p>The submission manifest includes at least schema/parser/method versions, provider, edition, round, sample, lab ID, vendor, technique, class, lot, selected source measurement and well, measurement sections, source hashes, file references, receipt time and revision. The cohort manifest references the exact eligible submission revisions and analysis method. Physical directories and metadata must agree; the database makes information searchable without deriving authorisation from paths.</p>
+<p>Accepted source files remain unchanged. A correction creates a new revision referencing its predecessor and giving a reason; there is no silent overwrite. Only permitted source files enter Git. Uploads with prohibited patient or identifying fields are stopped before archiving; the submitter must supply a suitable file. Silently stripping fields must not result in a modified file being presented as the original.</p>
+<p>User passwords, access tokens, email lists and the identifying laboratory-name/user mapping are not stored in the measurement repository. That mapping is protected in the identity service/database. Internal IDs reduce identification in filenames but do not automatically make private measurement files anonymous or public.</p>
+<h2 id="saving-processing-and-retrieving-data">Saving, processing and retrieving data</h2>
+<p>The participant follows <strong>sign in → select approved participation → confirm files and source measurement → server validation → storage → own analysis</strong>. The server checks permissions before accepting an upload. Provider, laboratory and source mapping are revalidated; a client declaration alone is insufficient.</p>
+<p>The API may initially return a job ID with status <code>queued</code>. This does not yet mean the submission is durably stored. Proposed job states are <code>queued</code>, <code>validating</code>, <code>rejected</code>, <code>committing</code>, <code>indexing</code> and <code>available</code>, with a separate recoverable <code>failed</code> state. The interface reports saved/available only after confirmation of Git commit, source-hash verification and database indexing.</p>
+<p>The worker processes the temporary upload, creates a coherent Git commit for sources, normalisation and manifest, and records commit SHA and revision in PostgreSQL. Git and database do not share a transaction. Durable jobs/outbox, repeatable processing and reconciliation are therefore required. Restarting after a successful commit must not create a duplicate submission. An idempotency key includes confirmed submission context; file hash alone is insufficient because one file can contain multiple wells or legitimate contexts.</p>
+<p>The pilot uses one writer per repository, checking the expected branch head and retrying conflicts. Conflicting versions are never blindly overwritten. Queue delays, GitHub limits and transient outages are returned as job status. To reload on another device, the backend retrieves the authorised index and files again; the user receives neither a direct private GitHub download URL nor a repository token.</p>
+<h2 id="consensus-release-as-central-state">Consensus release as central state</h2>
+<p>Release remains scoped to <strong>provider + scheme edition + round + sample + technique + class</strong>, with a valid source, version, date, recorded measurement quantity and eligible lot selection. Only an authorised provider, or an admin explicitly authorised for that action, may publish. Uploading a consensus file first produces a validated draft and does not itself unlock group context.</p>
+<p>Proposed release states are <code>draft</code>, <code>validated</code>, <code>published</code>, <code>revoked</code> and <code>superseded</code>. Publication fixes a version including consensus and the cohort of valid submission revisions. New submissions or changed analyses do not silently alter a previously released cohort; they require a new cohort/release version. Official consensus remains the provider source and is not inferred from a universal MFI threshold.</p>
+<p>For participants, group charts, peer points, group statistics and associated exports are denied server-side before <code>published</code>. The backend checks role, current participation and release status for every request. Caches are separated by context, permission and version; sensitive responses use a private/no-store policy. An invalid request must not contain a hidden peer dataset or downloadable source.</p>
+<p>Withdrawal closes subsequent group requests and invalidates affected report caches. Own submissions remain accessible under valid permissions. An already downloaded export cannot technically be recalled; reports therefore carry version, release time and status information. Republication creates a new version. Current browser-local demo releases are not migrated as central official releases.</p>
+<h2 id="anonymisation-and-cross-provider-quality-comparisons">Anonymisation and cross-provider quality comparisons</h2>
+<p>The backend retains laboratory identity internally for authorisation, deduplication and exclusion of the own laboratory. Participant responses contain no lab ID, account name, email, another laboratory's filename, hidden point ID or alternative route to its raw file. Both vendors may contribute, but one laboratory counts once as a unique lab. Peer points retain vendor shape and common peer colour; techniques and quantities remain separate.</p>
+<p>Before real use, an explicit policy for small cohorts and identifiable points must be established. The privacy minimum cohort size is a different setting from the minimum required for a violin. Providers may review group information internally earlier; that does not yet give participants access.</p>
+<p>An overarching quality analysis of controls requires a separately authorised project, confirmed mapping to shared control material, explicit provider approval and an appropriate publication scope. Matching sample codes or regions do not establish a shared control. EPT rounds and unknown samples are not merged. Vendor results remain separately interpretable and may be compared through specificity consensus. This grants no mutual access to private provider repositories or raw laboratory data.</p>
+<h2 id="proposed-api-contracts">Proposed API contracts</h2>
+<p>These are design interfaces, not existing endpoints. The backend always derives scope from verified identity, database associations and the requested EPT context.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Input and checks</th>
+<th>Intended output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /me</code></td>
+<td>Valid identity and account status</td>
+<td>Profile, laboratories and permitted role scopes</td>
+</tr>
+<tr>
+<td><code>POST /participations</code></td>
+<td>Lab association, provider, edition and vendors</td>
+<td>Request with approval state, no automatic access right</td>
+</tr>
+<tr>
+<td><code>POST /imports</code></td>
+<td>Approved participation, open round, source files, technique and confirmed well/sample mapping</td>
+<td>Job ID and validation status</td>
+</tr>
+<tr>
+<td><code>GET /jobs/{id}</code></td>
+<td>Requester or authorised provider/admin</td>
+<td>Progress, useful error code and revision reference</td>
+</tr>
+<tr>
+<td><code>GET /submissions/{id}</code></td>
+<td>Lab ownership or explicit provider/administrative scope</td>
+<td>Own or permitted submission at a fixed revision</td>
+</tr>
+<tr>
+<td><code>POST /releases</code></td>
+<td>Provider authority, source consensus and context</td>
+<td>Validated draft with errors or warnings</td>
+</tr>
+<tr>
+<td><code>POST /releases/{id}/publish</code></td>
+<td>Rechecked authority and complete validated version</td>
+<td>Published release and cohort version</td>
+</tr>
+<tr>
+<td><code>POST /releases/{id}/revoke</code></td>
+<td>Authority and reason</td>
+<td>Revoked status and audit reference</td>
+</tr>
+<tr>
+<td><code>GET /group-context</code></td>
+<td>Current participation, exact context and published version</td>
+<td>Permitted chart data and counts without peer identity</td>
+</tr>
+<tr>
+<td><code>POST /exports</code></td>
+<td>Same permissions as displayed data, class, technique, filters and version</td>
+<td>Reproducible CSV/JSON/SVG through authorised delivery</td>
+</tr>
+<tr>
+<td><code>POST /admin/role-grants</code></td>
+<td>Admin authority, scope, target account and reason</td>
+<td>Recorded role change with audit</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="github-integration-operations-and-growth">GitHub integration, operations and growth</h2>
+<p>The backend uses a GitHub App for the storage service, installed on <code>ept-data</code> only, with minimum repository permissions: initially Contents read/write and necessary metadata. No workflow, organisation-administration or public-site write permissions. Its private key stays in a secrets manager; short-lived installation tokens remain server-side. The service writes under its own technical identity; internal audit records which authorised EPT user initiated the action. A shared personal access token in the frontend is not part of this design.</p>
+<p>Audit records actor ID, effective role and scope, action, target ID, time, reason, outcome, source/report version and commit SHA where appropriate. Audit details have restricted access and contain no passwords, tokens or unnecessary raw measurements. Git history does not replace this audit. Backups cover repository, database, identity configuration and recoverable key configuration; recovery must be tested as one coherent dataset.</p>
+<p>Retention and deletion rules must cover Git history, temporary files, caches and backups. Deleting a file from the current branch does not remove it from earlier commits. If the required deletion or data-location guarantees cannot be met with the selected GitHub storage, private object storage must hold measurement files and Git only suitable version manifests. This is an explicit decision before storing real data.</p>
+<p>GitHub is a version archive for a bounded pilot in this design, not a database for every individual measurement or chart click. PostgreSQL is the operational authorisation and index layer. Size, commit throughput, waiting times, conflicts and retention needs are measured. Growth or different retention requirements may lead to object storage using the same file contracts, with GitHub as a manifest/version archive. No costs or maximum participant counts are asserted at this stage.</p>
+<h2 id="conditions-for-a-later-implementation-phase">Conditions for a later implementation phase</h2>
+<p>Before implementation, decide hosting/identity service, domain, data location, permitted source content, retention, provider authority, participation approval and the privacy policy for small cohorts. This design creates no external services, keys or accounts.</p>
+<p>Later acceptance tests must show at least that participants cannot select another lab, providers cannot access another provider, self-registration cannot approve participation, hidden endpoints and exports enforce the same rights, and blocking/withdrawal take effect even with still-valid tokens. Also required: no peer access before release, no mixing classes/techniques/measurement sections, correct dual-vendor deduplication, intact file hashes, no duplicate commits on retry, recovery after failure between Git commit and database update, and successful backup/recovery and deletion exercises. Permissions must be tested with genuinely separate accounts and server checks, not merely by hiding buttons.</p>
+<h2 id="technical-sources-for-the-architecture-proposal">Technical sources for the architecture proposal</h2>
+<p>The cited product capabilities were checked on 16 October 2026. The architecture choices above are project proposals, not EPT functionality supplied by GitHub.</p>
+<ul>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub Pages is static hosting</a>.</li>
+<li><a href="https://docs.github.com/en/rest/repos/contents">GitHub repository contents API</a>.</li>
+<li><a href="https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app">GitHub App installation tokens and restricted repository permissions</a>.</li>
+<li><a href="https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app">GitHub App: credentials and authorisation</a>.</li>
+<li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits">GitHub repository limits</a>.</li>
+<li><a href="https://fastapi.tiangolo.com/deployment/concepts/">FastAPI deployment concepts</a>.</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9700.html">OAuth 2.0 Security Best Current Practice, RFC 9700</a>.</li>
+</ul></main></div><footer>Project documentation · not an official EFI service</footer></body></html>
